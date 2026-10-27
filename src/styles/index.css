@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* FONT FAMILY */
+  --font-sans: 'Montserrat', 'Roboto', ui-sans-serif, system-ui, sans-serif;
+
+  /* VANTRIP BRANDING COLORS */
+  --vantrip-color-white: #ffffff;
+  --vantrip-primary: #16697a;
+  --vantrip-secondary: #489fb5;
+  --vantrip-light: #95cdd8;
+  --vantrip-lighter: #cce7ed;
+  --vantrip-dark: #0f172a;
+
+  /* BORDER RADIUS */
+  --radius-card: 20px;
+  --radius-s: 6px;
+  --radius-m: 12px;
+  --radius-l: 24px;
+  --radius-circle: 50%;
+
+  /* SPACINGS & GAPS */
+  --space-xs: 8px;
+  --space-s: 16px;
+  --space-m: 24px;
+  --space-l: 32px;
+  --space-xl: 48px;
+  --space-xxl: 64px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--vantrip-bg);
+  color: var(--vantrip-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+}
+
+button,
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+h2 {
+  font-size: 1.8rem;
+}
+h3 {
+  font-size: 1.4rem;
+}
+h4 {
+  font-size: 1.2rem;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--vantrip-bg);
+  border-left: 1px solid var(--vantrip-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--vantrip-secondary);
+  border-radius: var(--radius-l);
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--vantrip-primary);
+}
+
+/*! GLOBAL MEDIA QUERIES */
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+  html {
+    font-size: 14px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
