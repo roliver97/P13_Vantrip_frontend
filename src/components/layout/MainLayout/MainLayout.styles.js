@@ -6,7 +6,7 @@ export const LayoutContainer = styled.div`
   min-height: 100svh;
 `
 
-export const MainContainer = styled.main`
+export const MainStyled = styled.main`
   flex: 1;
   width: 100%;
   margin: 0 auto;

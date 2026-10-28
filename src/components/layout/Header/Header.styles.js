@@ -5,6 +5,5 @@ export const HeaderStyled = styled.header`
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: var(--vantrip-color-white);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 `

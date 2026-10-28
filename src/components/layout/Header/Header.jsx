@@ -1,4 +1,4 @@
-import { Navbar } from '../NavBar/NavBar'
+import { Navbar } from './Navbar/Navbar'
 import { HeaderStyled } from './Header.styles'
 
 export const Header = () => {

@@ -6,14 +6,20 @@
 
   /* VANTRIP BRANDING COLORS */
   --vantrip-color-white: #ffffff;
-  --vantrip-primary: #16697a;
-  --vantrip-secondary: #489fb5;
-  --vantrip-light: #95cdd8;
-  --vantrip-lighter: #cce7ed;
-  --vantrip-dark: #0f172a;
+  --vantrip-color-black: #000000;
+  --vantrip-primary: #224b3a;
+  --vantrip-secondary: #3b6e58;
+  --vantrip-light: #87b09d;
+  --vantrip-lighter: #e3ede7;
+  --vantrip-dark: #14281f;
+  --vantrip-darker: #0a1410;
 
-  /* BORDER RADIUS */
-  --radius-card: 20px;
+  --vantrip-gradient-background: linear-gradient(
+      180deg,
+      var(--vantrip-primary),
+      var(--vantrip-dark)
+    )
+    /* BORDER RADIUS */ --radius-card: 20px;
   --radius-s: 6px;
   --radius-m: 12px;
   --radius-l: 24px;
@@ -26,6 +32,7 @@
   --space-l: 32px;
   --space-xl: 48px;
   --space-xxl: 64px;
+  --space-3xl: 75px;
 }
 
 *,
@@ -43,8 +50,12 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--vantrip-bg);
-  color: var(--vantrip-text);
+  background: linear-gradient(
+    180deg,
+    var(--vantrip-primary),
+    var(--vantrip-dark)
+  );
+  color: var(--vantrip-color-white);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -57,6 +68,7 @@ select,
 button {
   font-family: var(--font-sans);
   font-size: 1rem;
+  border-radius: var(--radius-s);
 }
 
 button,
