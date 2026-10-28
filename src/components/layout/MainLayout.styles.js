@@ -1,0 +1,14 @@
+import styled from 'styled-components'
+
+export const LayoutContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+`
+
+export const MainContainer = styled.main`
+  flex: 1;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-m, 1rem);
+`

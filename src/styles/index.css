@@ -37,7 +37,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
   scroll-behavior: smooth;
 }
 
@@ -107,10 +107,6 @@ h4 {
 
 @media (max-width: 769px) {
   /* SMALL TABLET or less */
-  html {
-    font-size: 14px;
-  }
-
   input,
   textarea,
   select {
