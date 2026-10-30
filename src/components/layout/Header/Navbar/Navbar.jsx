@@ -5,6 +5,7 @@ import { Overlay } from '../../../ui/Overlay/Overlay'
 import { useWindowResize } from '../../../../hooks/useWindowResize'
 import { LanguageButton } from '../../../ui/LanguageButton/LanguageButton'
 import { LanguageModal } from '../../../modals/LanguageModal/LanguageModal'
+import { useTranslation } from 'react-i18next'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -12,6 +13,8 @@ export const Navbar = () => {
 
   const toggleMenu = () => setIsOpen(!isOpen)
   useWindowResize(() => setIsOpen(false))
+
+  const { t } = useTranslation()
 
   return (
     <S.Nav>
@@ -32,14 +35,17 @@ export const Navbar = () => {
 
       <S.LinksContainer $isOpen={isOpen}>
         <S.LinksWrapper>
-          <a href='/' onClick={toggleMenu}>
-            Home
-          </a>
           <a href='/vans' onClick={toggleMenu}>
-            Vans
+            {t('nav.vans')}
+          </a>
+          <a href='/destinations' onClick={toggleMenu}>
+            {t('nav.destinations')}
+          </a>
+          <a href='/instructions' onClick={toggleMenu}>
+            {t('nav.instructions')}
           </a>
           <a href='/about' onClick={toggleMenu}>
-            About Us
+            {t('nav.about')}
           </a>
         </S.LinksWrapper>
         <S.ActionsWrapper>

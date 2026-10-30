@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "vans": "Vans",
+    "destinations": "Destinations",
+    "instructions": "How It Works",
+    "about": "About"
+  },
+  "langModal": {
+    "title": "Language and currency settings",
+    "subtitle": "Select your preferred language and currency",
+    "langLabel": "Language",
+    "currencyLabel": "Currency",
+    "button": "Apply"
+  }
+}

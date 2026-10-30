@@ -3,6 +3,8 @@ import { BaseModal } from '../../ui/BaseModal/BaseModal'
 import * as S from './LanguageModal.styles'
 import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
+import i18n from '../../../config/i18n'
+import { useTranslation } from 'react-i18next'
 
 export const LanguageModal = ({ isOpen, onClose }) => {
   const [selectedLang, setSelectedLang] = useState(() => {
@@ -12,45 +14,47 @@ export const LanguageModal = ({ isOpen, onClose }) => {
     return localStorage.getItem('vantrip_currency') || 'EUR'
   })
 
+  const { t } = useTranslation()
+
   const handleApplySelection = () => {
     localStorage.setItem('vantrip_lang', selectedLang)
     localStorage.setItem('vantrip_currency', selectedCurrency)
+
+    i18n.changeLanguage(selectedLang)
 
     onClose()
   }
 
   return (
-    <BaseModal
-      isOpen={isOpen}
-      onClose={onClose}
-      title='Ajustes de idioma y moneda'
-    >
+    <BaseModal isOpen={isOpen} onClose={onClose} title={t('langModal.title')}>
       <FlexContainer>
-        <p>Selecciona tu idioma y moneda preferidos</p>
+        <p>{t('langModal.subtitle')}</p>
         <S.CategoriesContainer>
           <FlexContainer>
-            <label>Idioma</label>
+            <label>{t('langModal.langLabel')}</label>
             <select
               value={selectedLang}
               onChange={(e) => setSelectedLang(e.target.value)}
             >
-              <option value='ES'>Español</option>
-              <option value='EN'>English</option>
+              <option value='es'>Español</option>
+              <option value='en'>English</option>
             </select>
           </FlexContainer>
           <FlexContainer>
-            <label>Moneda</label>
+            <label>{t('langModal.currencyLabel')}</label>
             <select
               value={selectedCurrency}
               onChange={(e) => setSelectedCurrency(e.target.value)}
             >
-              <option value='EUR'>EUR (€)</option>
-              <option value='USD'>USD ($)</option>
-              <option value='GBP'>GBP (£)</option>
+              <option value='eur'>EUR (€)</option>
+              <option value='usd'>USD ($)</option>
+              <option value='gbp'>GBP (£)</option>
             </select>
           </FlexContainer>
         </S.CategoriesContainer>
-        <DefaultButton onClick={handleApplySelection}>Aplicar</DefaultButton>
+        <DefaultButton onClick={handleApplySelection}>
+          {t('langModal.button')}
+        </DefaultButton>
       </FlexContainer>
     </BaseModal>
   )

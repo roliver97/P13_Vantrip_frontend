@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "vans": "Furgonetas",
+    "destinations": "Destinos",
+    "instructions": "Como funciona",
+    "about": "Sobre nosotros"
+  },
+  "langModal": {
+    "title": "Ajustes de idioma y moneda",
+    "subtitle": "Selecciona tu idioma y moneda preferidos",
+    "langLabel": "Idioma",
+    "currencyLabel": "Moneda",
+    "button": "Aplicar"
+  }
+}
