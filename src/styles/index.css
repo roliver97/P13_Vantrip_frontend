@@ -10,7 +10,7 @@
   --vantrip-primary: #224b3a;
   --vantrip-secondary: #3b6e58;
   --vantrip-light: #87b09d;
-  --vantrip-lighter: #e3ede7;
+  --vantrip-lighter: #cfe0d6;
   --vantrip-dark: #14281f;
   --vantrip-darker: #0a1410;
 
@@ -113,6 +113,12 @@ h4 {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--vantrip-primary);
+}
+
+/*! GENERIC BEHAVIORS */
+
+button:active {
+  transform: scale(0.98);
 }
 
 /*! GLOBAL MEDIA QUERIES */

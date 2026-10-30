@@ -21,10 +21,6 @@ export const LogoLink = styled.a`
   height: 40px;
   transition: transform 0.1s ease-in-out;
 
-  &:hover {
-    transform: scale(1.03);
-  }
-
   &:active {
     transform: scale(0.98);
   }
@@ -112,9 +108,11 @@ export const LinksWrapper = styled.div`
     align-items: center;
 
     &:hover {
-      font-weight: 600;
-      transform: scale(1.03);
-      transition: transform 0.1s ease-in-out;
+      color: var(--vantrip-lighter);
+    }
+
+    &:active {
+      transform: scale(0.98);
     }
   }
 
