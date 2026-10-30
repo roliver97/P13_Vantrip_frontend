@@ -1,8 +1,8 @@
 {
   "nav": {
-    "vans": "Furgonetas",
+    "campers": "Campers",
     "destinations": "Destinos",
-    "instructions": "Como funciona",
+    "instructions": "Cómo funciona",
     "about": "Sobre nosotros"
   },
   "langModal": {
@@ -11,5 +11,9 @@
     "langLabel": "Idioma",
     "currencyLabel": "Moneda",
     "button": "Aplicar"
+  },
+  "hero": {
+    "title1": "Encuentra la",
+    "title2": "que mejor se adapte a tu"
   }
 }

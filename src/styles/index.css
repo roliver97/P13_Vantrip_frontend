@@ -101,14 +101,14 @@ h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: var(--vantrip-bg);
-  border-left: 1px solid var(--vantrip-border);
+  background-color: var(--vantrip-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--vantrip-secondary);
+  background-color: var(--vantrip-primary);
   border-radius: var(--radius-l);
   transition: background-color 0.2s ease;
+  border: 1px solid var(--vantrip-light);
 }
 
 ::-webkit-scrollbar-thumb:hover {

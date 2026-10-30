@@ -3,7 +3,6 @@ import * as S from './Navbar.styles'
 import profileIcon from '../../../../assets/icons/profile_icon.svg'
 import { Overlay } from '../../../ui/Overlay/Overlay'
 import { useWindowResize } from '../../../../hooks/useWindowResize'
-import { LanguageButton } from '../../../ui/LanguageButton/LanguageButton'
 import { LanguageModal } from '../../../modals/LanguageModal/LanguageModal'
 import { useTranslation } from 'react-i18next'
 
@@ -15,6 +14,10 @@ export const Navbar = () => {
   useWindowResize(() => setIsOpen(false))
 
   const { t } = useTranslation()
+
+  const currentLang = localStorage.getItem('vantrip_lang').toUpperCase() || 'ES'
+  const currentCurrency =
+    localStorage.getItem('vantrip_currency').toUpperCase() || 'EUR'
 
   return (
     <S.Nav>
@@ -35,11 +38,11 @@ export const Navbar = () => {
 
       <S.LinksContainer $isOpen={isOpen}>
         <S.LinksWrapper>
-          <a href='/vans' onClick={toggleMenu}>
-            {t('nav.vans')}
-          </a>
           <a href='/destinations' onClick={toggleMenu}>
             {t('nav.destinations')}
+          </a>
+          <a href='/campers' onClick={toggleMenu}>
+            {t('nav.campers')}
           </a>
           <a href='/instructions' onClick={toggleMenu}>
             {t('nav.instructions')}
@@ -52,7 +55,12 @@ export const Navbar = () => {
           <a href='/profile' className='profile-link' onClick={toggleMenu}>
             <img src={profileIcon} alt='' />
           </a>
-          <LanguageButton onClick={() => setIsLangModalOpen(true)} />
+          <S.LanguageButton onClick={() => setIsLangModalOpen(true)}>
+            <span>🌐</span>
+            <span>
+              {currentLang} | {currentCurrency}
+            </span>
+          </S.LanguageButton>
         </S.ActionsWrapper>
       </S.LinksContainer>
 

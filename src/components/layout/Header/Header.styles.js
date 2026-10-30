@@ -6,4 +6,5 @@ export const HeaderStyled = styled.header`
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: var(--vantrip-primary);
 `

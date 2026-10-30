@@ -1,13 +1,15 @@
 import { Footer } from '../Footer/Footer'
 import { Header } from '../Header/Header'
-import { LayoutContainer, MainStyled } from './MainLayout.styles'
+import * as S from './MainLayout.styles'
 
 export const MainLayout = ({ children }) => {
   return (
-    <LayoutContainer>
-      <Header />
-      <MainStyled>{children}</MainStyled>
+    <S.LayoutContainer>
+      <S.VisibleLayout>
+        <Header />
+        <S.MainStyled>{children}</S.MainStyled>
+      </S.VisibleLayout>
       <Footer />
-    </LayoutContainer>
+    </S.LayoutContainer>
   )
 }

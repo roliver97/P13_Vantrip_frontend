@@ -1,6 +1,6 @@
 {
   "nav": {
-    "vans": "Vans",
+    "campers": "Campers",
     "destinations": "Destinations",
     "instructions": "How It Works",
     "about": "About"
@@ -11,5 +11,9 @@
     "langLabel": "Language",
     "currencyLabel": "Currency",
     "button": "Apply"
+  },
+  "hero": {
+    "title1": "Find the",
+    "title2": "that best suits your"
   }
 }
