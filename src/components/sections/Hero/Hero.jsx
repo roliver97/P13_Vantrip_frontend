@@ -9,7 +9,7 @@ export const Hero = () => {
   return (
     <S.HeroSection>
       <S.HeroContainer>
-        <TitleComponent fontSize={'3rem'}>
+        <TitleComponent fontSize={'2.8rem'}>
           {t('hero.title1')}{' '}
           <SpanComponent variant={'light'}>van </SpanComponent>
           {t('hero.title2')}{' '}

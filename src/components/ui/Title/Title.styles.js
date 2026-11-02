@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { device } from '../../../styles/breakpoints'
 
 export const TitleStyled = styled.h1`
   color: ${({ $variant }) => {
@@ -20,5 +21,9 @@ export const TitleStyled = styled.h1`
     }
   }};
 
-  font-size: ${({ $fontSize }) => $fontSize || undefined};
+  text-align: center;
+
+  ${device.desktop} {
+    font-size: ${({ $fontSize }) => $fontSize || undefined};
+  }
 ` // In index.css, we’ve already set the h1 elements to 2.2rem. That's why we put undefined here if no prop is received.
