@@ -113,7 +113,7 @@ export const CampersGrid = ({ searchTerm }) => {
   const defaultImgErrorSrc = './src/assets/images/default_van_error_1.jpg'
 
   return (
-    <GridSection>
+    <GridSection id='campers'>
       <Grid>
         {filteredVans.length > 0 ? (
           filteredVans.map((van) => (

@@ -9,13 +9,9 @@ export const GridSection = styled.section`
   flex-direction: column;
   justify-content: center;
 
-  padding: var(--space-m);
-
-  min-height: calc(100svh - 171px);
-
-  ${device.tablet} {
-    min-height: calc(100svh - 161px);
-  }
+  padding: var(--space-xl);
+  min-height: calc(100svh - 62px);
+  scroll-margin-top: 62px;
 `
 
 export const Grid = styled.div`
@@ -62,6 +58,7 @@ export const VanInfo = styled.div`
 export const PriceTag = styled.span`
   color: var(--vantrip-color-secondary);
   font-weight: 600;
+  background-color: var(--vantrip-color-secondary);
 
   ${device.desktop} {
     font-size: 1.1rem;

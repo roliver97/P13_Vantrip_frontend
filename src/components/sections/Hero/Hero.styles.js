@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
-import { device } from '../../../styles/breakpoints'
 
 export const HeroSection = styled.section`
   background-image:
@@ -16,14 +15,16 @@ export const HeroSection = styled.section`
   align-items: center;
   width: 100%;
 
-  min-height: calc(100svh - 72px);
+  min-height: calc(100svh - 62px);
 
-  ${device.tablet} {
-    min-height: calc(100svh - 62px);
-  }
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
 `
 
 export const HeroContainer = styled(FlexContainer)`
   flex: 1;
   padding: var(--space-xl);
+
+  h1 {
+    transform: translateY(-40px);
+  }
 `

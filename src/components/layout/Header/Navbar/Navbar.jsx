@@ -5,15 +5,19 @@ import { Overlay } from '../../../ui/Overlay/Overlay'
 import { useWindowResize } from '../../../../hooks/useWindowResize'
 import { LanguageModal } from '../../../modals/LanguageModal/LanguageModal'
 import { useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router-dom'
+import { handleLogoClick, scrollToSection } from '../../../../utils/scrollTo'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLangModalOpen, setIsLangModalOpen] = useState(false)
 
   const toggleMenu = () => setIsOpen(!isOpen)
+  const closeMenu = () => setIsOpen(false)
   useWindowResize(() => setIsOpen(false))
 
   const { t } = useTranslation()
+  const currentLocation = useLocation()
 
   const currentLang = localStorage.getItem('vantrip_lang').toUpperCase() || 'ES'
   const currentCurrency =
@@ -22,7 +26,13 @@ export const Navbar = () => {
   return (
     <S.Nav>
       <S.LogoWrapper>
-        <S.LogoLink href='/'>
+        <S.LogoLink
+          to='/'
+          onClick={(e) => {
+            closeMenu()
+            handleLogoClick(e, currentLocation.pathname)
+          }}
+        >
           <S.LogoIcon
             src='/assets/vantrip_logo_mobile_white.svg'
             alt='Vantrip Logo'
@@ -34,28 +44,39 @@ export const Navbar = () => {
         </S.LogoLink>
       </S.LogoWrapper>
 
-      <Overlay isActive={isOpen} onClick={toggleMenu} zIndex={5} />
+      <Overlay isActive={isOpen} onClick={closeMenu} zIndex={500} />
 
       <S.LinksContainer $isOpen={isOpen}>
         <S.LinksWrapper>
-          <a href='/destinations' onClick={toggleMenu}>
-            {t('nav.destinations')}
-          </a>
-          <a href='/campers' onClick={toggleMenu}>
+          <Link
+            to='/'
+            onClick={(e) => {
+              closeMenu()
+              scrollToSection(e, currentLocation.pathname, 'campers')
+            }}
+          >
             {t('nav.campers')}
-          </a>
-          <a href='/instructions' onClick={toggleMenu}>
+          </Link>
+          <Link to='/locations' onClick={closeMenu}>
+            {t('nav.locations')}
+          </Link>
+          <Link to='/instructions' onClick={closeMenu}>
             {t('nav.instructions')}
-          </a>
-          <a href='/about' onClick={toggleMenu}>
+          </Link>
+          <Link to='/about' onClick={closeMenu}>
             {t('nav.about')}
-          </a>
+          </Link>
         </S.LinksWrapper>
         <S.ActionsWrapper>
-          <a href='/profile' className='profile-link' onClick={toggleMenu}>
+          <Link to='/profile' className='profile-link' onClick={closeMenu}>
             <img src={profileIcon} alt='' />
-          </a>
-          <S.LanguageButton onClick={() => setIsLangModalOpen(true)}>
+          </Link>
+          <S.LanguageButton
+            onClick={() => {
+              setIsLangModalOpen(true)
+              closeMenu()
+            }}
+          >
             <span>🌐</span>
             <span>
               {currentLang} | {currentCurrency}

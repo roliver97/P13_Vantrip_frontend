@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { device } from '../../../../styles/breakpoints'
+import { Link } from 'react-router-dom'
 
 export const Nav = styled.nav`
   display: flex;
@@ -12,21 +13,18 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 200px;
+  z-index: 1000;
 `
 
-export const LogoLink = styled.a`
+export const LogoLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  height: 40px;
+  height: 30px;
   transition: transform 0.1s ease-in-out;
 
   &:active {
     transform: scale(0.98);
-  }
-
-  ${device.tablet} {
-    height: 30px;
   }
 `
 
@@ -46,7 +44,7 @@ export const LogoIconFull = styled.img`
 `
 
 export const HamburgerButton = styled.button`
-  z-index: 100;
+  z-index: 1000;
   font-weight: 400;
   color: var(--vantrip-color-white);
   background: none;
@@ -60,7 +58,7 @@ export const HamburgerButton = styled.button`
 export const LinksContainer = styled.div`
   display: flex;
   flex: 1;
-  z-index: 10;
+  z-index: 1000;
   flex-direction: column;
 
   position: fixed;
@@ -72,6 +70,8 @@ export const LinksContainer = styled.div`
   align-items: center;
   gap: var(--space-xxl);
   padding: var(--space-xxl) 0;
+
+  border-left: 1px solid var(--vantrip-light);
   background-color: var(--vantrip-secondary);
   box-shadow: ${({ $isOpen }) =>
     $isOpen ? '-5px 0 20px rgba(0, 0, 0, 0.5)' : 'none'};
@@ -80,6 +80,7 @@ export const LinksContainer = styled.div`
   transition: transform 0.1s ease-in-out;
 
   ${device.tablet} {
+    border-left: none;
     position: static;
     flex-direction: row;
     gap: var(--space-xl);
@@ -155,7 +156,7 @@ export const ActionsWrapper = styled.div`
 
 export const LanguageButton = styled.button`
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--vantrip-light);
   color: var(--vantrip-color-white);
   padding: 6px 12px;
   border-radius: 20px;

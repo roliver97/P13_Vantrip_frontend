@@ -1,26 +1,28 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
-import { device } from '../../../styles/breakpoints'
 
 export const SearchContainer = styled(FlexContainer)`
-  width: 100%;
-  padding: var(--space-s) 0;
-
-  position: sticky;
-  top: 56px;
+  width: 80%;
   z-index: 100;
 
-  ${device.tablet} {
-    top: 46px;
-    padding: var(--space-s) var(--space-m);
-  }
+  ${({ $isSticky }) =>
+    $isSticky
+      ? css`
+          position: fixed;
+          top: 72px;
+        `
+      : css`
+          position: absolute;
+          top: calc(50svh);
+          transform: translateY(-50%);
+          background: transparent;
+        `}
 `
 
 export const SearchInput = styled.input`
   height: 40px;
   border-radius: var(--radius-l);
   flex: 1;
-  border: none;
   outline: none;
   text-align: center;
   border: 2px solid var(--vantrip-secondary);
@@ -29,5 +31,18 @@ export const SearchInput = styled.input`
 
   &:focus {
     border: 3px solid var(--vantrip-secondary);
+  }
+
+  &::placeholder {
+    font-size: 0.9rem;
+  }
+  &::-webkit-input-placeholder {
+    font-size: 0.9rem;
+  }
+  &::-moz-placeholder {
+    font-size: 0.9rem;
+  }
+  &:-ms-input-placeholder {
+    font-size: 0.9rem;
   }
 `

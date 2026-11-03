@@ -7,7 +7,7 @@ export const Hero = () => {
   const { t } = useTranslation()
 
   return (
-    <S.HeroSection>
+    <S.HeroSection id='hero'>
       <S.HeroContainer>
         <TitleComponent fontSize={'2.8rem'}>
           {t('hero.title1')}{' '}

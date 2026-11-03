@@ -26,7 +26,12 @@ export const LanguageModal = ({ isOpen, onClose }) => {
   }
 
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose} title={t('langModal.title')}>
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      title={t('langModal.title')}
+      zIndexOverlay={1000}
+    >
       <FlexContainer>
         <p>{t('langModal.subtitle')}</p>
         <S.CategoriesContainer>

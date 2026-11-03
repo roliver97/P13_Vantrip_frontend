@@ -1,10 +1,16 @@
 import { Overlay } from '../Overlay/Overlay'
 import * as S from './BaseModal.styles'
 
-export const BaseModal = ({ isOpen, onClose, title, children }) => {
+export const BaseModal = ({
+  isOpen,
+  onClose,
+  title,
+  zIndexOverlay,
+  children
+}) => {
   return (
     <>
-      <Overlay isOpen={isOpen} onClick={onClose} zIndex={1000} />
+      <Overlay isActive={isOpen} onClick={onClose} zIndex={zIndexOverlay} />
 
       <S.ModalContainer $isOpen={isOpen}>
         <S.CloseButton onClick={onClose}>X</S.CloseButton>
