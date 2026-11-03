@@ -19,6 +19,11 @@ export const SearchContainer = styled(FlexContainer)`
         `}
 `
 
+export const SearchForm = styled.form`
+  display: flex;
+  width: 100%;
+`
+
 export const SearchInput = styled.input`
   height: 40px;
   border-radius: var(--radius-l);

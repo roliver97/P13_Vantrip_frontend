@@ -36,11 +36,7 @@ export const Home = () => {
         <Hero />
       </div>
 
-      <SearchBox
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        isSticky={isSearchBoxSticky}
-      />
+      <SearchBox onSearchSubmit={setSearchTerm} isSticky={isSearchBoxSticky} />
 
       <CampersGrid searchTerm={searchTerm} />
     </HomeContainer>

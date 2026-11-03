@@ -1,20 +1,33 @@
 import { useLocation } from 'react-router-dom'
 import { scrollToSection } from '../../../utils/scrollTo'
-import { SearchContainer, SearchInput } from './Searchbox.styles'
+import { SearchContainer, SearchForm, SearchInput } from './Searchbox.styles'
+import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 
-export const SearchBox = ({ searchTerm, onSearchChange, isSticky }) => {
+export const SearchBox = ({ onSearchSubmit, isSticky }) => {
+  const { t } = useTranslation()
   const currentLocation = useLocation()
+
+  const [localTerm, setLocalTerm] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSearchSubmit(localTerm)
+    scrollToSection(e, currentLocation.pathname, 'campers')
+  }
+
   return (
     <SearchContainer direction='row' $isSticky={isSticky}>
-      <SearchInput
-        type='text'
-        placeholder={`Busca per lloc o model de camper... 🔍`}
-        value={searchTerm}
-        onChange={(e) => {
-          onSearchChange(e.target.value)
-          scrollToSection(e, currentLocation.pathname, 'campers')
-        }}
-      />
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchInput
+          type='text'
+          placeholder={t('searchBox.placeholder')}
+          value={localTerm}
+          onChange={(e) => {
+            setLocalTerm(e.target.value)
+          }}
+        />
+      </SearchForm>
     </SearchContainer>
   )
 }

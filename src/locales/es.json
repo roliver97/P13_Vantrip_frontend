@@ -15,5 +15,8 @@
   "hero": {
     "title1": "Encuentra la",
     "title2": "que mejor se adapte a tu"
+  },
+  "searchBox": {
+    "placeholder": "Busca por localización o modelo... 🔍"
   }
 }

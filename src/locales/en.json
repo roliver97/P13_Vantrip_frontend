@@ -15,5 +15,8 @@
   "hero": {
     "title1": "Find the",
     "title2": "that best suits your"
+  },
+  "searchBox": {
+    "placeholder": "Search by location or model... 🔍"
   }
 }
