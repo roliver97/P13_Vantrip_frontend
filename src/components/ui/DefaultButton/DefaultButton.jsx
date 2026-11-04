@@ -4,10 +4,16 @@ export const DefaultButton = ({
   variant,
   fullWidth = false,
   onClick,
+  className,
   children
 }) => {
   return (
-    <S.StyledButton onClick={onClick} $variant={variant} $fullWidth={fullWidth}>
+    <S.StyledButton
+      onClick={onClick}
+      $variant={variant}
+      $fullWidth={fullWidth}
+      className={className}
+    >
       {children}
     </S.StyledButton>
   )

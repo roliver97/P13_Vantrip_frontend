@@ -5,7 +5,11 @@ import { Hero } from '../../components/sections/Hero/Hero'
 import { HomeContainer } from './Home.styles'
 
 export const Home = () => {
-  const [searchTerm, setSearchTerm] = useState('')
+  const [filters, setFilters] = useState({
+    searchTerm: '',
+    checkIn: '',
+    checkOut: ''
+  })
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
 
   const heroRef = useRef(null)
@@ -36,9 +40,12 @@ export const Home = () => {
         <Hero />
       </div>
 
-      <SearchBox onSearchSubmit={setSearchTerm} isSticky={isSearchBoxSticky} />
+      <SearchBox
+        onSearchSubmit={(updatedFilters) => setFilters(updatedFilters)}
+        isSticky={isSearchBoxSticky}
+      />
 
-      <CampersGrid searchTerm={searchTerm} />
+      <CampersGrid filters={filters} />
     </HomeContainer>
   )
 }

@@ -103,14 +103,18 @@ const MOCK_VANS = [
   }
 ]
 
-export const CampersGrid = ({ searchTerm }) => {
-  const filteredVans = MOCK_VANS.filter(
-    (van) =>
+export const CampersGrid = ({ filters }) => {
+  const { searchTerm } = filters
+  const filteredVans = MOCK_VANS.filter((van) => {
+    return (
       van.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       van.location.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+    )
+  })
 
   const defaultImgErrorSrc = './src/assets/images/default_van_error_1.jpg'
+
+  console.log(filteredVans)
 
   return (
     <GridSection id='campers'>
