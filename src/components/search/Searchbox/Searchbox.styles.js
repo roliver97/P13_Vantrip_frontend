@@ -26,25 +26,14 @@ export const SearchForm = styled.form`
   gap: var(--space-s);
 `
 
-export const SearchInputsWrapper = styled.div`
+export const TextInput = styled.input`
   flex: 5;
-  display: flex;
-  flex-wrap: wrap;
   border-radius: var(--radius-l);
   outline: none;
-  text-align: center;
   border: 2px solid var(--vantrip-secondary);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
-`
-
-export const TextInput = styled.input`
-  flex: 2;
-  border-radius: var(--radius-l) 0 0 var(--radius-l);
-  outline: none;
-  border: none;
-  border-right: 2px solid var(--vantrip-secondary);
   text-align: center;
   color: var(--vantrip-secondary);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
 
   &:focus {
     background-color: var(--vantrip-lighter);
@@ -68,41 +57,47 @@ export const TextInput = styled.input`
   }
 `
 
-export const CheckInInput = styled.input`
-  flex: 1;
+export const DateSplitWrapper = styled.div`
+  flex: 3;
+  display: flex;
+  border-radius: var(--radius-l);
+  outline: none;
+  text-align: center;
+  border: 2px solid var(--vantrip-secondary);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+`
 
-  border-radius: 0;
+export const DateButton = styled.button`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   outline: none;
   border: none;
   border-right: 2px solid var(--vantrip-secondary);
   text-align: center;
   color: gray;
+  border-radius: 0;
 
-  &:focus {
-    background-color: var(--vantrip-lighter);
-    color: var(--vantrip-secondary);
+  padding: 0 var(--space-m);
+  div {
+    flex: 1;
+    display: flex;
 
-    &::placeholder {
-      color: var(--vantrip-secondary);
-    }
+    align-items: center;
   }
-`
-export const CheckOutInput = styled.input`
-  flex: 1;
 
-  border-radius: 0 var(--radius-l) var(--radius-l) 0;
-  outline: none;
-  border: none;
-  text-align: center;
-  color: gray;
+  div span {
+    flex: 1;
+  }
 
   &:focus {
     background-color: var(--vantrip-lighter);
     color: var(--vantrip-secondary);
+  }
 
-    &::placeholder {
-      color: var(--vantrip-secondary);
-    }
+  &:active {
+    transform: none;
   }
 `
 
@@ -110,4 +105,11 @@ export const SubmitButton = styled(DefaultButton)`
   flex: 1;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
   border-radius: var(--radius-l);
+  border: 1px solid transparent;
+
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: var(--vantrip-secondary);
+  }
 `

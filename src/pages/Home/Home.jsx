@@ -3,6 +3,7 @@ import { SearchBox } from '../../components/search/Searchbox/Searchbox'
 import { CampersGrid } from '../../components/sections/CampersGrid/CampersGrid'
 import { Hero } from '../../components/sections/Hero/Hero'
 import { HomeContainer } from './Home.styles'
+import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
 
 export const Home = () => {
   const [filters, setFilters] = useState({
@@ -11,6 +12,7 @@ export const Home = () => {
     checkOut: ''
   })
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
+  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
 
   const heroRef = useRef(null)
 
@@ -43,7 +45,14 @@ export const Home = () => {
       <SearchBox
         onSearchSubmit={(updatedFilters) => setFilters(updatedFilters)}
         isSticky={isSearchBoxSticky}
+        onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
       />
+      {isCalendarModalOpen && (
+        <CalendarModal
+          isOpen={isCalendarModalOpen}
+          onClose={() => setIsCalendarModalOpen(false)}
+        />
+      )}
 
       <CampersGrid filters={filters} />
     </HomeContainer>

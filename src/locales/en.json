@@ -17,6 +17,10 @@
     "title2": "that best suits your"
   },
   "searchBox": {
-    "placeholder": "Search by location or model... 🔍"
+    "placeholder": "Search by location or model... 🔍",
+    "submitBtn": "Search",
+    "btnTitle": "Choose the dates",
+    "btnSpanFrom": "From",
+    "btnSpanTo": "To"
   }
 }

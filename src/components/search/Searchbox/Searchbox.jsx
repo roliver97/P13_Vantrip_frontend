@@ -4,13 +4,20 @@ import * as S from './Searchbox.styles'
 import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 
-export const SearchBox = ({ onSearchSubmit, isSticky }) => {
+export const SearchBox = ({
+  onSearchSubmit,
+  isSticky,
+  onOpenCalendarModal
+}) => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
 
   const [localTerm, setLocalTerm] = useState('')
-  const [checkIn, setCheckIn] = useState('')
-  const [checkOut, setCheckOut] = useState('')
+
+  const [dateRange, setDateRange] = useState({
+    startDate: new Date(2025, 9, 22),
+    endDate: new Date(2025, 10, 22)
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,42 +25,42 @@ export const SearchBox = ({ onSearchSubmit, isSticky }) => {
 
     onSearchSubmit({
       searchTerm: localTerm,
-      checkIn,
-      checkOut
+      checkIn: dateRange.startDate,
+      checkOut: dateRange.endDate
     })
   }
+
+  const hasDatesSelected = dateRange.startDate && dateRange.endDate
 
   return (
     <S.SearchContainer direction='row' $isSticky={isSticky}>
       <S.SearchForm onSubmit={handleSubmit}>
-        <S.SearchInputsWrapper>
-          <S.TextInput
-            type='text'
-            placeholder={t('searchBox.placeholder')}
-            value={localTerm}
-            onChange={(e) => {
-              setLocalTerm(e.target.value)
-            }}
-          />
+        <S.TextInput
+          type='text'
+          placeholder={t('searchBox.placeholder')}
+          value={localTerm}
+          onChange={(e) => {
+            setLocalTerm(e.target.value)
+          }}
+        />
 
-          <S.CheckInInput
-            type='date'
-            value={checkIn}
-            onChange={(e) => {
-              setCheckIn(e.target.value)
-            }}
-          />
-          <S.CheckOutInput
-            type='date'
-            value={checkOut}
-            onChange={(e) => {
-              setCheckOut(e.target.value)
-            }}
-          />
-        </S.SearchInputsWrapper>
+        <S.DateSplitWrapper>
+          <S.DateButton type='button' onClick={onOpenCalendarModal}>
+            {!hasDatesSelected ? (
+              <div>📅 {t('searchBox.btnTitle')}</div>
+            ) : (
+              <div>
+                {t('searchBox.btnSpanFrom')}
+                <span>{dateRange.startDate.toLocaleDateString()}</span>
+                {t('searchBox.btnSpanTo')}
+                <span>{dateRange.endDate.toLocaleDateString()}</span>
+              </div>
+            )}
+          </S.DateButton>
+        </S.DateSplitWrapper>
 
         <S.SubmitButton fullWidth={true} type='submit'>
-          Buscar
+          {t('searchBox.submitBtn')}
         </S.SubmitButton>
       </S.SearchForm>
     </S.SearchContainer>
