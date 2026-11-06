@@ -9,7 +9,7 @@ export const GridSection = styled.section`
   flex-direction: column;
   justify-content: center;
 
-  padding: var(--space-xl);
+  padding: var(--space-xxl);
   min-height: calc(100svh - 62px);
   scroll-margin-top: 62px;
 `
@@ -56,11 +56,20 @@ export const VanInfo = styled.div`
 `
 
 export const PriceTag = styled.span`
-  color: var(--vantrip-color-secondary);
+  color: var(--vantrip-color-white);
   font-weight: 600;
-  background-color: var(--vantrip-color-secondary);
 
   ${device.desktop} {
     font-size: 1.1rem;
   }
+`
+
+export const AvailabilityTag = styled.span`
+  color: var(--vantrip-light);
+  font-weight: 400;
+  text-align: center;
+  background-color: var(--vantrip-primary);
+  border-radius: var(--radius-s);
+  padding: var(--space-xs);
+  font-size: 0.9rem;
 `

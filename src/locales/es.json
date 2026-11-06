@@ -19,8 +19,19 @@
   "searchBox": {
     "placeholder": "Busca por localización o modelo... 🔍",
     "submitBtn": "Buscar",
-    "btnTitle": "Selecciona las fechas",
+    "btnTitle": "Selecciona tus fechas",
     "btnSpanFrom": "Desde",
     "btnSpanTo": "Hasta"
+  },
+  "calendarModal": {
+    "title": "Calendario",
+    "subtitle": "Selecciona las fechas de tu viaje",
+    "clearBtn": "Borrar fechas",
+    "cancelBtn": "Cancelar",
+    "applyBtn": "Aplicar fechas"
+  },
+  "campersGrid": {
+    "errorMsg": "No se ha encontrado ningún camper con este criterio.",
+    "availabilityMsg": "Disponible para tus fechas"
   }
 }

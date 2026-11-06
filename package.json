@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "date-fns": "^4.4.0",
     "i18next": "^26.5.11",
     "react": "^19.2.8",
+    "react-date-range": "^2.0.1",
     "react-dom": "^19.2.8",
     "react-i18next": "^17.1.9",
     "react-router-dom": "^7.18.4",

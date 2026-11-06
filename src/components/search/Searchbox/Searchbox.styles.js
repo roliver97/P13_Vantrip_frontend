@@ -72,23 +72,32 @@ export const DateButton = styled.button`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   outline: none;
   border: none;
-  border-right: 2px solid var(--vantrip-secondary);
   text-align: center;
   color: gray;
   border-radius: 0;
 
   padding: 0 var(--space-m);
-  div {
-    flex: 1;
-    display: flex;
 
-    align-items: center;
+  div {
+    width: 100%;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+  }
+
+  div p {
+    font-size: 1rem;
   }
 
   div span {
     flex: 1;
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   &:focus {

@@ -7,17 +7,13 @@ import { useState } from 'react'
 export const SearchBox = ({
   onSearchSubmit,
   isSticky,
-  onOpenCalendarModal
+  onOpenCalendarModal,
+  filters
 }) => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
 
   const [localTerm, setLocalTerm] = useState('')
-
-  const [dateRange, setDateRange] = useState({
-    startDate: new Date(2025, 9, 22),
-    endDate: new Date(2025, 10, 22)
-  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,12 +21,12 @@ export const SearchBox = ({
 
     onSearchSubmit({
       searchTerm: localTerm,
-      checkIn: dateRange.startDate,
-      checkOut: dateRange.endDate
+      checkIn: filters.checkIn,
+      checkOut: filters.checkOut
     })
   }
 
-  const hasDatesSelected = dateRange.startDate && dateRange.endDate
+  const hasDatesSelected = filters.checkIn && filters.checkOut
 
   return (
     <S.SearchContainer direction='row' $isSticky={isSticky}>
@@ -47,13 +43,15 @@ export const SearchBox = ({
         <S.DateSplitWrapper>
           <S.DateButton type='button' onClick={onOpenCalendarModal}>
             {!hasDatesSelected ? (
-              <div>📅 {t('searchBox.btnTitle')}</div>
+              <div>
+                <p>📅 {t('searchBox.btnTitle')}</p>
+              </div>
             ) : (
               <div>
                 {t('searchBox.btnSpanFrom')}
-                <span>{dateRange.startDate.toLocaleDateString()}</span>
+                <span>{filters.checkIn.toLocaleDateString()}</span>
                 {t('searchBox.btnSpanTo')}
-                <span>{dateRange.endDate.toLocaleDateString()}</span>
+                <span>{filters.checkOut.toLocaleDateString()}</span>
               </div>
             )}
           </S.DateButton>

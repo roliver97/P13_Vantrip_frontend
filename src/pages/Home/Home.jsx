@@ -8,8 +8,8 @@ import { CalendarModal } from '../../components/modals/CalendarModal/CalendarMod
 export const Home = () => {
   const [filters, setFilters] = useState({
     searchTerm: '',
-    checkIn: '',
-    checkOut: ''
+    checkIn: null,
+    checkOut: null
   })
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
@@ -36,6 +36,11 @@ export const Home = () => {
     }
   }, [])
 
+  const handleDatesSelection = (startDate, endDate) => {
+    setFilters((prev) => ({ ...prev, checkIn: startDate, checkOut: endDate }))
+    setIsCalendarModalOpen(false)
+  }
+
   return (
     <HomeContainer>
       <div ref={heroRef} style={{ width: '100%' }}>
@@ -43,13 +48,18 @@ export const Home = () => {
       </div>
 
       <SearchBox
-        onSearchSubmit={(updatedFilters) => setFilters(updatedFilters)}
+        filters={filters}
+        onSearchSubmit={(updatedSearchData) =>
+          setFilters((prev) => ({ ...prev, ...updatedSearchData }))
+        }
         isSticky={isSearchBoxSticky}
         onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
       />
+
       {isCalendarModalOpen && (
         <CalendarModal
           isOpen={isCalendarModalOpen}
+          onDatesSelection={handleDatesSelection}
           onClose={() => setIsCalendarModalOpen(false)}
         />
       )}
