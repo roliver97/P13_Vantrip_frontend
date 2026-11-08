@@ -26,19 +26,58 @@ export const SearchBox = ({
     })
   }
 
+  const handleClear = (e, inputType) => {
+    scrollToSection(e, currentLocation.pathname, 'campers')
+
+    if (inputType === 'term') {
+      setLocalTerm('')
+      onSearchSubmit({
+        searchTerm: '',
+        checkIn: filters.checkIn,
+        checkOut: filters.checkOut
+      })
+    } else if (inputType === 'dates') {
+      onSearchSubmit({
+        searchTerm: localTerm,
+        checkIn: null,
+        checkOut: null
+      })
+    } else {
+      onSearchSubmit({
+        searchTerm: '',
+        checkIn: null,
+        checkOut: null
+      })
+    }
+  }
+
   const hasDatesSelected = filters.checkIn && filters.checkOut
 
   return (
     <S.SearchContainer direction='row' $isSticky={isSticky}>
       <S.SearchForm onSubmit={handleSubmit}>
-        <S.TextInput
-          type='text'
-          placeholder={t('searchBox.placeholder')}
-          value={localTerm}
-          onChange={(e) => {
-            setLocalTerm(e.target.value)
-          }}
-        />
+        <S.TextInputWrapper>
+          <S.TextInput
+            type='text'
+            placeholder={t('searchBox.placeholder')}
+            value={localTerm}
+            onChange={(e) => {
+              setLocalTerm(e.target.value)
+            }}
+          />
+          {localTerm !== '' && (
+            <S.ClearButton
+              variant='clear'
+              type='button'
+              onClick={(e) => {
+                e.stopPropagation()
+                handleClear(e, 'term')
+              }}
+            >
+              X
+            </S.ClearButton>
+          )}
+        </S.TextInputWrapper>
 
         <S.DateSplitWrapper>
           <S.DateButton type='button' onClick={onOpenCalendarModal}>
@@ -52,11 +91,20 @@ export const SearchBox = ({
                 <span>{filters.checkIn.toLocaleDateString()}</span>
                 {t('searchBox.btnSpanTo')}
                 <span>{filters.checkOut.toLocaleDateString()}</span>
+                <S.ClearButton
+                  variant='clear'
+                  type='button'
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleClear(e, 'dates')
+                  }}
+                >
+                  X
+                </S.ClearButton>
               </div>
             )}
           </S.DateButton>
         </S.DateSplitWrapper>
-
         <S.SubmitButton fullWidth={true} type='submit'>
           {t('searchBox.submitBtn')}
         </S.SubmitButton>

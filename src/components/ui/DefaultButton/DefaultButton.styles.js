@@ -28,6 +28,7 @@ export const StyledButton = styled.button`
         `
       case 'clear':
         return css`
+          padding: 1px;
           background-color: transparent;
           color: gray;
           font-weight: 400;

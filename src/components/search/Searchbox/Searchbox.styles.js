@@ -26,14 +26,35 @@ export const SearchForm = styled.form`
   gap: var(--space-s);
 `
 
-export const TextInput = styled.input`
+export const TextInputWrapper = styled.div`
   flex: 5;
+  padding: 0 var(--space-m);
   border-radius: var(--radius-l);
-  outline: none;
+  display: flex;
+  overflow: hidden;
+  background-color: var(--vantrip-color-white);
+
   border: 2px solid var(--vantrip-secondary);
-  text-align: center;
+
   color: var(--vantrip-secondary);
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+
+  &:has(input:focus) {
+    background-color: var(--vantrip-lighter);
+
+    &::placeholder {
+      color: var(--vantrip-secondary);
+    }
+  }
+`
+
+export const TextInput = styled.input`
+  outline: none;
+  border: none;
+  width: 100%;
+  border-radius: var(--radius-l);
+
+  text-align: center;
 
   &:focus {
     background-color: var(--vantrip-lighter);
@@ -120,5 +141,12 @@ export const SubmitButton = styled(DefaultButton)`
 
   &:hover {
     border-color: var(--vantrip-secondary);
+  }
+`
+
+export const ClearButton = styled(DefaultButton)`
+  &:hover {
+    text-decoration: none;
+    font-weight: 600;
   }
 `
