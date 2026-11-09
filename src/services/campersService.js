@@ -1,8 +1,16 @@
 import { API_URL } from '../utils/constants/constants'
 
-export const getCampers = async () => {
+export const getCampers = async (filters = {}) => {
   try {
-    const response = await fetch(`${API_URL}/campers`)
+    const params = new URLSearchParams()
+
+    if (filters.searchTerm) params.append('query', filters.searchTerm)
+    if (filters.checkIn) params.append('startDate', filters.checkIn)
+    if (filters.checkOut) params.append('endDate', filters.checkOut)
+    if (filters.location) params.append('location', filters.location)
+    if (filters.capacity) params.append('capacity', filters.capacity)
+
+    const response = await fetch(`${API_URL}/campers?${params.toString()}`)
 
     if (!response.ok) {
       const errorData = await response.json()
