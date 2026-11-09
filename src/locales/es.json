@@ -1,4 +1,7 @@
 {
+  "spinner": {
+    "defaultMsg": "Cargando..."
+  },
   "nav": {
     "campers": "Campers",
     "locations": "Localizaciones",
@@ -32,6 +35,7 @@
   },
   "campersGrid": {
     "errorMsg": "No se ha encontrado ningún camper con este criterio.",
-    "availabilityMsg": "Disponible para tus fechas"
+    "availabilityMsg": "Disponible para tus fechas",
+    "spinnerMsg": "Buscando campers disponibles..."
   }
 }

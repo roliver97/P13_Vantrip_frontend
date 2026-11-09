@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next'
 import { Grid, GridSection } from './CampersGrid.styles'
 import { useFetch } from '../../../hooks/useFetch'
 import { getCampers } from '../../../services/campersService'
-import { VanCardItem } from './VanCard/VanCard'
+import { VanCardItem } from '../../cards/VanCard/VanCard'
 import { useCallback } from 'react'
+import { Spinner } from '../../ui/Spinner/Spinner'
 
 export const CampersGrid = ({ filters }) => {
   const { t } = useTranslation()
@@ -14,14 +15,11 @@ export const CampersGrid = ({ filters }) => {
   const campersList = data?.campers || []
   const { searchTerm, checkInFilter, checkOutFilter } = filters
 
-  if (loading) return <p>Carregant furgonetes... 🚐💨</p>
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>
 
   const filteredVans = campersList.filter((van) => {
     if (!searchTerm) return true //returns all vans
-
     const searchTermFormatted = searchTerm.toLowerCase().trim()
-
     const titleMatch = van.title
       ? van.title.toLowerCase().includes(searchTermFormatted)
       : false
@@ -41,21 +39,25 @@ export const CampersGrid = ({ filters }) => {
 
   return (
     <GridSection id='campers'>
-      <Grid>
-        {filteredVans.length > 0 ? (
-          filteredVans.map((van) => (
-            <VanCardItem
-              key={van._id}
-              van={van}
-              checkInFilter={checkInFilter}
-              checkOutFilter={checkOutFilter}
-              t={t}
-            />
-          ))
-        ) : (
-          <p>{t('campersGrid.errorMsg')}</p>
-        )}
-      </Grid>
+      {loading ? (
+        <Spinner message={t('campersGrid.spinnerMsg')} />
+      ) : (
+        <Grid>
+          {filteredVans.length > 0 ? (
+            filteredVans.map((van) => (
+              <VanCardItem
+                key={van._id}
+                van={van}
+                checkInFilter={checkInFilter}
+                checkOutFilter={checkOutFilter}
+                t={t}
+              />
+            ))
+          ) : (
+            <p>{t('campersGrid.errorMsg')}</p>
+          )}
+        </Grid>
+      )}
     </GridSection>
   )
 }

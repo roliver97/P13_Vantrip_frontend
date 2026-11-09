@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 export const GridSection = styled.section`
   background: transparent;
@@ -12,6 +12,17 @@ export const GridSection = styled.section`
   scroll-margin-top: 62px;
 `
 
+const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`
+
 export const Grid = styled.div`
   display: grid;
   padding: var(--space-m);
@@ -23,4 +34,6 @@ export const Grid = styled.div`
   margin: 0 auto;
 
   justify-content: center;
+
+  animation: ${fadeIn} 0.4s ease-out forwards;
 `

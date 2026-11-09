@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import { DefaultButton } from '../../../ui/DefaultButton/DefaultButton'
-import { device } from '../../../../styles/breakpoints'
+import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
+import { device } from '../../../styles/breakpoints'
 import { Link } from 'react-router-dom'
 
 export const VanCard = styled(Link)`
@@ -21,12 +21,20 @@ export const VanImagesWrapper = styled.div`
   width: 100%;
   position: relative;
   align-items: center;
+  overflow: hidden;
+`
+
+export const SliderTrack = styled.div`
+  display: flex;
+  width: 100%;
+  height: 200px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(${(props) => props.$translateIndex * -100}%);
 `
 
 export const VanImg = styled.div`
-  width: 100%;
-  flex: 1;
-  height: 200px;
+  min-width: 100%;
+  height: 100%;
   background-image: url(${(props) => props.$image});
   background-size: cover;
   background-position: center;

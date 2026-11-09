@@ -24,7 +24,12 @@ export const VanCardItem = ({ van, checkInFilter, checkOutFilter, t }) => {
   return (
     <S.VanCard key={van._id} to={`/campers/${van._id}`}>
       <S.VanImagesWrapper>
-        <S.VanImg $image={images[currentImgIndex]} />
+        <S.SliderTrack $translateIndex={currentImgIndex}>
+          {images.map((img, index) => (
+            <S.VanImg key={index} $image={img} />
+          ))}
+        </S.SliderTrack>
+
         {images.length > 1 && (
           <>
             <S.SliderButton
