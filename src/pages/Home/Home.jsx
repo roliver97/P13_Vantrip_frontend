@@ -8,8 +8,8 @@ import { CalendarModal } from '../../components/modals/CalendarModal/CalendarMod
 export const Home = () => {
   const [filters, setFilters] = useState({
     searchTerm: '',
-    checkIn: null,
-    checkOut: null
+    checkInFilter: null,
+    checkOutFilter: null
   })
 
   const [tempFilters, setTempFilters] = useState({

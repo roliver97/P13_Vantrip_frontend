@@ -1,15 +1,10 @@
 import { useTranslation } from 'react-i18next'
-import {
-  Grid,
-  GridSection,
-  VanCard,
-  VanImg,
-  VanInfo,
-  PriceTag,
-  AvailabilityTag
-} from './CampersGrid.styles'
+import { Grid, GridSection } from './CampersGrid.styles'
+import { useFetch } from '../../../hooks/useFetch'
+import { getCampers } from '../../../services/campersService'
+import { VanCardItem } from './VanCard/VanCard'
 
-const MOCK_VANS = [
+/* const MOCK_VANS = [
   {
     id: 1,
     name: 'Explorer Van Pro',
@@ -118,23 +113,43 @@ const MOCK_VANS = [
     image: '',
     bookedDates: []
   }
-]
+] */
 
 export const CampersGrid = ({ filters }) => {
+  const { data, loading, error } = useFetch(getCampers)
   const { t } = useTranslation()
-  const { searchTerm, checkIn, checkOut } = filters
+  const { searchTerm, checkInFilter, checkOutFilter } = filters
+  const campersList = data?.campers || []
 
-  const filteredVans = MOCK_VANS.filter((van) => {
-    if (!searchTerm && (!checkIn || !checkOut)) return true //return all campers
+  if (loading) return <p>Carregant furgonetes... 🚐💨</p>
+  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>
+
+  const filteredVans = campersList.filter((van) => {
+    if (!searchTerm && (!checkInFilter || !checkOutFilter)) return true //return all campers
+
+    const searchTermLower = searchTerm ? searchTerm.toLowerCase().trim() : ''
+
+    const titleMatch = van.title
+      ? van.title.toLowerCase().includes(searchTermLower)
+      : false
+    const brandMatch = van.brand
+      ? van.brand.toLowerCase().includes(searchTermLower)
+      : false
+    const modelMatch = van.modelName
+      ? van.modelName.toLowerCase().includes(searchTermLower)
+      : false
+
+    const locationVal = van.location || ''
+    const locationMatch = locationVal.toLowerCase().includes(searchTermLower)
 
     const byNameOrLocation =
-      van.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      van.location.toLowerCase().includes(searchTerm.toLowerCase())
+      titleMatch || brandMatch || modelMatch || locationMatch
 
-    if (searchTerm && (!checkIn || !checkOut)) return byNameOrLocation
+    if (searchTerm && (!checkInFilter || !checkOutFilter))
+      return byNameOrLocation
 
-    const startSearchDate = new Date(checkIn)
-    const endSearchDate = new Date(checkOut)
+    const startSearchDate = new Date(checkInFilter)
+    const endSearchDate = new Date(checkOutFilter)
 
     const isBookedOverlap = van.bookedDates.some((booking) => {
       const bookedStart = new Date(booking.from)
@@ -143,13 +158,11 @@ export const CampersGrid = ({ filters }) => {
       return startSearchDate < bookedEnd && endSearchDate > bookedStart
     })
 
-    if (!searchTerm && checkIn && checkOut) return !isBookedOverlap
+    if (!searchTerm && checkInFilter && checkOutFilter) return !isBookedOverlap
 
-    if (searchTerm && checkIn && checkOut)
+    if (searchTerm && checkInFilter && checkOutFilter)
       return byNameOrLocation && !isBookedOverlap
   })
-
-  const defaultImgErrorSrc = './src/assets/images/default_van_error_1.jpg'
 
   console.log(filteredVans)
 
@@ -157,25 +170,15 @@ export const CampersGrid = ({ filters }) => {
     <GridSection id='campers'>
       <Grid>
         {filteredVans.length > 0 ? (
-          filteredVans.map((van) => {
-            const hasActiveDatesFilter = checkIn && checkOut
-
-            return (
-              <VanCard key={van.id} to={`/campers/${van.id}`}>
-                <VanImg $image={van.image ? van.image : defaultImgErrorSrc} />
-                <VanInfo>
-                  <h3>{van.name}</h3>
-                  <p>📍{van.location}</p>
-                  <PriceTag>{van.price}</PriceTag>
-                  {hasActiveDatesFilter && (
-                    <AvailabilityTag>
-                      {t('campersGrid.availabilityMsg')}
-                    </AvailabilityTag>
-                  )}
-                </VanInfo>
-              </VanCard>
-            )
-          })
+          filteredVans.map((van) => (
+            <VanCardItem
+              key={van._id}
+              van={van}
+              checkInFilter={checkInFilter}
+              checkOutFilter={checkOutFilter}
+              t={t}
+            />
+          ))
         ) : (
           <p>{t('campersGrid.errorMsg')}</p>
         )}

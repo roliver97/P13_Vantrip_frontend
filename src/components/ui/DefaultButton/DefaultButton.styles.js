@@ -36,6 +36,16 @@ export const StyledButton = styled.button`
             text-decoration: underline;
           }
         `
+      case 'slider':
+        return css`
+          padding: 5px 10px;
+          font-weight: 600;
+          border-radius: var(--radius-l);
+          background-color: rgba(255, 255, 255, 0.4);
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+          }
+        `
       default:
         return css`
           background-color: var(--vantrip-primary);

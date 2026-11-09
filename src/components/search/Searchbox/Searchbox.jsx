@@ -22,8 +22,8 @@ export const SearchBox = ({
 
     onSearchSubmit({
       searchTerm: localTerm,
-      checkIn: tempFilters.checkIn,
-      checkOut: tempFilters.checkOut
+      checkInFilter: tempFilters.checkIn,
+      checkOutFilter: tempFilters.checkOut
     })
   }
 
