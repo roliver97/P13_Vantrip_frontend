@@ -8,7 +8,8 @@ export const SearchBox = ({
   onSearchSubmit,
   isSticky,
   onOpenCalendarModal,
-  filters
+  tempFilters,
+  onClearFilters
 }) => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
@@ -21,37 +22,22 @@ export const SearchBox = ({
 
     onSearchSubmit({
       searchTerm: localTerm,
-      checkIn: filters.checkIn,
-      checkOut: filters.checkOut
+      checkIn: tempFilters.checkIn,
+      checkOut: tempFilters.checkOut
     })
   }
 
-  const handleClear = (e, inputType) => {
-    scrollToSection(e, currentLocation.pathname, 'campers')
-
+  const handleClear = (inputType) => {
     if (inputType === 'term') {
       setLocalTerm('')
-      onSearchSubmit({
-        searchTerm: '',
-        checkIn: filters.checkIn,
-        checkOut: filters.checkOut
-      })
+      onClearFilters('term')
     } else if (inputType === 'dates') {
-      onSearchSubmit({
-        searchTerm: localTerm,
-        checkIn: null,
-        checkOut: null
-      })
+      onClearFilters('dates')
     } else {
-      onSearchSubmit({
-        searchTerm: '',
-        checkIn: null,
-        checkOut: null
-      })
+      setLocalTerm('')
+      onClearFilters()
     }
   }
-
-  const hasDatesSelected = filters.checkIn && filters.checkOut
 
   return (
     <S.SearchContainer direction='row' $isSticky={isSticky}>
@@ -64,14 +50,20 @@ export const SearchBox = ({
             onChange={(e) => {
               setLocalTerm(e.target.value)
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit(e)
+              }
+            }}
           />
           {localTerm !== '' && (
             <S.ClearButton
               variant='clear'
               type='button'
               onClick={(e) => {
+                e.preventDefault()
                 e.stopPropagation()
-                handleClear(e, 'term')
+                handleClear('term')
               }}
             >
               X
@@ -81,22 +73,23 @@ export const SearchBox = ({
 
         <S.DateSplitWrapper>
           <S.DateButton type='button' onClick={onOpenCalendarModal}>
-            {!hasDatesSelected ? (
+            {!tempFilters.checkIn ? (
               <div>
                 <p>📅 {t('searchBox.btnTitle')}</p>
               </div>
             ) : (
               <div>
                 {t('searchBox.btnSpanFrom')}
-                <span>{filters.checkIn.toLocaleDateString()}</span>
+                <span>{tempFilters.checkIn.toLocaleDateString()}</span>
                 {t('searchBox.btnSpanTo')}
-                <span>{filters.checkOut.toLocaleDateString()}</span>
+                <span>{tempFilters.checkOut.toLocaleDateString()}</span>
                 <S.ClearButton
                   variant='clear'
                   type='button'
                   onClick={(e) => {
+                    e.preventDefault()
                     e.stopPropagation()
-                    handleClear(e, 'dates')
+                    handleClear('dates')
                   }}
                 >
                   X

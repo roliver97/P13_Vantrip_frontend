@@ -11,6 +11,13 @@ export const Home = () => {
     checkIn: null,
     checkOut: null
   })
+
+  const [tempFilters, setTempFilters] = useState({
+    searchTerm: '',
+    checkIn: null,
+    checkOut: null
+  })
+
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
 
@@ -37,8 +44,26 @@ export const Home = () => {
   }, [])
 
   const handleDatesSelection = (startDate, endDate) => {
-    setFilters((prev) => ({ ...prev, checkIn: startDate, checkOut: endDate }))
+    setTempFilters((prev) => ({
+      ...prev,
+      checkIn: startDate,
+      checkOut: endDate
+    }))
     setIsCalendarModalOpen(false)
+  }
+
+  const handleClearFilters = (clearType) => {
+    if (clearType === 'term') {
+      setTempFilters((prev) => ({ ...prev, searchTerm: '' }))
+    } else if (clearType === 'dates') {
+      setTempFilters((prev) => ({ ...prev, checkIn: null, checkOut: null }))
+    } else {
+      setTempFilters({ searchTerm: '', checkIn: null, checkOut: null })
+    }
+  }
+
+  const handleMainSubmit = (updatedSearchData) => {
+    setFilters(updatedSearchData)
   }
 
   return (
@@ -48,10 +73,9 @@ export const Home = () => {
       </div>
 
       <SearchBox
-        filters={filters}
-        onSearchSubmit={(updatedSearchData) =>
-          setFilters((prev) => ({ ...prev, ...updatedSearchData }))
-        }
+        tempFilters={tempFilters}
+        onClearFilters={handleClearFilters}
+        onSearchSubmit={handleMainSubmit}
         isSticky={isSearchBoxSticky}
         onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
       />
