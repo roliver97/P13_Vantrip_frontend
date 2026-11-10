@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
 import { device } from '../../../styles/breakpoints'
 import { Link } from 'react-router-dom'
+import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 
 export const VanCard = styled(Link)`
   background: var(--vantrip-secondary, #ffffff);
@@ -68,9 +69,17 @@ export const VanInfo = styled.div`
   justify-content: space-between;
 `
 
+export const TagsWrapper = styled(FlexContainer)`
+  gap: var(--space-m);
+`
+
 export const PriceTag = styled.span`
   color: var(--vantrip-white);
   font-weight: 600;
+
+  span {
+    font-weight: 300;
+  }
 
   ${device.desktop} {
     font-size: 1.1rem;

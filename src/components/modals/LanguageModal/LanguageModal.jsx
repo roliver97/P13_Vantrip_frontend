@@ -8,10 +8,10 @@ import { useTranslation } from 'react-i18next'
 
 export const LanguageModal = ({ isOpen, onClose }) => {
   const [selectedLang, setSelectedLang] = useState(() => {
-    return localStorage.getItem('vantrip_lang') || 'ES'
+    return localStorage.getItem('vantrip_lang') || 'es'
   })
   const [selectedCurrency, setSelectedCurrency] = useState(() => {
-    return localStorage.getItem('vantrip_currency') || 'EUR'
+    return localStorage.getItem('vantrip_currency') || 'eur'
   })
 
   const { t } = useTranslation()

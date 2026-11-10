@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import * as S from './VanCard.styles'
+import { convertPrice } from '../../../utils/priceCalculations'
 
 export const VanCardItem = ({ van, filters, t }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
@@ -8,7 +9,24 @@ export const VanCardItem = ({ van, filters, t }) => {
     van.images && van.images.length > 0 ? van.images : [defaultImgErrorSrc]
 
   const { searchTerm, checkInFilter, checkOutFilter } = filters
+
   const hasActiveDatesFilter = checkInFilter && checkOutFilter
+
+  const hasSeasonalPricing =
+    hasActiveDatesFilter &&
+    van.seasonalPricing &&
+    van.seasonalPricing.some((season) => {
+      return (
+        new Date(checkInFilter) >= new Date(season.startDate) &&
+        new Date(checkOutFilter) <= new Date(season.endDate)
+      )
+    })
+
+  const filteredPricePerDay = hasSeasonalPricing
+    ? van.seasonalPricePerDay
+    : van.defaultPricePerDay
+
+  const convertedPricePerDay = convertPrice(filteredPricePerDay).formatted
 
   const handlePrevImage = (e) => {
     e.preventDefault()
@@ -56,14 +74,19 @@ export const VanCardItem = ({ van, filters, t }) => {
           <span>{van.brand}</span> <span>{van.modelName}</span>
         </p>
         <p>📍{van.location}</p>
-        <S.PriceTag>{van.price}</S.PriceTag>
+
         {hasActiveDatesFilter ? (
-          <S.AvailabilityTag>
-            {t('campersGrid.availabilityMsg')}
-          </S.AvailabilityTag>
+          <S.TagsWrapper>
+            <S.PriceTag>
+              {convertedPricePerDay} <span>{t('vanCard.priceSuffix')}</span>
+            </S.PriceTag>
+            <S.AvailabilityTag>
+              {t('vanCard.availabilityMsg')}
+            </S.AvailabilityTag>
+          </S.TagsWrapper>
         ) : searchTerm ? (
           <S.AvailabilityTag $selectDatesTag={true}>
-            {t('campersGrid.selectDatesMsg')}
+            {t('vanCard.selectDatesMsg')}
           </S.AvailabilityTag>
         ) : (
           ''

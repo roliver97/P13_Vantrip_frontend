@@ -19,9 +19,10 @@ export const Navbar = () => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
 
-  const currentLang = localStorage.getItem('vantrip_lang').toUpperCase() || 'ES'
+  const currentLang =
+    localStorage.getItem('vantrip_lang')?.toUpperCase() || 'ES'
   const currentCurrency =
-    localStorage.getItem('vantrip_currency').toUpperCase() || 'EUR'
+    localStorage.getItem('vantrip_currency')?.toUpperCase() || 'EUR'
 
   return (
     <S.Nav>

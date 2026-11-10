@@ -35,8 +35,11 @@
   },
   "campersGrid": {
     "errorMsg": "No camper was found with this criterion.",
+    "spinnerMsg": "Searching for available vans..."
+  },
+  "vanCard": {
     "selectDatesMsg": "Select dates to check availability",
     "availabilityMsg": "Available for your dates",
-    "spinnerMsg": "Searching for available vans..."
+    "priceSuffix": " / night"
   }
 }
