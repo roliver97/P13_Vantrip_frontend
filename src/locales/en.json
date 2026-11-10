@@ -3,7 +3,7 @@
     "defaultMsg": "Loading..."
   },
   "nav": {
-    "campers": "Campers",
+    "campers": "Find Your Camper",
     "locations": "Locations",
     "instructions": "How It Works",
     "about": "About"
@@ -35,6 +35,7 @@
   },
   "campersGrid": {
     "errorMsg": "No camper was found with this criterion.",
+    "selectDatesMsg": "Select dates to check availability",
     "availabilityMsg": "Available for your dates",
     "spinnerMsg": "Searching for available vans..."
   }

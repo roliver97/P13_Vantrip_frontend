@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const FooterStyled = styled.footer`
   width: 100%;
-  color: var(--vantrip-color-white);
+  color: var(--vantrip-white);
   padding: var(--space-s);
   text-align: center;
   font-size: 0.95rem;

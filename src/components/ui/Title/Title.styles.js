@@ -17,7 +17,7 @@ export const TitleStyled = styled.h1`
       case 'darker':
         return 'var(--vantrip-darker)'
       default:
-        return 'var(--vantrip-color-white)'
+        return 'var(--vantrip-white)'
     }
   }};
 

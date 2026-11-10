@@ -19,18 +19,18 @@ export const StyledButton = styled.button`
       case 'secondary':
         return css`
           background-color: var(--vantrip-secondary);
-          color: var(--vantrip-color-white);
+          color: var(--vantrip-white);
         `
       case 'cancel':
         return css`
           background-color: #bd5548;
-          color: var(--vantrip-color-white);
+          color: var(--vantrip-white);
         `
       case 'clear':
         return css`
           padding: 1px;
           background-color: transparent;
-          color: gray;
+          color: var(--vantrip-gray);
           font-weight: 400;
           &:hover {
             text-decoration: underline;
@@ -49,7 +49,7 @@ export const StyledButton = styled.button`
       default:
         return css`
           background-color: var(--vantrip-primary);
-          color: var(--vantrip-color-white);
+          color: var(--vantrip-white);
         `
     }
   }}

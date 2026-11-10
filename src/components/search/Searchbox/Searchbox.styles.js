@@ -3,7 +3,7 @@ import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
 
 export const SearchContainer = styled(FlexContainer)`
-  width: 80%;
+  width: 100%;
   z-index: 100;
 
   ${({ $isSticky }) =>
@@ -22,7 +22,7 @@ export const SearchContainer = styled(FlexContainer)`
 
 export const SearchForm = styled.form`
   display: flex;
-  width: 100%;
+  width: 80%;
   gap: var(--space-s);
 `
 
@@ -32,12 +32,12 @@ export const TextInputWrapper = styled.div`
   border-radius: var(--radius-l);
   display: flex;
   overflow: hidden;
-  background-color: var(--vantrip-color-white);
+  background-color: var(--vantrip-white);
 
   border: 2px solid var(--vantrip-secondary);
 
   color: var(--vantrip-secondary);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--vantrip-box-shadow);
 
   &:has(input:focus) {
     background-color: var(--vantrip-lighter);
@@ -85,7 +85,7 @@ export const DateSplitWrapper = styled.div`
   outline: none;
   text-align: center;
   border: 2px solid var(--vantrip-secondary);
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--vantrip-box-shadow);
   overflow: hidden;
 `
 
@@ -98,7 +98,7 @@ export const DateButton = styled.button`
   outline: none;
   border: none;
   text-align: center;
-  color: gray;
+  color: var(--vantrip-gray);
   border-radius: 0;
 
   padding: 0 var(--space-m);
@@ -133,7 +133,7 @@ export const DateButton = styled.button`
 
 export const SubmitButton = styled(DefaultButton)`
   flex: 1;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--vantrip-box-shadow);
   border-radius: var(--radius-l);
   border: 1px solid transparent;
 

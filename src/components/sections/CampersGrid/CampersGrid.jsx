@@ -13,7 +13,7 @@ export const CampersGrid = ({ filters }) => {
   }, [filters])
   const { data, loading, error } = useFetch(fetchCampersMemoized)
   const campersList = data?.campers || []
-  const { searchTerm, checkInFilter, checkOutFilter } = filters
+  const { searchTerm } = filters
 
   if (error) return <p style={{ color: 'red' }}>Error: {error}</p>
 
@@ -45,13 +45,7 @@ export const CampersGrid = ({ filters }) => {
         <Grid>
           {filteredVans.length > 0 ? (
             filteredVans.map((van) => (
-              <VanCardItem
-                key={van._id}
-                van={van}
-                checkInFilter={checkInFilter}
-                checkOutFilter={checkOutFilter}
-                t={t}
-              />
+              <VanCardItem key={van._id} van={van} filters={filters} t={t} />
             ))
           ) : (
             <p>{t('campersGrid.errorMsg')}</p>

@@ -6,10 +6,12 @@ import { Link } from 'react-router-dom'
 export const VanCard = styled(Link)`
   background: var(--vantrip-secondary, #ffffff);
   border-radius: var(--radius-m);
-  display: block;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     transform: translateY(-4px);
@@ -62,10 +64,12 @@ export const VanInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
+  flex: 1;
+  justify-content: space-between;
 `
 
 export const PriceTag = styled.span`
-  color: var(--vantrip-color-white);
+  color: var(--vantrip-white);
   font-weight: 600;
 
   ${device.desktop} {
@@ -80,5 +84,15 @@ export const AvailabilityTag = styled.span`
   background-color: var(--vantrip-primary);
   border-radius: var(--radius-s);
   padding: var(--space-xs);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+
+  ${({ $selectDatesTag }) =>
+    $selectDatesTag &&
+    css`
+      background-color: var(--vantrip-gray-darker);
+      box-shadow: var(--vantrip-box-shadow-lighter);
+      color: var(--vantrip-gray);
+      font-size: 0.8rem;
+      padding: var(--space-xs) 0;
+    `}
 `

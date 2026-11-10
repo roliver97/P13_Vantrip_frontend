@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import * as S from './VanCard.styles'
 
-export const VanCardItem = ({ van, checkInFilter, checkOutFilter, t }) => {
+export const VanCardItem = ({ van, filters, t }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)
   const defaultImgErrorSrc = './src/assets/images/default_van_error_1.jpg'
   const images =
     van.images && van.images.length > 0 ? van.images : [defaultImgErrorSrc]
 
+  const { searchTerm, checkInFilter, checkOutFilter } = filters
   const hasActiveDatesFilter = checkInFilter && checkOutFilter
 
   const handlePrevImage = (e) => {
@@ -56,10 +57,16 @@ export const VanCardItem = ({ van, checkInFilter, checkOutFilter, t }) => {
         </p>
         <p>📍{van.location}</p>
         <S.PriceTag>{van.price}</S.PriceTag>
-        {hasActiveDatesFilter && (
+        {hasActiveDatesFilter ? (
           <S.AvailabilityTag>
             {t('campersGrid.availabilityMsg')}
           </S.AvailabilityTag>
+        ) : searchTerm ? (
+          <S.AvailabilityTag $selectDatesTag={true}>
+            {t('campersGrid.selectDatesMsg')}
+          </S.AvailabilityTag>
+        ) : (
+          ''
         )}
       </S.VanInfo>
     </S.VanCard>

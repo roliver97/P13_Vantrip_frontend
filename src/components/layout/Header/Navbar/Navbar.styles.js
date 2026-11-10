@@ -46,7 +46,7 @@ export const LogoIconFull = styled.img`
 export const HamburgerButton = styled.button`
   z-index: 1000;
   font-weight: 400;
-  color: var(--vantrip-color-white);
+  color: var(--vantrip-white);
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -99,9 +99,9 @@ export const LinksWrapper = styled.div`
   align-items: center;
 
   a {
-    color: var(--vantrip-color-white);
+    color: var(--vantrip-white);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     transition: color 0.2s ease;
     height: 30px;
@@ -157,7 +157,7 @@ export const ActionsWrapper = styled.div`
 export const LanguageButton = styled.button`
   background: transparent;
   border: 1px solid var(--vantrip-light);
-  color: var(--vantrip-color-white);
+  color: var(--vantrip-white);
   padding: 6px 12px;
   border-radius: 20px;
   cursor: pointer;
@@ -168,7 +168,7 @@ export const LanguageButton = styled.button`
   transition: border-color 0.2s ease;
 
   &:hover {
-    border-color: var(--vantrip-color-white);
+    border-color: var(--vantrip-white);
   }
 
   span {

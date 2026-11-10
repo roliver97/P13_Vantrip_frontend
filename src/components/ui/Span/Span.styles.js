@@ -16,7 +16,7 @@ export const SpanStyled = styled.span`
       case 'darker':
         return 'var(--vantrip-darker)'
       default:
-        return 'var(--vantrip-color-white)'
+        return 'var(--vantrip-white)'
     }
   }};
 

@@ -17,7 +17,7 @@ export const HeroSection = styled.section`
 
   min-height: calc(100svh - 62px);
 
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--vantrip-box-shadow);
 `
 
 export const HeroContainer = styled(FlexContainer)`

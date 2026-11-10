@@ -5,8 +5,11 @@
   --font-sans: 'Montserrat', 'Roboto', ui-sans-serif, system-ui, sans-serif;
 
   /* VANTRIP BRANDING COLORS */
-  --vantrip-color-white: #ffffff;
-  --vantrip-color-black: #000000;
+  --vantrip-white: #ffffff;
+  --vantrip-gray: #979797;
+  --vantrip-gray-darker: #494949;
+  --vantrip-black: #000000;
+
   --vantrip-primary: #224b3a;
   --vantrip-secondary: #3b6e58;
   --vantrip-light: #87b09d;
@@ -33,6 +36,10 @@
   --space-xl: 48px;
   --space-xxl: 64px;
   --space-3xl: 75px;
+
+  /* EFFECTS */
+  --vantrip-box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.8);
+  --vantrip-box-shadow-lighter: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 *,
@@ -55,7 +62,7 @@ body {
     var(--vantrip-primary),
     var(--vantrip-dark)
   );
-  color: var(--vantrip-color-white);
+  color: var(--vantrip-white);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
