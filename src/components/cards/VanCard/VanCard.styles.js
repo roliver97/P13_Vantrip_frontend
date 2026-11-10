@@ -4,33 +4,70 @@ import { device } from '../../../styles/breakpoints'
 import { Link } from 'react-router-dom'
 import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 
-export const VanCard = styled(Link)`
-  background: var(--vantrip-secondary, #ffffff);
-  border-radius: var(--radius-m);
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease;
-
+export const VanCard = styled(FlexContainer)`
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease;
+  background: var(--vantrip-secondary, #ffffff);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--vantrip-box-shadow-lighter);
 
   &:hover {
     transform: translateY(-4px);
   }
+`
+
+export const VanCardLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  flex: 1;
 ` // Link is a special react-router-dom component
+
+export const VanOwnerLink = styled(Link)`
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 100% var(--radius-m) var(--radius-m) var(--radius-m);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  box-shadow: var(--vantrip-box-shadow-lighter);
+
+  opacity: 90%;
+  transition: all 0.1s ease-in;
+  outline: 2px solid transparent;
+
+  &:hover {
+    opacity: 100%;
+    transform: scale(105%);
+    outline-color: var(--vantrip-light);
+  }
+`
+
+export const VanOwnerAvatar = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+`
 
 export const VanImagesWrapper = styled.div`
   display: flex;
   width: 100%;
+  height: 200px;
   position: relative;
   align-items: center;
   overflow: hidden;
+  box-shadow: var(--vantrip-box-shadow-lighter);
 `
 
 export const SliderTrack = styled.div`
   display: flex;
   width: 100%;
-  height: 200px;
+  height: 100%;
   transition: transform 0.3s ease-in-out;
   transform: translateX(${(props) => props.$translateIndex * -100}%);
 `
@@ -94,6 +131,8 @@ export const AvailabilityTag = styled.span`
   border-radius: var(--radius-s);
   padding: var(--space-xs);
   font-size: 0.8rem;
+  align-self: center;
+  width: fit-content;
 
   ${({ $selectDatesTag }) =>
     $selectDatesTag &&
@@ -103,6 +142,5 @@ export const AvailabilityTag = styled.span`
       box-shadow: var(--vantrip-box-shadow-lighter);
 
       font-size: 0.8rem;
-      padding: var(--space-xs) 0;
-    `}
+    `};
 `

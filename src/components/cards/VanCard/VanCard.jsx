@@ -41,57 +41,63 @@ export const VanCardItem = ({ van, filters, t }) => {
   }
 
   return (
-    <S.VanCard key={van._id} to={`/campers/${van._id}`}>
-      <S.VanImagesWrapper>
-        <S.SliderTrack $translateIndex={currentImgIndex}>
-          {images.map((img, index) => (
-            <S.VanImg key={index} $image={img} />
-          ))}
-        </S.SliderTrack>
+    <S.VanCard>
+      <S.VanOwnerLink to={`/users/${van.owner._id}`}>
+        <S.VanOwnerAvatar src={van.owner.avatar} alt='' />
+      </S.VanOwnerLink>
+      <S.VanCardLink key={van._id} to={`/campers/${van._id}`}>
+        <S.VanImagesWrapper>
+          <S.SliderTrack $translateIndex={currentImgIndex}>
+            {images.map((img, index) => (
+              <S.VanImg key={index} $image={img} />
+            ))}
+          </S.SliderTrack>
 
-        {images.length > 1 && (
-          <>
-            <S.SliderButton
-              variant={'slider'}
-              $direction='prev'
-              onClick={handlePrevImage}
-            >
-              ‹
-            </S.SliderButton>
-            <S.SliderButton
-              variant={'slider'}
-              $direction='next'
-              onClick={handleNextImage}
-            >
-              ›
-            </S.SliderButton>
-          </>
-        )}
-      </S.VanImagesWrapper>
-      <S.VanInfo>
-        <h3>{van.title}</h3>
-        <p>
-          <span>{van.brand}</span> <span>{van.modelName}</span>
-        </p>
-        <p>📍{van.location}</p>
+          {images.length > 1 && (
+            <>
+              <S.SliderButton
+                variant={'slider'}
+                $direction='prev'
+                onClick={handlePrevImage}
+              >
+                ‹
+              </S.SliderButton>
+              <S.SliderButton
+                variant={'slider'}
+                $direction='next'
+                onClick={handleNextImage}
+              >
+                ›
+              </S.SliderButton>
+            </>
+          )}
+        </S.VanImagesWrapper>
 
-        {hasActiveDatesFilter ? (
-          <S.TagsWrapper>
-            <S.PriceTag>
-              {convertedPricePerDay} <span>{t('vanCard.priceSuffix')}</span>
-            </S.PriceTag>
-            <S.AvailabilityTag>
-              {t('vanCard.availabilityMsg')}
+        <S.VanInfo>
+          <h3>{van.title}</h3>
+          <p>
+            <span>{van.brand}</span> - <span>{van.modelName}</span>
+          </p>
+          <p>📍{van.location}</p>
+
+          {hasActiveDatesFilter ? (
+            <S.TagsWrapper>
+              <S.PriceTag>
+                {convertedPricePerDay} <span>{t('vanCard.priceSuffix')}</span>
+              </S.PriceTag>
+              <S.AvailabilityTag>
+                {t('vanCard.availabilityMsg')}
+              </S.AvailabilityTag>
+            </S.TagsWrapper>
+          ) : searchTerm ? (
+            <S.AvailabilityTag $selectDatesTag={true}>
+              {t('vanCard.selectDatesMsg')}
             </S.AvailabilityTag>
-          </S.TagsWrapper>
-        ) : searchTerm ? (
-          <S.AvailabilityTag $selectDatesTag={true}>
-            {t('vanCard.selectDatesMsg')}
-          </S.AvailabilityTag>
-        ) : (
-          ''
-        )}
-      </S.VanInfo>
+          ) : (
+            ''
+          )}
+        </S.VanInfo>
+      </S.VanCardLink>
     </S.VanCard>
   )
 }
