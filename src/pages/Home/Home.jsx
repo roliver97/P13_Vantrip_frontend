@@ -63,6 +63,17 @@ export const Home = () => {
   }
 
   const handleMainSubmit = (updatedSearchData) => {
+    const { searchTerm, checkInFilter, checkOutFilter } = updatedSearchData
+
+    const isSameAsCurrent =
+      filters.searchTerm === searchTerm &&
+      filters.checkInFilter === checkInFilter &&
+      filters.checkOutFilter === checkOutFilter
+
+    if (isSameAsCurrent) {
+      return
+    }
+
     setFilters(updatedSearchData)
   }
 

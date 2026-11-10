@@ -99,8 +99,9 @@ export const AvailabilityTag = styled.span`
     $selectDatesTag &&
     css`
       background-color: var(--vantrip-gray-darker);
+      color: var(--vantrip-light);
       box-shadow: var(--vantrip-box-shadow-lighter);
-      color: var(--vantrip-gray);
+
       font-size: 0.8rem;
       padding: var(--space-xs) 0;
     `}

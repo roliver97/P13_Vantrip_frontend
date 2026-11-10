@@ -18,6 +18,7 @@ export const SearchBox = ({
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     scrollToSection(e, currentLocation.pathname, 'campers')
 
     onSearchSubmit({
