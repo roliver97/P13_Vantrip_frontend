@@ -1,21 +1,39 @@
 import { useTranslation } from 'react-i18next'
-import { Grid, GridSection } from './CampersGrid.styles'
+import * as S from './CampersGrid.styles'
 import { useFetch } from '../../../hooks/useFetch'
 import { getCampers } from '../../../services/campersService'
 import { VanCardItem } from '../../cards/VanCard/VanCard'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { Spinner } from '../../ui/Spinner/Spinner'
+import { Error } from '../../ui/Error/Error'
 
-export const CampersGrid = ({ filters }) => {
+export const CampersGrid = ({ filters, onResetSearch }) => {
   const { t } = useTranslation()
+  const [retryCounter, setRetryCounter] = useState(0)
+
   const fetchCampersMemoized = useCallback(() => {
     return getCampers(filters)
-  }, [filters])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, retryCounter])
+
   const { data, loading, error } = useFetch(fetchCampersMemoized)
+
   const campersList = data?.campers || []
   const { searchTerm } = filters
 
-  if (error) return <p style={{ color: 'red' }}>Error: {error}</p>
+  const handleRetryFetch = () => {
+    setRetryCounter((prev) => prev + 1)
+  }
+
+  if (error)
+    return (
+      <Error message={`Error on fetch - ${error}`} onRetry={handleRetryFetch} />
+    )
+
+  const handleClearFiltersAndSubmit = (e) => {
+    e.preventDefault()
+    onResetSearch()
+  }
 
   const filteredVans = campersList.filter((van) => {
     if (!searchTerm) return true //returns all vans
@@ -38,20 +56,24 @@ export const CampersGrid = ({ filters }) => {
   })
 
   return (
-    <GridSection id='campers'>
+    <S.GridSection id='campers'>
       {loading ? (
         <Spinner message={t('campersGrid.spinnerMsg')} />
+      ) : filteredVans.length > 0 ? (
+        <S.Grid>
+          {filteredVans.map((van) => (
+            <VanCardItem key={van._id} van={van} filters={filters} t={t} />
+          ))}
+        </S.Grid>
       ) : (
-        <Grid>
-          {filteredVans.length > 0 ? (
-            filteredVans.map((van) => (
-              <VanCardItem key={van._id} van={van} filters={filters} t={t} />
-            ))
-          ) : (
-            <p>{t('campersGrid.errorMsg')}</p>
-          )}
-        </Grid>
+        <Error
+          onRetry={handleClearFiltersAndSubmit}
+          buttonCTA={t('campersGrid.errorButtonCTA')}
+        >
+          <p>🔍 {t('campersGrid.errorMsg')}</p>
+          <S.GridErrorSpan>{t('campersGrid.errorCTA')}</S.GridErrorSpan>
+        </Error>
       )}
-    </GridSection>
+    </S.GridSection>
   )
 }

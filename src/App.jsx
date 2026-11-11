@@ -16,7 +16,6 @@ const App = () => {
       <MainLayout>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/catalog' element={<h1>Catàleg de Furgonetes 🏕️</h1>} />
         </Routes>
       </MainLayout>
     </>

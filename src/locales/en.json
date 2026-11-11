@@ -2,6 +2,10 @@
   "spinner": {
     "defaultMsg": "Loading..."
   },
+  "error": {
+    "defaultMsg": "❌ Something went wrong",
+    "CTA": "Retry"
+  },
   "nav": {
     "campers": "Find Your Camper",
     "locations": "Locations",
@@ -34,7 +38,9 @@
     "applyBtn": "Apply Dates"
   },
   "campersGrid": {
-    "errorMsg": "No camper was found with this criterion.",
+    "errorMsg": "No camper was found with this criterion...",
+    "errorCTA": "Try again with different search parameters",
+    "errorButtonCTA": "Clear all filters",
     "spinnerMsg": "Searching for available vans..."
   },
   "vanCard": {

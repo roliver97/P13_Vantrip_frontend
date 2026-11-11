@@ -37,3 +37,7 @@ export const Grid = styled.div`
 
   animation: ${fadeIn} 0.4s ease-out forwards;
 `
+
+export const GridErrorSpan = styled.span`
+  font-weight: 600;
+`

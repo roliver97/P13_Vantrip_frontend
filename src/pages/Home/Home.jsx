@@ -52,7 +52,7 @@ export const Home = () => {
     setIsCalendarModalOpen(false)
   }
 
-  const handleClearFilters = (clearType) => {
+  const handleClearTempFilters = (clearType) => {
     if (clearType === 'term') {
       setTempFilters((prev) => ({ ...prev, searchTerm: '' }))
     } else if (clearType === 'dates') {
@@ -77,6 +77,19 @@ export const Home = () => {
     setFilters(updatedSearchData)
   }
 
+  const handleResetSearch = () => {
+    setFilters({
+      searchTerm: '',
+      checkInFilter: null,
+      checkOutFilter: null
+    })
+    setTempFilters({
+      searchTerm: '',
+      checkIn: null,
+      checkOut: null
+    })
+  }
+
   return (
     <HomeContainer>
       <div ref={heroRef} style={{ width: '100%' }}>
@@ -85,7 +98,8 @@ export const Home = () => {
 
       <SearchBox
         tempFilters={tempFilters}
-        onClearFilters={handleClearFilters}
+        setTempFilters={setTempFilters}
+        onClearFilters={handleClearTempFilters}
         onSearchSubmit={handleMainSubmit}
         isSticky={isSearchBoxSticky}
         onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
@@ -99,7 +113,7 @@ export const Home = () => {
         />
       )}
 
-      <CampersGrid filters={filters} />
+      <CampersGrid filters={filters} onResetSearch={handleResetSearch} />
     </HomeContainer>
   )
 }

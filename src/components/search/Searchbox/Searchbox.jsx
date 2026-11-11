@@ -2,27 +2,24 @@ import { useLocation } from 'react-router-dom'
 import { scrollToSection } from '../../../utils/scrollTo'
 import * as S from './Searchbox.styles'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
 
 export const SearchBox = ({
   onSearchSubmit,
   isSticky,
   onOpenCalendarModal,
   tempFilters,
+  setTempFilters,
   onClearFilters
 }) => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
 
-  const [localTerm, setLocalTerm] = useState('')
-
   const handleSubmit = (e) => {
     e.preventDefault()
-
     scrollToSection(e, currentLocation.pathname, 'campers')
 
     onSearchSubmit({
-      searchTerm: localTerm,
+      searchTerm: tempFilters.searchTerm,
       checkInFilter: tempFilters.checkIn,
       checkOutFilter: tempFilters.checkOut
     })
@@ -30,12 +27,10 @@ export const SearchBox = ({
 
   const handleClear = (inputType) => {
     if (inputType === 'term') {
-      setLocalTerm('')
       onClearFilters('term')
     } else if (inputType === 'dates') {
       onClearFilters('dates')
     } else {
-      setLocalTerm('')
       onClearFilters()
     }
   }
@@ -47,9 +42,12 @@ export const SearchBox = ({
           <S.TextInput
             type='text'
             placeholder={t('searchBox.placeholder')}
-            value={localTerm}
+            value={tempFilters.searchTerm}
             onChange={(e) => {
-              setLocalTerm(e.target.value)
+              const searchTermValue = e.target.value
+              setTempFilters((prev) => {
+                return { ...prev, searchTerm: searchTermValue }
+              })
             }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
@@ -57,7 +55,7 @@ export const SearchBox = ({
               }
             }}
           />
-          {localTerm !== '' && (
+          {tempFilters.searchTerm && (
             <S.ClearButton
               variant='clear'
               type='button'
