@@ -30,20 +30,20 @@ export const VanOwnerLink = styled(Link)`
   width: 40px;
   height: 40px;
   overflow: hidden;
-  border-radius: 100% var(--radius-m) var(--radius-m) var(--radius-m);
+  border-radius: 100% 0 var(--radius-m) 0;
   position: absolute;
   bottom: 0;
   right: 0;
-  box-shadow: var(--vantrip-box-shadow-lighter);
 
   opacity: 90%;
   transition: all 0.1s ease-in;
-  outline: 2px solid transparent;
+  outline: 1px solid var(--vantrip-primary);
 
   &:hover {
     opacity: 100%;
     transform: scale(105%);
-    outline-color: var(--vantrip-light);
+
+    box-shadow: var(--vantrip-box-shadow);
   }
 `
 

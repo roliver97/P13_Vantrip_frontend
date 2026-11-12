@@ -107,6 +107,7 @@ export const LinksWrapper = styled.div`
     height: 30px;
     display: flex;
     align-items: center;
+    text-align: center;
 
     &:hover {
       color: var(--vantrip-lighter);
@@ -121,6 +122,10 @@ export const LinksWrapper = styled.div`
     flex: 1;
     justify-content: center;
     flex-direction: row;
+    gap: var(--space-l);
+  }
+
+  ${device.laptop} {
     gap: var(--space-xl);
   }
 `

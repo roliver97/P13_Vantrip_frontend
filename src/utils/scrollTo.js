@@ -1,4 +1,4 @@
-export const scrollToTop = (e) => {
+export const handleScrollToTop = (e) => {
   e.preventDefault()
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -10,7 +10,7 @@ export const handleLogoClick = (e, pathname) => {
   }
 }
 
-export const scrollToSection = (e, pathname, sectionId) => {
+export const handleScrollToSection = (e, pathname, sectionId) => {
   if (pathname === '/') {
     e.preventDefault()
     const section = document.getElementById(sectionId)

@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { scrollToSection } from '../../../utils/scrollTo'
+import { handleScrollToSection } from '../../../utils/scrollTo'
 import * as S from './Searchbox.styles'
 import { useTranslation } from 'react-i18next'
 
@@ -16,7 +16,7 @@ export const SearchBox = ({
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    scrollToSection(e, currentLocation.pathname, 'campers')
+    handleScrollToSection(e, currentLocation.pathname, 'campers')
 
     onSearchSubmit({
       searchTerm: tempFilters.searchTerm,

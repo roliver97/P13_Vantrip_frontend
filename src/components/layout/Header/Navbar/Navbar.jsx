@@ -6,7 +6,10 @@ import { useWindowResize } from '../../../../hooks/useWindowResize'
 import { LanguageModal } from '../../../modals/LanguageModal/LanguageModal'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
-import { handleLogoClick, scrollToSection } from '../../../../utils/scrollTo'
+import {
+  handleLogoClick,
+  handleScrollToSection
+} from '../../../../utils/scrollTo'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -53,7 +56,7 @@ export const Navbar = () => {
             to='/'
             onClick={(e) => {
               closeMenu()
-              scrollToSection(e, currentLocation.pathname, 'campers')
+              handleScrollToSection(e, currentLocation.pathname, 'campers')
             }}
           >
             {t('nav.campers')}
