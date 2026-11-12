@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
+import { FlexContainer } from '../../../../components/ui/FlexContainer/FlexContainer'
 
 export const HeroSection = styled.section`
   background-image:

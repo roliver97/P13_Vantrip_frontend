@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import * as S from './CampersGrid.styles'
-import { useFetch } from '../../../hooks/useFetch'
-import { getCampers } from '../../../services/campersService'
-import { VanCardItem } from '../../cards/VanCard/VanCard'
+import { useFetch } from '../../../../hooks/useFetch'
+import { getCampers } from '../../../../services/campersService'
+import { VanCardItem } from './VanCard/VanCard'
 import { useCallback, useState } from 'react'
-import { Spinner } from '../../ui/Spinner/Spinner'
-import { Error } from '../../ui/Error/Error'
+import { Spinner } from '../../../../components/ui/Spinner/Spinner'
+import { Error } from '../../../../components/ui/Error/Error'
 
 export const CampersGrid = ({ filters, onResetSearch }) => {
   const { t } = useTranslation()

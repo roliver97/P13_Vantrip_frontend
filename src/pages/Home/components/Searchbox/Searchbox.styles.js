@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
-import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
-import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
+import { FlexContainer } from '../../../../components/ui/FlexContainer/FlexContainer'
+import { DefaultButton } from '../../../../components/ui/DefaultButton/DefaultButton'
 
 export const SearchContainer = styled(FlexContainer)`
   width: 100%;
@@ -33,7 +33,7 @@ export const TextInputWrapper = styled.div`
   overflow: hidden;
   background-color: var(--vantrip-white);
 
-  border: 2px solid var(--vantrip-primary);
+  border: 2px solid var(--vantrip-secondary);
 
   color: var(--vantrip-secondary);
 
@@ -82,7 +82,7 @@ export const DateSplitWrapper = styled.div`
   border-radius: 0;
   outline: none;
   text-align: center;
-  border: 2px solid var(--vantrip-primary);
+  border: 2px solid var(--vantrip-secondary);
   border-right: none;
   border-left: none;
 
@@ -135,14 +135,10 @@ export const SubmitButton = styled(DefaultButton)`
   flex: 1;
   border-radius: 0 var(--radius-l) var(--radius-l) 0;
   transition: background-color 0.2s ease;
-  border: 2px solid var(--vantrip-primary);
+  border: 2px solid var(--vantrip-secondary);
 
   &:hover {
     background-color: var(--vantrip-secondary);
-  }
-
-  &:active {
-    background-color: var(--vantrip-primary);
   }
 `
 

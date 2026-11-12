@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { SearchBox } from '../../components/search/Searchbox/Searchbox'
-import { CampersGrid } from '../../components/sections/CampersGrid/CampersGrid'
-import { Hero } from '../../components/sections/Hero/Hero'
+import { SearchBox } from './components/Searchbox/Searchbox'
+import { CampersGrid } from './components/CampersGrid/CampersGrid'
+import { Hero } from './components/Hero/Hero'
 import { PageContainer } from '../../components/ui/PageContainer/PageContainer'
 import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
 

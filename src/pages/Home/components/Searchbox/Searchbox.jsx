@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { handleScrollToSection } from '../../../utils/scrollTo'
+import { handleScrollToSection } from '../../../../utils/scrollTo'
 import * as S from './Searchbox.styles'
 import { useTranslation } from 'react-i18next'
 

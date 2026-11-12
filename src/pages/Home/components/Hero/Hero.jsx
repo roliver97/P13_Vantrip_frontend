@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
-import { TitleComponent } from '../../ui/Title/Title'
+import { TitleComponent } from '../../../../components/ui/Title/Title'
 import * as S from './Hero.styles'
-import { SpanComponent } from '../../ui/Span/Span'
+import { SpanComponent } from '../../../../components/ui/Span/Span'
 
 export const Hero = () => {
   const { t } = useTranslation()

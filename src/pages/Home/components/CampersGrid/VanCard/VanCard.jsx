@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import * as S from './VanCard.styles'
-import { convertPrice } from '../../../utils/priceCalculations'
+import { convertPrice } from '../../../../../utils/priceCalculations'
 
 export const VanCardItem = ({ van, filters, t }) => {
   const [currentImgIndex, setCurrentImgIndex] = useState(0)

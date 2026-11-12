@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
-import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
-import { device } from '../../../styles/breakpoints'
+import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
+import { device } from '../../../../../styles/breakpoints'
 import { Link } from 'react-router-dom'
-import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
+import { FlexContainer } from '../../../../../components/ui/FlexContainer/FlexContainer'
 
 export const VanCard = styled(FlexContainer)`
   display: flex;
