@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { SearchBox } from '../../components/search/Searchbox/Searchbox'
 import { CampersGrid } from '../../components/sections/CampersGrid/CampersGrid'
 import { Hero } from '../../components/sections/Hero/Hero'
-import { HomeContainer } from './Home.styles'
+import { PageContainer } from '../../components/ui/PageContainer/PageContainer'
 import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
 
 export const Home = () => {
@@ -91,7 +91,7 @@ export const Home = () => {
   }
 
   return (
-    <HomeContainer>
+    <PageContainer>
       <div ref={heroRef} style={{ width: '100%' }}>
         <Hero />
       </div>
@@ -114,6 +114,6 @@ export const Home = () => {
       )}
 
       <CampersGrid filters={filters} onResetSearch={handleResetSearch} />
-    </HomeContainer>
+    </PageContainer>
   )
 }

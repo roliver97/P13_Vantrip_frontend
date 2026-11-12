@@ -8,7 +8,7 @@ export const LayoutContainer = styled.div`
 export const VisibleLayout = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
+  min-height: calc(100svh - 62px);
 `
 
 export const MainStyled = styled.main`

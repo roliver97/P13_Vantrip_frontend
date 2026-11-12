@@ -23,21 +23,19 @@ export const SearchContainer = styled(FlexContainer)`
 export const SearchForm = styled.form`
   display: flex;
   width: 80%;
-  gap: var(--space-s);
 `
 
 export const TextInputWrapper = styled.div`
   flex: 5;
   padding: 0 var(--space-m);
-  border-radius: var(--radius-l);
+  border-radius: var(--radius-l) 0 0 var(--radius-l);
   display: flex;
   overflow: hidden;
   background-color: var(--vantrip-white);
 
-  border: 2px solid var(--vantrip-secondary);
+  border: 2px solid var(--vantrip-primary);
 
   color: var(--vantrip-secondary);
-  box-shadow: var(--vantrip-box-shadow);
 
   &:has(input:focus) {
     background-color: var(--vantrip-lighter);
@@ -81,11 +79,13 @@ export const TextInput = styled.input`
 export const DateSplitWrapper = styled.div`
   flex: 3;
   display: flex;
-  border-radius: var(--radius-l);
+  border-radius: 0;
   outline: none;
   text-align: center;
-  border: 2px solid var(--vantrip-secondary);
-  box-shadow: var(--vantrip-box-shadow);
+  border: 2px solid var(--vantrip-primary);
+  border-right: none;
+  border-left: none;
+
   overflow: hidden;
 `
 
@@ -133,14 +133,16 @@ export const DateButton = styled.button`
 
 export const SubmitButton = styled(DefaultButton)`
   flex: 1;
-  box-shadow: var(--vantrip-box-shadow);
-  border-radius: var(--radius-l);
-  border: 1px solid transparent;
-
-  transition: border-color 0.2s ease;
+  border-radius: 0 var(--radius-l) var(--radius-l) 0;
+  transition: background-color 0.2s ease;
+  border: 2px solid var(--vantrip-primary);
 
   &:hover {
-    border-color: var(--vantrip-secondary);
+    background-color: var(--vantrip-secondary);
+  }
+
+  &:active {
+    background-color: var(--vantrip-primary);
   }
 `
 
