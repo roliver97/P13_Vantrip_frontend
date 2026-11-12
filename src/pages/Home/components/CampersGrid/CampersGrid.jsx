@@ -1,33 +1,19 @@
 import { useTranslation } from 'react-i18next'
 import * as S from './CampersGrid.styles'
-import { useFetch } from '../../../../hooks/useFetch'
-import { getCampers } from '../../../../services/campersService'
 import { VanCardItem } from './VanCard/VanCard'
-import { useCallback, useState } from 'react'
 import { Spinner } from '../../../../components/ui/Spinner/Spinner'
 import { Error } from '../../../../components/ui/Error/Error'
 
-export const CampersGrid = ({ filters, onResetSearch }) => {
+export const CampersGrid = ({ fetchData, filters, onResetSearch }) => {
   const { t } = useTranslation()
-  const [retryCounter, setRetryCounter] = useState(0)
-
-  const fetchCampersMemoized = useCallback(() => {
-    return getCampers(filters)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters, retryCounter])
-
-  const { data, loading, error } = useFetch(fetchCampersMemoized)
+  const { data, loading, error } = fetchData
 
   const campersList = data?.campers || []
   const { searchTerm } = filters
 
-  const handleRetryFetch = () => {
-    setRetryCounter((prev) => prev + 1)
-  }
-
   if (error)
     return (
-      <Error message={`Error on fetch - ${error}`} onRetry={handleRetryFetch} />
+      <Error message={`Error on fetch - ${error}`} onRetry={onResetSearch} />
     )
 
   const handleClearFiltersAndSubmit = (e) => {

@@ -1,9 +1,11 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { SearchBox } from './components/Searchbox/Searchbox'
 import { CampersGrid } from './components/CampersGrid/CampersGrid'
 import { Hero } from './components/Hero/Hero'
 import { PageContainer } from '../../components/ui/PageContainer/PageContainer'
 import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
+import { getCampers } from '../../services/campersService'
+import { useFetch } from '../../hooks/useFetch'
 
 export const Home = () => {
   const [filters, setFilters] = useState({
@@ -12,11 +14,11 @@ export const Home = () => {
     checkOutFilter: null
   })
 
-  const [tempFilters, setTempFilters] = useState({
-    searchTerm: '',
-    checkIn: null,
-    checkOut: null
-  })
+  const fetchCampersMemoized = useCallback(() => {
+    return getCampers(filters)
+  }, [filters])
+
+  const fetchData = useFetch(fetchCampersMemoized)
 
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
   const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
@@ -43,25 +45,6 @@ export const Home = () => {
     }
   }, [])
 
-  const handleDatesSelection = (startDate, endDate) => {
-    setTempFilters((prev) => ({
-      ...prev,
-      checkIn: startDate,
-      checkOut: endDate
-    }))
-    setIsCalendarModalOpen(false)
-  }
-
-  const handleClearTempFilters = (clearType) => {
-    if (clearType === 'term') {
-      setTempFilters((prev) => ({ ...prev, searchTerm: '' }))
-    } else if (clearType === 'dates') {
-      setTempFilters((prev) => ({ ...prev, checkIn: null, checkOut: null }))
-    } else {
-      setTempFilters({ searchTerm: '', checkIn: null, checkOut: null })
-    }
-  }
-
   const handleMainSubmit = (updatedSearchData) => {
     const { searchTerm, checkInFilter, checkOutFilter } = updatedSearchData
 
@@ -83,11 +66,6 @@ export const Home = () => {
       checkInFilter: null,
       checkOutFilter: null
     })
-    setTempFilters({
-      searchTerm: '',
-      checkIn: null,
-      checkOut: null
-    })
   }
 
   return (
@@ -97,9 +75,6 @@ export const Home = () => {
       </div>
 
       <SearchBox
-        tempFilters={tempFilters}
-        setTempFilters={setTempFilters}
-        onClearFilters={handleClearTempFilters}
         onSearchSubmit={handleMainSubmit}
         isSticky={isSearchBoxSticky}
         onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
@@ -108,12 +83,15 @@ export const Home = () => {
       {isCalendarModalOpen && (
         <CalendarModal
           isOpen={isCalendarModalOpen}
-          onDatesSelection={handleDatesSelection}
           onClose={() => setIsCalendarModalOpen(false)}
         />
       )}
 
-      <CampersGrid filters={filters} onResetSearch={handleResetSearch} />
+      <CampersGrid
+        fetchData={fetchData}
+        filters={filters}
+        onResetSearch={handleResetSearch}
+      />
     </PageContainer>
   )
 }

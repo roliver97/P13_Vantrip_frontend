@@ -2,36 +2,37 @@ import { useLocation } from 'react-router-dom'
 import { handleScrollToSection } from '../../../../utils/scrollTo'
 import * as S from './Searchbox.styles'
 import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 
 export const SearchBox = ({
   onSearchSubmit,
   isSticky,
-  onOpenCalendarModal,
-  tempFilters,
-  setTempFilters,
-  onClearFilters
+  onOpenCalendarModal
 }) => {
   const { t } = useTranslation()
   const currentLocation = useLocation()
+  const [localFilters, setLocalFilters] = useState({
+    searchTerm: '',
+    checkIn: null,
+    checkOut: null
+  })
 
   const handleSubmit = (e) => {
     e.preventDefault()
     handleScrollToSection(e, currentLocation.pathname, 'campers')
 
     onSearchSubmit({
-      searchTerm: tempFilters.searchTerm,
-      checkInFilter: tempFilters.checkIn,
-      checkOutFilter: tempFilters.checkOut
+      searchTerm: localFilters.searchTerm,
+      checkInFilter: localFilters.checkIn,
+      checkOutFilter: localFilters.checkOut
     })
   }
 
   const handleClear = (inputType) => {
     if (inputType === 'term') {
-      onClearFilters('term')
+      setLocalFilters((prev) => ({ ...prev, searchTerm: '' }))
     } else if (inputType === 'dates') {
-      onClearFilters('dates')
-    } else {
-      onClearFilters()
+      setLocalFilters((prev) => ({ ...prev, checkIn: null, checkOut: null }))
     }
   }
 
@@ -42,10 +43,10 @@ export const SearchBox = ({
           <S.TextInput
             type='text'
             placeholder={t('searchBox.placeholder')}
-            value={tempFilters.searchTerm}
+            value={localFilters.searchTerm}
             onChange={(e) => {
               const searchTermValue = e.target.value
-              setTempFilters((prev) => {
+              setLocalFilters((prev) => {
                 return { ...prev, searchTerm: searchTermValue }
               })
             }}
@@ -55,7 +56,7 @@ export const SearchBox = ({
               }
             }}
           />
-          {tempFilters.searchTerm && (
+          {localFilters.searchTerm && (
             <S.ClearButton
               variant='clear'
               type='button'
@@ -72,16 +73,16 @@ export const SearchBox = ({
 
         <S.DateSplitWrapper>
           <S.DateButton type='button' onClick={onOpenCalendarModal}>
-            {!tempFilters.checkIn ? (
+            {!localFilters.checkIn ? (
               <div>
                 <p>📅 {t('searchBox.btnTitle')}</p>
               </div>
             ) : (
               <div>
                 {t('searchBox.btnSpanFrom')}
-                <span>{tempFilters.checkIn.toLocaleDateString()}</span>
+                <span>{localFilters.checkIn.toLocaleDateString()}</span>
                 {t('searchBox.btnSpanTo')}
-                <span>{tempFilters.checkOut.toLocaleDateString()}</span>
+                <span>{localFilters.checkOut.toLocaleDateString()}</span>
                 <S.ClearButton
                   variant='clear'
                   type='button'
