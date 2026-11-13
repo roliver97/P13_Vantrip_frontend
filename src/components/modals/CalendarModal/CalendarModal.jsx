@@ -7,12 +7,23 @@ import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
-export const CalendarModal = ({ isOpen, onClose, onDatesSelection }) => {
+export const CalendarModal = ({
+  filters,
+  setFilters,
+  onClear,
+  isOpen,
+  onClose
+}) => {
   const [selectionRange, setSelectionRange] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: filters.checkInFilter
+      ? new Date(filters.checkInFilter)
+      : new Date(),
+    endDate: filters.checkOutFilter
+      ? new Date(filters.checkOutFilter)
+      : new Date(),
     key: 'selection'
   })
+
   const { t } = useTranslation()
 
   if (!isOpen) return null
@@ -22,17 +33,24 @@ export const CalendarModal = ({ isOpen, onClose, onDatesSelection }) => {
   }
 
   const handleConfirm = () => {
-    onDatesSelection(selectionRange.startDate, selectionRange.endDate)
+    const { startDate, endDate } = selectionRange
+    setFilters((prev) => ({
+      ...prev,
+      checkInFilter: startDate,
+      checkOutFilter: endDate
+    }))
+    onClose()
   }
 
-  const handleClear = () => {
+  const handleClear = (e) => {
     const today = new Date()
     setSelectionRange({
       startDate: today,
       endDate: today,
       key: 'selection'
     })
-    onDatesSelection(null, null)
+
+    onClear(e, 'dates')
     onClose()
   }
 
