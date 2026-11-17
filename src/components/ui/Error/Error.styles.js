@@ -8,6 +8,7 @@ export const ErrorWrapper = styled.div`
   justify-content: center;
   width: 100%;
   min-height: 100%;
+  flex: 1;
   gap: var(--space-m);
 `
 

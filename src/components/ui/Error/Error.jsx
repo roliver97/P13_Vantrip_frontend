@@ -3,6 +3,7 @@ import * as S from './Error.styles'
 import { Spinner } from '../Spinner/Spinner'
 
 export const Error = ({
+  message,
   children,
   showSpinner = false,
   onRetry,
@@ -14,7 +15,7 @@ export const Error = ({
   return (
     <S.ErrorWrapper>
       <S.ErrorContent>
-        {children ? children : <p>{defaultMessage}</p>}
+        {children ? children : <p>{message ? message : defaultMessage}</p>}
       </S.ErrorContent>
       {showSpinner ? (
         <Spinner message={''} />

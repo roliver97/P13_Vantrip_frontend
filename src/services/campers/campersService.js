@@ -1,4 +1,4 @@
-import { API_URL } from '../utils/constants/constants'
+import { API_URL } from '../../utils/constants/constants'
 
 export const getCampers = async (filters = {}) => {
   try {
@@ -21,6 +21,25 @@ export const getCampers = async (filters = {}) => {
     return data
   } catch (error) {
     console.error('Error in getCampers service:', error.message)
+    throw error
+  }
+}
+
+export const getCamper = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}/campers/${id}`)
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(
+        errorData.message || 'Error getting this van from the server'
+      )
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Error in getCamper service:', error.message)
     throw error
   }
 }

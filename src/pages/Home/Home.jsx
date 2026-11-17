@@ -4,7 +4,7 @@ import { CampersGrid } from './components/CampersGrid/CampersGrid'
 import { Hero } from './components/Hero/Hero'
 import { PageContainer } from '../../components/ui/PageContainer/PageContainer'
 import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
-import { getCampers } from '../../services/campersService'
+import { getCampers } from '../../services/campers/campersService'
 import { useFetch } from '../../hooks/useFetch'
 import { handleScrollToSection } from '../../utils/scrollTo'
 import { useLocation } from 'react-router-dom'
@@ -114,6 +114,7 @@ export const Home = () => {
         fetchData={{ data, loading, error }}
         filters={submittedFilters}
         onClear={handleResetSearch}
+        onRetryFetch={() => executeFetch(() => getCampers())}
       />
     </PageContainer>
   )

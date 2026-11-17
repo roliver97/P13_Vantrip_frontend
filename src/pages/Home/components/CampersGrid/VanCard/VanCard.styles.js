@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
 import { device } from '../../../../../styles/breakpoints'
 import { Link } from 'react-router-dom'
 import { FlexContainer } from '../../../../../components/ui/FlexContainer/FlexContainer'
@@ -37,11 +36,11 @@ export const VanOwnerLink = styled(Link)`
 
   opacity: 90%;
   transition: all 0.1s ease-in;
-  outline: 1px solid var(--vantrip-primary);
 
   &:hover {
     opacity: 100%;
     transform: scale(105%);
+    border-radius: var(--radius-m) 0;
 
     box-shadow: var(--vantrip-box-shadow);
   }
@@ -54,49 +53,6 @@ export const VanOwnerAvatar = styled.img`
   object-position: center;
 `
 
-export const VanImagesWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  height: 200px;
-  position: relative;
-  align-items: center;
-  overflow: hidden;
-  box-shadow: var(--vantrip-box-shadow-lighter);
-`
-
-export const SliderTrack = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(${(props) => props.$translateIndex * -100}%);
-`
-
-export const VanImg = styled.div`
-  min-width: 100%;
-  height: 100%;
-  background-image: url(${(props) => props.$image});
-  background-size: cover;
-  background-position: center;
-  border-radius: var(--radius-m) var(--radius-m) 0 0;
-`
-
-export const SliderButton = styled(DefaultButton)`
-  position: absolute;
-
-  ${({ $direction }) =>
-    $direction === 'prev' &&
-    css`
-      left: 5px;
-    `}
-
-  ${({ $direction }) =>
-    $direction === 'next' &&
-    css`
-      right: 5px;
-    `}
-`
-
 export const VanInfo = styled.div`
   padding: var(--space-m);
   display: flex;
@@ -104,6 +60,10 @@ export const VanInfo = styled.div`
   gap: var(--space-s);
   flex: 1;
   justify-content: space-between;
+
+  h2 {
+    font-size: 1.4rem;
+  }
 `
 
 export const TagsWrapper = styled(FlexContainer)`

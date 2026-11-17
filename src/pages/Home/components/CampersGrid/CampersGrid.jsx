@@ -4,14 +4,16 @@ import { VanCardItem } from './VanCard/VanCard'
 import { Spinner } from '../../../../components/ui/Spinner/Spinner'
 import { Error } from '../../../../components/ui/Error/Error'
 
-export const CampersGrid = ({ fetchData, filters, onClear }) => {
+export const CampersGrid = ({ fetchData, filters, onClear, onRetryFetch }) => {
   const { t } = useTranslation()
   const { data, loading, error } = fetchData
 
   const campersList = data?.campers || []
 
   if (error)
-    return <Error message={`Error on fetch - ${error}`} onRetry={onClear} />
+    return (
+      <Error message={`Error on fetch - ${error}`} onRetry={onRetryFetch} />
+    )
 
   return (
     <S.GridSection id='campers'>
