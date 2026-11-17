@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { device } from '../../../../styles/breakpoints'
 
-export const BookingContainer = styled.div`
+export const BookingBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -37,7 +37,7 @@ export const BookingWrapper = styled.div`
           border-bottom: 5px solid var(--vantrip-light);
 
           h2 {
-            font-weight: 300;
+            font-weight: 500;
           }
         `
       case 'form':

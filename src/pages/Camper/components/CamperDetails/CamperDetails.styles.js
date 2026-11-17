@@ -47,6 +47,10 @@ export const InfoWrapper = styled.div`
       case 'subtitle':
         return css`
           border-bottom: 1px solid var(--vantrip-primary);
+
+          span {
+            font-weight: 500;
+          }
         `
       case 'info':
         return css`

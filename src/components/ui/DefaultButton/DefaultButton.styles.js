@@ -46,6 +46,14 @@ export const StyledButton = styled.button`
             background-color: rgba(255, 255, 255, 0.8);
           }
         `
+      case 'navStep':
+        return css`
+          color: var(--vantrip-lighter);
+          padding: 5px 15px;
+          font-weight: 400;
+          border-radius: var(--radius-l);
+          background-color: transparent;
+        `
       default:
         return css`
           background-color: var(--vantrip-primary);
