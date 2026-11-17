@@ -40,9 +40,8 @@ export const VanOwnerLink = styled(Link)`
   &:hover {
     opacity: 100%;
     transform: scale(105%);
-    border-radius: var(--radius-m) 0;
-
-    box-shadow: var(--vantrip-box-shadow);
+    border-radius: var(--radius-s) 0;
+    box-shadow: 0 0 30px 0 var(--vantrip-light);
   }
 `
 

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { device } from '../../../../styles/breakpoints'
 
 export const DetailContainer = styled.div`
@@ -19,11 +19,52 @@ export const DetailContainer = styled.div`
 `
 
 export const DetailInfo = styled.div`
-  padding: var(--space-m);
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: var(--space-s);
   flex: 1;
-  justify-content: space-evenly;
+`
+
+export const InfoWrapper = styled.div`
+  padding: var(--space-m);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-m);
+
+  img {
+    width: 20px;
+  }
+
+  ${({ $variant }) => {
+    switch ($variant) {
+      case 'title':
+        return css`
+          padding: var(--space-l);
+          border-bottom: 2px solid var(--vantrip-secondary);
+        `
+      case 'subtitle':
+        return css`
+          border-bottom: 1px solid var(--vantrip-primary);
+        `
+      case 'info':
+        return css`
+          flex-direction: column;
+          align-items: center;
+          justify-content: space-around;
+          text-align: center;
+          flex: 1;
+        `
+    }
+  }}
+`
+
+export const CapacityWrapper = styled.div`
+  display: flex;
+  gap: var(--space-xs);
+
+  span {
+    font-size: 20px;
+  }
 `

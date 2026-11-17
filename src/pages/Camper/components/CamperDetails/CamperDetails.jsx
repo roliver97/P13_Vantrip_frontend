@@ -12,12 +12,23 @@ export const CamperDetails = ({ camper }) => {
     <S.DetailContainer>
       <ImageSlider images={images} variant={'detail'}></ImageSlider>
       <S.DetailInfo>
-        <h2>{camper.title}</h2>
-        <h4>
-          <span>{camper.brand}</span> - <span>{camper.modelName}</span>
-        </h4>
-        <p>📍{camper.location}</p>
-        <p>{camper.description}</p>
+        <S.InfoWrapper $variant={'title'}>
+          <h2>{camper.title}</h2>
+        </S.InfoWrapper>
+        <S.InfoWrapper $variant={'subtitle'}>
+          <h4>
+            <span>{camper.brand}</span> - <span>{camper.modelName}</span>
+          </h4>
+          |
+          <S.CapacityWrapper>
+            <img src='/src/assets/icons/person_icon.svg' alt='Person Icon' />{' '}
+            <span>{camper.capacity}</span>
+          </S.CapacityWrapper>
+        </S.InfoWrapper>
+        <S.InfoWrapper $variant={'info'}>
+          <p>{camper.description}</p>
+          <p>📍{camper.location}</p>
+        </S.InfoWrapper>
       </S.DetailInfo>
     </S.DetailContainer>
   )
