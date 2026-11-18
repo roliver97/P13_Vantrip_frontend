@@ -7,13 +7,7 @@ import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
-export const CalendarModal = ({
-  filters,
-  setFilters,
-  onClear,
-  isOpen,
-  onClose
-}) => {
+export const CalendarModal = ({ filters, setFilters, isOpen, onClose }) => {
   const [selectionRange, setSelectionRange] = useState({
     startDate: filters.checkInFilter
       ? new Date(filters.checkInFilter)
@@ -43,6 +37,9 @@ export const CalendarModal = ({
   }
 
   const handleClear = (e) => {
+    e.preventDefault()
+    e.stopPropagation()
+
     const today = new Date()
     setSelectionRange({
       startDate: today,
@@ -50,7 +47,12 @@ export const CalendarModal = ({
       key: 'selection'
     })
 
-    onClear(e, 'dates')
+    setFilters((prev) => ({
+      ...prev,
+      checkInFilter: null,
+      checkOutFilter: null
+    }))
+
     onClose()
   }
 
@@ -75,7 +77,11 @@ export const CalendarModal = ({
             new Date(new Date().setFullYear(new Date().getFullYear() + 1))
           }
         />
-        <DefaultButton type='button' variant='clear' onClick={handleClear}>
+        <DefaultButton
+          type='button'
+          variant='clear'
+          onClick={(e) => handleClear(e)}
+        >
           {t('calendarModal.clearBtn')}
         </DefaultButton>
 

@@ -3,13 +3,30 @@ import { useTranslation } from 'react-i18next'
 
 export const SearchBox = ({
   onSubmit,
-  onClear,
   isSticky,
   onOpenCalendarModal,
   filters,
   setFilters
 }) => {
   const { t } = useTranslation()
+
+  const handleClear = (e, inputType) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    if (inputType === 'term') {
+      setFilters((prev) => ({
+        ...prev,
+        searchTerm: ''
+      }))
+    } else if (inputType === 'dates') {
+      setFilters((prev) => ({
+        ...prev,
+        checkInFilter: null,
+        checkOutFilter: null
+      }))
+    }
+  }
 
   return (
     <S.SearchContainer direction='row' $isSticky={isSticky}>
@@ -35,9 +52,7 @@ export const SearchBox = ({
             <S.ClearButton
               variant='clear'
               type='button'
-              onClick={(e) => {
-                onClear(e, 'term')
-              }}
+              onClick={(e) => handleClear(e, 'term')}
             >
               X
             </S.ClearButton>
@@ -60,7 +75,7 @@ export const SearchBox = ({
                   variant='clear'
                   type='button'
                   onClick={(e) => {
-                    onClear(e, 'dates')
+                    handleClear(e, 'dates')
                   }}
                 >
                   X

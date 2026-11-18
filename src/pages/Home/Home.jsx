@@ -62,26 +62,21 @@ export const Home = () => {
     await executeFetch(() => getCampers(filters))
   }
 
-  const handleResetSearch = async (e, inputType) => {
-    let newFilters = { ...filters }
-
-    if (inputType === 'term') {
-      newFilters.searchTerm = ''
-    } else if (inputType === 'dates') {
-      newFilters.checkInFilter = null
-      newFilters.checkOutFilter = null
-    } else {
-      // Reset complet de tot
-      newFilters = {
-        searchTerm: '',
-        checkInFilter: null,
-        checkOutFilter: null
-      }
-    }
+  const handleResetSearch = async (e) => {
     e.preventDefault()
     e.stopPropagation()
     handleScrollToSection(e, currentLocation.pathname, 'campers')
-    setFilters(newFilters)
+
+    const resetFilters = {
+      searchTerm: '',
+      checkInFilter: null,
+      checkOutFilter: null
+    }
+
+    // Complete Reset
+    setFilters(resetFilters)
+    setSubmittedFilters(resetFilters)
+    await executeFetch(() => getCampers(resetFilters))
   }
 
   return (
@@ -94,7 +89,6 @@ export const Home = () => {
         filters={filters}
         setFilters={setFilters}
         onSubmit={handleSubmit}
-        onClear={handleResetSearch}
         isSticky={isSearchBoxSticky}
         onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
       />
@@ -104,7 +98,6 @@ export const Home = () => {
           filters={filters}
           setFilters={setFilters}
           onSubmit={handleSubmit}
-          onClear={handleResetSearch}
           isOpen={isCalendarModalOpen}
           onClose={() => setIsCalendarModalOpen(false)}
         />
