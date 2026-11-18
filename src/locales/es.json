@@ -53,6 +53,9 @@
       "applyBtn": "APLICAR",
       "nextBtn": "SIGUIENTE",
       "changesBtn": "APLICAR CAMBIOS"
+    },
+    "detailsStep": {
+      "submitBtn": "ENVIAR"
     }
   }
 }

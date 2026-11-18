@@ -13,7 +13,14 @@ export const BookingBox = () => {
   const [bookingData, setBookingData] = useState({
     startDate: null,
     endDate: null,
-    details: {}
+    details: {
+      camper: '',
+      startDate: null,
+      endDate: null,
+      name: '',
+      email: '',
+      phone: ''
+    }
   })
 
   const handleStepClick = (targetStep) => {
@@ -51,6 +58,8 @@ export const BookingBox = () => {
 
         {currentStep === 2 && (
           <DetailsStep
+            currentFormData={bookingData}
+            onUpdateData={handleUpdateBookingData}
             onBack={() => setCurrentStep(1)}
             onNext={() => {
               setCurrentStep(3)

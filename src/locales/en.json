@@ -56,6 +56,9 @@
       "applyBtn": "APPLY",
       "nextBtn": "NEXT",
       "changesBtn": "APPLY CHANGES"
+    },
+    "detailsStep": {
+      "submitBtn": "SUBMIT"
     }
   }
 }
