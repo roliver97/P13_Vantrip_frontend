@@ -4,10 +4,17 @@ import { StepsNav } from './steps/nav/StepsNav'
 import { CalendarStep } from './steps/CalendarStep'
 import { DetailsStep } from './steps/DetailsStep'
 import { SummaryStep } from './steps/SummaryStep'
+import { useTranslation } from 'react-i18next'
 
 export const BookingBox = () => {
+  const { t } = useTranslation()
   const [currentStep, setCurrentStep] = useState(1)
   const [maxStepReached, setMaxStepReached] = useState(1)
+  const [bookingData, setBookingData] = useState({
+    startDate: null,
+    endDate: null,
+    details: {}
+  })
 
   const handleStepClick = (targetStep) => {
     if (targetStep <= maxStepReached) {
@@ -15,10 +22,14 @@ export const BookingBox = () => {
     }
   }
 
+  const handleUpdateBookingData = (stepData) => {
+    setBookingData((prev) => ({ ...prev, ...stepData }))
+  }
+
   return (
     <S.BookingBoxContainer>
       <S.BookingWrapper $variant={'title'}>
-        <h2>Book your camper</h2>
+        <h2>{t('bookingBox.title')}</h2>
       </S.BookingWrapper>
       <S.BookingWrapper $variant={'form'}>
         <StepsNav
@@ -28,6 +39,9 @@ export const BookingBox = () => {
         />
         {currentStep === 1 && (
           <CalendarStep
+            currentBookingData={bookingData}
+            onUpdateData={handleUpdateBookingData}
+            maxStepReached={maxStepReached}
             onNext={() => {
               setCurrentStep(2)
               setMaxStepReached(Math.max(maxStepReached, 2))

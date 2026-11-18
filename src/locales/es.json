@@ -44,5 +44,15 @@
     "selectDatesMsg": "Selecciona fechas para ver la disponibilidad",
     "availabilityMsg": "Disponible para tus fechas",
     "priceSuffix": " / noche"
+  },
+  "bookingBox": {
+    "title": "Reserva Tu Camper",
+    "nav": { "dates": "FECHAS", "details": "DATOS", "summary": "RESUMEN" },
+    "calendarStep": {
+      "chooseBtn": "ELIGE TUS FECHAS",
+      "applyBtn": "APLICAR",
+      "nextBtn": "SIGUIENTE",
+      "changesBtn": "APLICAR CAMBIOS"
+    }
   }
 }

@@ -56,4 +56,10 @@ export const StyledButton = styled.button`
   &:hover {
     opacity: 0.9;
   }
+
+  &:disabled {
+    background-color: var(--vantrip-gray, #ccc);
+    cursor: not-allowed;
+    opacity: 0.9;
+  }
 `

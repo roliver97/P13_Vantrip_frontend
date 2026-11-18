@@ -47,5 +47,17 @@
     "selectDatesMsg": "Select dates to check availability",
     "availabilityMsg": "Available for your dates",
     "priceSuffix": " / night"
+  },
+  "bookingBox": {
+    "title": "Book Your Camper",
+    "form": {
+      "nav": { "dates": "DATES", "details": "DETAILS", "summary": "SUMMARY" },
+      "calendarStep": {
+        "chooseBtn": "CHOOSE YOUR DATES",
+        "applyBtn": "APPLY",
+        "nextBtn": "NEXT",
+        "changesBtn": "APPLY CHANGES"
+      }
+    }
   }
 }

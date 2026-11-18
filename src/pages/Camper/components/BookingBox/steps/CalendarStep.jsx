@@ -3,29 +3,48 @@ import { BookingCalendar } from '../../../../../components/ui/BookingCalendar/Bo
 import * as S from './CalendarStep.styles'
 import { useState } from 'react'
 import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
+import { useTranslation } from 'react-i18next'
 
-export const CalendarStep = ({ onNext }) => {
+export const CalendarStep = ({
+  currentBookingData,
+  onUpdateData,
+  onNext,
+  maxStepReached
+}) => {
+  const { t } = useTranslation()
   const location = useLocation()
   const activeFilters = location.state?.filters || null
   const [bookingDates, setBookingDates] = useState({
-    startDate: activeFilters?.checkInFilter
-      ? new Date(activeFilters.checkInFilter)
-      : null,
-    endDate: activeFilters?.checkOutFilter
-      ? new Date(activeFilters.checkOutFilter)
-      : null
+    startDate:
+      currentBookingData?.startDate ||
+      (activeFilters?.checkInFilter
+        ? new Date(activeFilters.checkInFilter)
+        : null),
+    endDate:
+      currentBookingData?.endDate ||
+      (activeFilters?.checkOutFilter
+        ? new Date(activeFilters.checkOutFilter)
+        : null)
   })
-
-  console.log('bookingDates:', bookingDates)
 
   const handleDateConfirm = (startDate, endDate) => {
     setBookingDates({ startDate, endDate })
+  }
+
+  const handleUpdateData = () => {
+    if (!isValidRange) return
+    onUpdateData(bookingDates)
+    onNext()
   }
 
   const isValidRange =
     bookingDates.startDate &&
     bookingDates.endDate &&
     bookingDates.startDate.getTime() !== bookingDates.endDate.getTime()
+
+  const isSameRange =
+    bookingDates.startDate === currentBookingData?.startDate &&
+    bookingDates.endDate === currentBookingData?.endDate
 
   return (
     <S.CalendarStepContainer>
@@ -34,8 +53,18 @@ export const CalendarStep = ({ onNext }) => {
         initialDates={bookingDates}
       ></BookingCalendar>
 
-      <DefaultButton type='button' onClick={onNext} disabled={!isValidRange}>
-        APPLY
+      <DefaultButton
+        type='button'
+        onClick={handleUpdateData}
+        disabled={!isValidRange}
+      >
+        {!isValidRange
+          ? t('bookingBox.calendarStep.chooseBtn')
+          : maxStepReached === 1
+            ? t('bookingBox.calendarStep.applyBtn')
+            : isSameRange
+              ? t('bookingBox.calendarStep.nextBtn')
+              : t('bookingBox.calendarStep.changesBtn')}
       </DefaultButton>
     </S.CalendarStepContainer>
   )
