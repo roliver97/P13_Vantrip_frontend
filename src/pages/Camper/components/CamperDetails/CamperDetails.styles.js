@@ -11,7 +11,7 @@ export const DetailContainer = styled.div`
   border-radius: var(--radius-m);
 
   ${device.tablet} {
-    width: 50%;
+    width: 600px;
   }
 
   ${device.laptop} {

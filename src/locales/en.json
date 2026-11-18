@@ -50,14 +50,12 @@
   },
   "bookingBox": {
     "title": "Book Your Camper",
-    "form": {
-      "nav": { "dates": "DATES", "details": "DETAILS", "summary": "SUMMARY" },
-      "calendarStep": {
-        "chooseBtn": "CHOOSE YOUR DATES",
-        "applyBtn": "APPLY",
-        "nextBtn": "NEXT",
-        "changesBtn": "APPLY CHANGES"
-      }
+    "nav": { "dates": "DATES", "details": "DETAILS", "summary": "SUMMARY" },
+    "calendarStep": {
+      "chooseBtn": "CHOOSE YOUR DATES",
+      "applyBtn": "APPLY",
+      "nextBtn": "NEXT",
+      "changesBtn": "APPLY CHANGES"
     }
   }
 }

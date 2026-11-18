@@ -4,7 +4,7 @@ import { DefaultButton } from '../DefaultButton/DefaultButton'
 export const VanImagesWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 200px;
+  aspect-ratio: 16 / 9;
   position: relative;
   align-items: center;
   overflow: hidden;
@@ -14,7 +14,7 @@ export const VanImagesWrapper = styled.div`
     switch ($variant) {
       case 'detail':
         return css`
-          height: 50%;
+          aspect-ratio: 16 / 10;
         `
     }
   }}

@@ -29,19 +29,24 @@ export const VanOwnerLink = styled(Link)`
   width: 40px;
   height: 40px;
   overflow: hidden;
-  border-radius: 100% 0 var(--radius-m) 0;
+  border-radius: 100% 0 0 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 5px;
   right: 0;
-
-  opacity: 90%;
+  opacity: 80%;
   transition: all 0.1s ease-in;
+
+  ${device.tablet} {
+    border-radius: 0 100% 0 100%;
+    bottom: 5px;
+    bottom: 0;
+  }
 
   &:hover {
     opacity: 100%;
     transform: scale(105%);
-    border-radius: var(--radius-s) 0;
-    box-shadow: 0 0 30px 0 var(--vantrip-light);
+    border-radius: 100% 0 0 100%;
+    border: none;
   }
 `
 

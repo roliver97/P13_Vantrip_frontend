@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import { device } from '../../../../styles/breakpoints'
 
 export const BookingBoxContainer = styled.div`
   display: flex;
@@ -9,13 +8,6 @@ export const BookingBoxContainer = styled.div`
   width: 100%;
   background-color: var(--vantrip-secondary);
   border-radius: var(--radius-m);
-  ${device.tablet} {
-    width: 50%;
-  }
-
-  ${device.laptop} {
-    width: 100%;
-  }
 `
 
 export const BookingWrapper = styled.div`

@@ -7,4 +7,5 @@ export const FooterStyled = styled.footer`
   text-align: center;
   font-size: 0.95rem;
   font-weight: 200;
+  border-top: 1px solid var(--vantrip-primary);
 `

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import * as S from './BookingCalendar.styles'
 import { DateRange } from 'react-date-range'
 import { DefaultButton } from '../DefaultButton/DefaultButton'
@@ -21,6 +21,14 @@ export const BookingCalendar = ({
       : new Date(),
     key: 'selection'
   })
+
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1440) //1440px === desktop
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 1440) //1440px === desktop
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const { t } = useTranslation()
 
@@ -64,7 +72,7 @@ export const BookingCalendar = ({
         ranges={[selectionRange]}
         rangeColors={['#2b4c3f']}
         months={2}
-        direction='horizontal'
+        direction={isDesktop ? 'horizontal' : 'vertical'}
         minDate={new Date()}
         maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
       />
