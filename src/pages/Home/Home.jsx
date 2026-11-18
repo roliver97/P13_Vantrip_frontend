@@ -95,11 +95,19 @@ export const Home = () => {
 
       {isCalendarModalOpen && (
         <CalendarModal
-          filters={filters}
-          setFilters={setFilters}
-          onSubmit={handleSubmit}
           isOpen={isCalendarModalOpen}
           onClose={() => setIsCalendarModalOpen(false)}
+          initialDates={{
+            startDate: filters.checkInFilter,
+            endDate: filters.checkOutFilter
+          }}
+          onConfirm={(startDate, endDate) => {
+            setFilters((prev) => ({
+              ...prev,
+              checkInFilter: startDate,
+              checkOutFilter: endDate
+            }))
+          }}
         />
       )}
 

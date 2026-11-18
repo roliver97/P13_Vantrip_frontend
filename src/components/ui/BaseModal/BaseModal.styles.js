@@ -4,7 +4,7 @@ export const ModalContainer = styled.div`
   background-color: #ffffff;
   color: var(--vantrip-dark);
   width: 90%;
-  max-width: 480px;
+  max-width: fit-content;
   border-radius: 16px;
   padding: 24px;
   position: fixed;

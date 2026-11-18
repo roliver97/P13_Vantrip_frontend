@@ -32,7 +32,11 @@ export const VanCardItem = ({ van, filters, t }) => {
       <S.VanOwnerLink to={`/users/${van.owner._id}`}>
         <S.VanOwnerAvatar src={van.owner.avatar} alt='' />
       </S.VanOwnerLink>
-      <S.VanCardLink key={van._id} to={`/campers/${van._id}`}>
+      <S.VanCardLink
+        key={van._id}
+        to={`/campers/${van._id}`}
+        state={{ filters }}
+      >
         <ImageSlider images={images} />
         <S.VanInfo>
           <h2>{van.title}</h2>

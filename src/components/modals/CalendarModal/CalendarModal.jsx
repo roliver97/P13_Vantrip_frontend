@@ -1,99 +1,18 @@
-import { useTranslation } from 'react-i18next'
 import { BaseModal } from '../../ui/BaseModal/BaseModal'
-import { useState } from 'react'
-import * as S from './CalendarModal.styles'
-import { DateRange } from 'react-date-range'
-import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
-import 'react-date-range/dist/styles.css'
-import 'react-date-range/dist/theme/default.css'
+import { BookingCalendar } from '../../ui/BookingCalendar/BookingCalendar'
 
-export const CalendarModal = ({ filters, setFilters, isOpen, onClose }) => {
-  const [selectionRange, setSelectionRange] = useState({
-    startDate: filters.checkInFilter
-      ? new Date(filters.checkInFilter)
-      : new Date(),
-    endDate: filters.checkOutFilter
-      ? new Date(filters.checkOutFilter)
-      : new Date(),
-    key: 'selection'
-  })
-
-  const { t } = useTranslation()
-
+export const CalendarModal = ({ isOpen, onClose, ...restProps }) => {
+  // ...restProps (Rest Operator): Groups the props that were not destructured, allowing them to be automatically passed down from parent to child
   if (!isOpen) return null
-
-  const handleSelection = (ranges) => {
-    setSelectionRange(ranges.selection)
-  }
-
-  const handleConfirm = () => {
-    const { startDate, endDate } = selectionRange
-    setFilters((prev) => ({
-      ...prev,
-      checkInFilter: startDate,
-      checkOutFilter: endDate
-    }))
-    onClose()
-  }
-
-  const handleClear = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    const today = new Date()
-    setSelectionRange({
-      startDate: today,
-      endDate: today,
-      key: 'selection'
-    })
-
-    setFilters((prev) => ({
-      ...prev,
-      checkInFilter: null,
-      checkOutFilter: null
-    }))
-
-    onClose()
-  }
 
   return (
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      title={t('calendarModal.title')}
+      title='Select Dates'
       zIndexOverlay={1000}
     >
-      <S.CalendarContentWrapper>
-        <S.CalendarSubtitle>{t('calendarModal.subtitle')}</S.CalendarSubtitle>
-
-        <DateRange
-          editableDateInputs={true}
-          onChange={handleSelection}
-          moveRangeOnFirstSelection={false}
-          ranges={[selectionRange]}
-          rangeColors={['#2b4c3f']}
-          minDate={new Date()}
-          maxDate={
-            new Date(new Date().setFullYear(new Date().getFullYear() + 1))
-          }
-        />
-        <DefaultButton
-          type='button'
-          variant='clear'
-          onClick={(e) => handleClear(e)}
-        >
-          {t('calendarModal.clearBtn')}
-        </DefaultButton>
-
-        <S.ButtonsContainer>
-          <DefaultButton type='button' variant='cancel' onClick={onClose}>
-            {t('calendarModal.cancelBtn')}
-          </DefaultButton>
-          <DefaultButton type='button' onClick={handleConfirm}>
-            {t('calendarModal.applyBtn')}
-          </DefaultButton>
-        </S.ButtonsContainer>
-      </S.CalendarContentWrapper>
+      <BookingCalendar onClose={onClose} showActions={true} {...restProps} />
     </BaseModal>
   )
 }
