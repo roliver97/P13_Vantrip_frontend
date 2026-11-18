@@ -26,16 +26,7 @@ export const StyledButton = styled.button`
           background-color: #bd5548;
           color: var(--vantrip-white);
         `
-      case 'clear':
-        return css`
-          padding: 1px;
-          background-color: transparent;
-          color: var(--vantrip-gray);
-          font-weight: 400;
-          &:hover {
-            text-decoration: underline;
-          }
-        `
+
       case 'slider':
         return css`
           padding: 5px 10px;

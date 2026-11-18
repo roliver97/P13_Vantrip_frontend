@@ -12,7 +12,7 @@ export const CalendarModal = ({ isOpen, onClose, ...restProps }) => {
       title='Select Dates'
       zIndexOverlay={1000}
     >
-      <BookingCalendar onClose={onClose} showActions={true} {...restProps} />
+      <BookingCalendar onClose={onClose} variant={'modal'} {...restProps} />
     </BaseModal>
   )
 }

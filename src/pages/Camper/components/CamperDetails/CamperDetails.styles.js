@@ -6,6 +6,7 @@ export const DetailContainer = styled.div`
   flex-direction: column;
   overflow: hidden;
   box-shadow: var(--vantrip-box-shadow);
+  background-color: var(--vantrip-secondary);
   width: 100%;
   border-radius: var(--radius-m);
 
@@ -42,11 +43,11 @@ export const InfoWrapper = styled.div`
       case 'title':
         return css`
           padding: var(--space-l);
-          border-bottom: 2px solid var(--vantrip-secondary);
+          border-bottom: 3px solid var(--vantrip-light);
         `
       case 'subtitle':
         return css`
-          border-bottom: 1px solid var(--vantrip-primary);
+          border-bottom: 1px solid var(--vantrip-light);
 
           span {
             font-weight: 500;

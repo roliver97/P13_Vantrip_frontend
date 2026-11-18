@@ -9,8 +9,8 @@ import 'react-date-range/dist/theme/default.css'
 export const BookingCalendar = ({
   initialDates,
   onConfirm,
-  showActions = true,
-  onClose
+  onClose,
+  variant
 }) => {
   const [selectionRange, setSelectionRange] = useState({
     startDate: initialDates?.startDate
@@ -25,7 +25,11 @@ export const BookingCalendar = ({
   const { t } = useTranslation()
 
   const handleSelection = (ranges) => {
+    const { startDate, endDate } = ranges.selection
     setSelectionRange(ranges.selection)
+    if (variant !== 'modal' && onConfirm) {
+      onConfirm(startDate, endDate)
+    }
   }
 
   const handleConfirm = () => {
@@ -64,15 +68,15 @@ export const BookingCalendar = ({
         minDate={new Date()}
         maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
       />
-      <DefaultButton
+      <S.ClearButton
         type='button'
-        variant='clear'
+        $variant={variant === 'modal' && 'modal'}
         onClick={(e) => handleClear(e)}
       >
         {t('calendarModal.clearBtn')}
-      </DefaultButton>
+      </S.ClearButton>
 
-      {showActions && onClose && (
+      {variant === 'modal' && (
         <S.ButtonsContainer>
           <DefaultButton type='button' variant='cancel' onClick={onClose}>
             {t('calendarModal.cancelBtn')}

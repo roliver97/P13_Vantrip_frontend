@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { FlexContainer } from '../FlexContainer/FlexContainer'
+import { DefaultButton } from '../DefaultButton/DefaultButton'
 
 export const CalendarContentWrapper = styled(FlexContainer)`
   flex-direction: column;
@@ -23,6 +24,29 @@ export const CalendarSubtitle = styled.h3`
   font-size: 1.1rem;
   font-weight: 500;
   text-align: center;
+`
+
+export const ClearButton = styled(DefaultButton)`
+  padding: 1px;
+  background-color: transparent;
+  color: var(--vantrip-white);
+  font-weight: 400;
+  &:hover {
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  ${({ $variant }) => {
+    if ($variant === 'modal')
+      return `
+    color: var(--vantrip-gray);
+
+    &:hover {
+    text-decoration: underline;
+    font-weight: 400;
+  }
+`
+  }}
 `
 
 export const ButtonsContainer = styled(FlexContainer)`

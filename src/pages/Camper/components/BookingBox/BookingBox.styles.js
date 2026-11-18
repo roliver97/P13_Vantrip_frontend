@@ -4,9 +4,10 @@ import { device } from '../../../../styles/breakpoints'
 export const BookingBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-
+  overflow: hidden;
   box-shadow: var(--vantrip-box-shadow);
   width: 100%;
+  background-color: var(--vantrip-secondary);
   border-radius: var(--radius-m);
   ${device.tablet} {
     width: 50%;
@@ -43,7 +44,7 @@ export const BookingWrapper = styled.div`
       case 'form':
         return css`
           border-bottom: 1px solid var(--vantrip-primary);
-          background-color: var(--vantrip-secondary);
+
           flex-direction: column;
           flex: 1;
           border-radius: 0 0 var(--radius-m) var(--radius-m);
