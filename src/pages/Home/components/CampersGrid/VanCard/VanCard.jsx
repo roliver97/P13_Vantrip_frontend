@@ -1,5 +1,5 @@
 import * as S from './VanCard.styles'
-import { convertPrice } from '../../../../../utils/priceCalculations'
+import { calculateVanPricing } from '../../../../../utils/priceCalculations'
 import { ImageSlider } from '../../../../../components/ui/ImageSlider/ImageSlider'
 
 export const VanCardItem = ({ van, filters, t }) => {
@@ -11,21 +11,11 @@ export const VanCardItem = ({ van, filters, t }) => {
 
   const hasActiveDatesFilter = checkInFilter && checkOutFilter
 
-  const hasSeasonalPricing =
-    hasActiveDatesFilter &&
-    van.seasonalPricing &&
-    van.seasonalPricing.some((season) => {
-      return (
-        new Date(checkInFilter) >= new Date(season.startDate) &&
-        new Date(checkOutFilter) <= new Date(season.endDate)
-      )
-    })
-
-  const filteredPricePerDay = hasSeasonalPricing
-    ? van.seasonalPricePerDay
-    : van.defaultPricePerDay
-
-  const convertedPricePerDay = convertPrice(filteredPricePerDay).formatted
+  const { pricePerDay } = calculateVanPricing(
+    van,
+    checkInFilter,
+    checkOutFilter
+  )
 
   return (
     <S.VanCard>
@@ -48,7 +38,7 @@ export const VanCardItem = ({ van, filters, t }) => {
           {hasActiveDatesFilter ? (
             <S.TagsWrapper>
               <S.PriceTag>
-                {convertedPricePerDay} <span>{t('vanCard.priceSuffix')}</span>
+                {pricePerDay.formatted} <span>{t('vanCard.priceSuffix')}</span>
               </S.PriceTag>
               <S.AvailabilityTag>
                 {t('vanCard.availabilityMsg')}

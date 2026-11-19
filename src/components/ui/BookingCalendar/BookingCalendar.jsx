@@ -57,8 +57,8 @@ export const BookingCalendar = ({
       key: 'selection'
     })
 
-    onConfirm(null, null)
-    onClose()
+    onConfirm?.(null, null)
+    onClose?.()
   }
 
   return (
