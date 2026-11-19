@@ -37,6 +37,14 @@ export const StyledButton = styled.button`
             background-color: rgba(255, 255, 255, 0.8);
           }
         `
+      case 'clear':
+        return css`
+          color: var(--vantrip-gray);
+          padding: 0;
+          font-weight: 500;
+          border-radius: var(--radius-l);
+          background-color: transparent;
+        `
       case 'navStep':
         return css`
           color: var(--vantrip-lighter);
@@ -45,6 +53,7 @@ export const StyledButton = styled.button`
           border-radius: var(--radius-l);
           background-color: transparent;
         `
+
       default:
         return css`
           background-color: var(--vantrip-primary);

@@ -13,7 +13,8 @@ export const FormContainer = styled.form`
 
 export const FieldWrapper = styled.div`
   display: flex;
-  gap: var(--space-s);
+  flex-direction: column;
+  gap: var(--space-xs);
 
   label {
     font-weight: 500;

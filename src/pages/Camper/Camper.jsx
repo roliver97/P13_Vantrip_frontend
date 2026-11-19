@@ -4,13 +4,15 @@ import * as S from './Camper.styles'
 import { BookingBox } from './components/BookingBox/BookingBox'
 import { CamperDetails } from './components/CamperDetails/CamperDetails'
 import { getCamper } from '../../services/campers/campersService'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { Spinner } from '../../components/ui/Spinner/Spinner'
 import { Error } from '../../components/ui/Error/Error'
 import { useFetch } from '../../hooks/useFetch'
+import { CamperProvider } from './context/CamperContext'
 
 export const Camper = () => {
   const { id } = useParams()
+  const location = useLocation()
   const { data, loading, error, executeFetch } = useFetch()
 
   useEffect(() => {
@@ -30,13 +32,15 @@ export const Camper = () => {
 
   return (
     <PageContainer>
-      <S.CamperPageWrapper>
-        <CamperDetails camper={data} />
-        <BookingBox />
+      <CamperProvider camper={data} initialFilters={location.state?.filters}>
+        <S.CamperPageWrapper>
+          <CamperDetails />
+          <BookingBox />
 
-        {/* <CamperDetails camper={camper} />
+          {/* <CamperDetails camper={camper} />
         <BookingBox camper={camper} /> */}
-      </S.CamperPageWrapper>
+        </S.CamperPageWrapper>
+      </CamperProvider>
     </PageContainer>
   )
 }

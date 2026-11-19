@@ -45,6 +45,9 @@
     "availabilityMsg": "Disponible para tus fechas",
     "priceSuffix": " / noche"
   },
+  "camperDetails": {
+    "pricePerNight": "/ noche"
+  },
   "bookingBox": {
     "title": "Reserva Tu Camper",
     "nav": { "dates": "FECHAS", "details": "DATOS", "summary": "RESUMEN" },
@@ -55,6 +58,19 @@
       "changesBtn": "APLICAR CAMBIOS"
     },
     "detailsStep": {
+      "nameField": {
+        "label": "Nombre y apellido",
+        "placeholder": "Laura Smith"
+      },
+      "emailField": {
+        "label": "Email",
+        "placeholder": "example@example.com"
+      },
+      "phoneField": {
+        "label": "Teléfono",
+        "placeholder": "+34 600 000 000"
+      },
+
       "submitBtn": "ENVIAR"
     }
   }

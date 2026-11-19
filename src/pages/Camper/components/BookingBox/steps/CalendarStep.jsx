@@ -1,30 +1,17 @@
-import { useLocation } from 'react-router-dom'
 import { BookingCalendar } from '../../../../../components/ui/BookingCalendar/BookingCalendar'
 import * as S from './CalendarStep.styles'
 import { useState } from 'react'
 import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
 import { useTranslation } from 'react-i18next'
+import { useCamperContext } from '../../../../../hooks/useCamperContext'
 
-export const CalendarStep = ({
-  currentBookingData,
-  onUpdateData,
-  onNext,
-  maxStepReached
-}) => {
+export const CalendarStep = ({ onNext }) => {
   const { t } = useTranslation()
-  const location = useLocation()
-  const activeFilters = location.state?.filters || null
+  const { bookingData, updateBookingData, maxStepReached } = useCamperContext()
+
   const [bookingDates, setBookingDates] = useState({
-    startDate:
-      currentBookingData?.startDate ||
-      (activeFilters?.checkInFilter
-        ? new Date(activeFilters.checkInFilter)
-        : null),
-    endDate:
-      currentBookingData?.endDate ||
-      (activeFilters?.checkOutFilter
-        ? new Date(activeFilters.checkOutFilter)
-        : null)
+    startDate: bookingData.startDate ? new Date(bookingData.startDate) : null,
+    endDate: bookingData.endDate ? new Date(bookingData.endDate) : null
   })
 
   const handleDateConfirm = (startDate, endDate) => {
@@ -33,7 +20,7 @@ export const CalendarStep = ({
 
   const handleUpdateData = () => {
     if (!isValidRange) return
-    onUpdateData(bookingDates)
+    updateBookingData(bookingDates)
     onNext()
   }
 
@@ -43,8 +30,12 @@ export const CalendarStep = ({
     bookingDates.startDate.getTime() !== bookingDates.endDate.getTime()
 
   const isSameRange =
-    bookingDates.startDate === currentBookingData?.startDate &&
-    bookingDates.endDate === currentBookingData?.endDate
+    bookingDates.startDate?.getTime() ===
+      (bookingData.startDate
+        ? new Date(bookingData.startDate).getTime()
+        : null) &&
+    bookingDates.endDate?.getTime() ===
+      (bookingData.endDate ? new Date(bookingData.endDate).getTime() : null)
 
   return (
     <S.CalendarStepContainer>
