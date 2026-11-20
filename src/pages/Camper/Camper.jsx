@@ -8,7 +8,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { Spinner } from '../../components/ui/Spinner/Spinner'
 import { Error } from '../../components/ui/Error/Error'
 import { useFetch } from '../../hooks/useFetch'
-import { CamperProvider } from './context/CamperContext'
+import { CamperProvider } from './context/CamperProvider'
 
 export const Camper = () => {
   const { id } = useParams()
@@ -36,9 +36,6 @@ export const Camper = () => {
         <S.CamperPageWrapper>
           <CamperDetails />
           <BookingBox />
-
-          {/* <CamperDetails camper={camper} />
-        <BookingBox camper={camper} /> */}
         </S.CamperPageWrapper>
       </CamperProvider>
     </PageContainer>

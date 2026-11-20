@@ -5,18 +5,26 @@ import { DefaultButton } from '../DefaultButton/DefaultButton'
 export const CalendarContentWrapper = styled(FlexContainer)`
   flex-direction: column;
   gap: var(--space-m);
-  width: 100%;
-
   flex: 1;
 
   .rdrCalendarWrapper {
     padding: var(--space-s);
+    flex: 1;
     border-radius: var(--radius-m);
     min-height: 436px;
+    width: 100%;
   }
 
   .rdrMonths {
     gap: var(--space-m);
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .rdrMonth {
+    width: 100%;
+    height: 100%;
   }
 `
 

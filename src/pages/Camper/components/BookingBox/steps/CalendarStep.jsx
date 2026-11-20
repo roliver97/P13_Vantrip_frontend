@@ -1,5 +1,5 @@
 import { BookingCalendar } from '../../../../../components/ui/BookingCalendar/BookingCalendar'
-import * as S from './CalendarStep.styles'
+import * as StyledSteps from './Steps.styles'
 import { useState } from 'react'
 import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
 import { useTranslation } from 'react-i18next'
@@ -38,7 +38,7 @@ export const CalendarStep = ({ onNext }) => {
       (bookingData.endDate ? new Date(bookingData.endDate).getTime() : null)
 
   return (
-    <S.CalendarStepContainer>
+    <StyledSteps.BaseStepContainer>
       <BookingCalendar
         onConfirm={handleDateConfirm}
         initialDates={bookingDates}
@@ -57,6 +57,6 @@ export const CalendarStep = ({ onNext }) => {
               ? t('bookingBox.calendarStep.nextBtn')
               : t('bookingBox.calendarStep.changesBtn')}
       </DefaultButton>
-    </S.CalendarStepContainer>
+    </StyledSteps.BaseStepContainer>
   )
 }
