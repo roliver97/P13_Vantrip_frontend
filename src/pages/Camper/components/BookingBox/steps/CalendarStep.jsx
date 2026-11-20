@@ -16,6 +16,7 @@ export const CalendarStep = ({ onNext }) => {
 
   const handleDateConfirm = (startDate, endDate) => {
     setBookingDates({ startDate, endDate })
+    updateBookingData({ startDate, endDate })
   }
 
   const handleUpdateData = () => {

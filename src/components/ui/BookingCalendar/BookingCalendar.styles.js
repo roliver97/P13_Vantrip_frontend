@@ -35,26 +35,17 @@ export const CalendarSubtitle = styled.h3`
 `
 
 export const ClearButton = styled(DefaultButton)`
-  padding: 1px;
-  background-color: transparent;
-  color: var(--vantrip-white);
-  font-weight: 400;
-  &:hover {
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  ${({ $variant }) => {
-    if ($variant === 'modal')
-      return `
+  color: white
+    ${({ $variant }) => {
+      if ($variant === 'modal')
+        return `
     color: var(--vantrip-gray);
-
     &:hover {
     text-decoration: underline;
     font-weight: 400;
   }
 `
-  }}
+    }};
 `
 
 export const ButtonsContainer = styled(FlexContainer)`

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
 
 export const TitlesWrapper = styled.div`
   font-size: 1.1rem;
@@ -13,7 +14,7 @@ export const FormContainer = styled.form`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: var(--space-m);
+  gap: var(--space-s);
 `
 
 export const FieldsContainer = styled.div`
@@ -57,4 +58,8 @@ export const FieldWrapper = styled.div`
       border: 1px solid transparent;
     }
   }
+`
+
+export const ClearButton = styled(DefaultButton)`
+  color: white;
 `

@@ -61,8 +61,36 @@ export const InfoWrapper = styled.div`
           text-align: center;
           flex: 1;
         `
+      case 'price':
+        return css`
+          gap: var(--space-s);
+          text-align: center;
+          flex: 1;
+          background-color: var(--vantrip-primary);
+          border-radius: var(--radius-l);
+          border: 10px solid var(--vantrip-secondary);
+
+          div {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            height: 100%;
+            justify-content: center;
+            gap: var(--space-s);
+          }
+        `
     }
   }}
+`
+
+export const PricesSpan = styled.span`
+  font-size: 1.4rem;
+  font-weight: 600;
+`
+
+export const NightsSpan = styled.span`
+  font-size: 1rem;
+  color: var(--vantrip-lighter);
 `
 
 export const CapacityWrapper = styled.div`

@@ -46,7 +46,11 @@
     "priceSuffix": " / noche"
   },
   "camperDetails": {
-    "pricePerNight": "/ noche"
+    "pricePerNight": {
+      "title": "Precio por noche",
+      "sufix": "/ noche"
+    },
+    "totalPrice": "TOTAL"
   },
   "bookingBox": {
     "title": "Reserva Tu Camper",
@@ -58,6 +62,7 @@
       "changesBtn": "APLICAR CAMBIOS"
     },
     "detailsStep": {
+      "title": "Rellena todos los campos",
       "nameField": {
         "label": "Nombre y apellido",
         "placeholder": "Laura Smith"
@@ -70,7 +75,7 @@
         "label": "Teléfono",
         "placeholder": "+34 600 000 000"
       },
-
+      "clearBtn": "Limpiar todos los campos",
       "submitBtn": "ENVIAR"
     }
   }

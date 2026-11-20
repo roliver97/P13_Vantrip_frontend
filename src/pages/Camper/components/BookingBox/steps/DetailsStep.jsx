@@ -21,21 +21,46 @@ export const DetailsStep = ({ onNext }) => {
     setValues((prev) => ({ ...prev, [name]: value }))
   }
 
+  const phoneDigitsCount = values.phone.replace(/\D/g, '').length
+  const isValidPhone = phoneDigitsCount >= 7 && phoneDigitsCount <= 15
+
+  const isValidForm =
+    Object.values(values).every(
+      (value) => typeof value === 'string' && value.trim() !== ''
+    ) && isValidPhone
+  // With "every", if a single condition fails, it returns false.
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!isValidForm) return
-    updateBookingData({ details: values })
+
+    const trimmedDetails = Object.fromEntries(
+      Object.entries(values).map(([key, val]) => [key, val.trim()])
+    )
+
+    updateBookingData({ details: trimmedDetails })
     onNext()
   }
 
-  const isValidForm = Object.values(values).every(
-    (value) => typeof value === 'string' && value.trim() !== ''
-  )
-  // With "every", if a single condition fails, it returns false.
+  const handleClear = () => {
+    const emptyFields = {
+      name: '',
+      email: '',
+      phone: ''
+    }
+    setValues((prev) => ({
+      ...prev,
+      ...emptyFields
+    }))
+
+    updateBookingData({
+      details: emptyFields
+    })
+  }
 
   return (
     <StyledSteps.BaseStepContainer>
-      <S.TitlesWrapper>Select your travel dates</S.TitlesWrapper>
+      <S.TitlesWrapper>{t('bookingBox.detailsStep.title')}</S.TitlesWrapper>
       <S.FormContainer onSubmit={handleSubmit}>
         <S.FieldsContainer>
           <S.FieldWrapper>
@@ -86,6 +111,10 @@ export const DetailsStep = ({ onNext }) => {
             />
           </S.FieldWrapper>
         </S.FieldsContainer>
+
+        <S.ClearButton type='button' variant={'clear'} onClick={handleClear}>
+          {t('bookingBox.detailsStep.clearBtn')}
+        </S.ClearButton>
 
         <DefaultButton type='submit' disabled={!isValidForm}>
           {t('bookingBox.detailsStep.submitBtn')}

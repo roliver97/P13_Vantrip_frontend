@@ -4,11 +4,28 @@ import { useCamperContext } from '../../../../../../hooks/useCamperContext'
 
 export const StepsNav = () => {
   const { t } = useTranslation()
-  const { currentStep, maxStepReached, goToStep } = useCamperContext()
+  const { currentStep, maxStepReached, goToStep, bookingData } =
+    useCamperContext()
+
+  const hasValidDates = Boolean(bookingData.startDate && bookingData.endDate)
+
+  const hasValidDetails =
+    Boolean(bookingData.details) &&
+    Object.values(bookingData.details).every(
+      (val) => typeof val === 'string' && val.trim() !== ''
+    )
+
+  const isSummaryReady = hasValidDates && hasValidDetails
 
   const handleNavStepClick = (targetStep) => {
     if (targetStep <= maxStepReached) {
-      goToStep(targetStep)
+      if (targetStep === 1) {
+        goToStep(targetStep)
+      } else if (targetStep === 2 && hasValidDates) {
+        goToStep(targetStep)
+      } else if (targetStep === 3 && isSummaryReady) {
+        goToStep(targetStep)
+      }
     }
   }
 
@@ -27,7 +44,8 @@ export const StepsNav = () => {
         type='button'
         variant='navStep'
         $isActive={currentStep === 2}
-        $isDisabled={2 > maxStepReached}
+        $isDisabled={2 > maxStepReached || !hasValidDates}
+        disabled={2 > maxStepReached || !hasValidDates}
         onClick={() => handleNavStepClick(2)}
       >
         2. {t('bookingBox.nav.details')}
@@ -37,7 +55,8 @@ export const StepsNav = () => {
         type='button'
         variant='navStep'
         $isActive={currentStep === 3}
-        $isDisabled={3 > maxStepReached}
+        $isDisabled={3 > maxStepReached || !isSummaryReady}
+        disabled={3 > maxStepReached || !isSummaryReady}
         onClick={() => handleNavStepClick(3)}
       >
         3. {t('bookingBox.nav.summary')}

@@ -1,12 +1,9 @@
-import * as S from './Steps.styles'
+import * as StyledSteps from './Steps.styles'
 
-export const SummaryStep = ({ onNext }) => {
+export const SummaryStep = () => {
   return (
-    <S.BaseStepsContainer>
+    <StyledSteps.BaseStepContainer>
       HI IM SUMMARY STEP
-      <button type='button' onClick={onNext}>
-        NEXT
-      </button>
-    </S.BaseStepsContainer>
+    </StyledSteps.BaseStepContainer>
   )
 }

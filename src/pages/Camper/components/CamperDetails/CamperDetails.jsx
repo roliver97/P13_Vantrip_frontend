@@ -13,10 +13,10 @@ export const CamperDetails = () => {
       ? camper.images
       : [defaultImgErrorSrc]
 
-  const { pricePerDay, totalPrice } = calculateVanPricing(
+  const { pricePerDay, totalPrice, nights } = calculateVanPricing(
     camper,
-    bookingData.checkInFilter,
-    bookingData.checkOutFilter
+    bookingData.startDate,
+    bookingData.endDate
   )
 
   return (
@@ -41,10 +41,20 @@ export const CamperDetails = () => {
           <p>📍{camper.location}</p>
         </S.InfoWrapper>
         <S.InfoWrapper $variant={'price'}>
-          <p>
-            {pricePerDay.formatted} {t('camperDetails.pricePerNight')}{' '}
-            <span>({totalPrice.formatted})</span>
-          </p>
+          <div>
+            <p>{t('camperDetails.pricePerNight.title')}</p>{' '}
+            <S.PricesSpan>
+              {pricePerDay.formatted}
+              {t('camperDetails.pricePerNight.sufix')}
+            </S.PricesSpan>
+          </div>
+          <div>
+            <p>{t('camperDetails.totalPrice')}</p>
+            <div style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <S.PricesSpan>{totalPrice.formatted}</S.PricesSpan>{' '}
+              <S.NightsSpan>{nights} nights</S.NightsSpan>
+            </div>
+          </div>
         </S.InfoWrapper>
       </S.DetailInfo>
     </S.DetailContainer>

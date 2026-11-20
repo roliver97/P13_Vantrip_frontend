@@ -15,4 +15,8 @@ export const StepButton = styled(DefaultButton)`
     css`
       color: var(--vantrip-light);
     `}
+
+    &:disabled {
+    background-color: transparent;
+  }
 `

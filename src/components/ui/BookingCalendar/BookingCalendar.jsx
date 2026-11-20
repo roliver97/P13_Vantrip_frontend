@@ -71,13 +71,14 @@ export const BookingCalendar = ({
         moveRangeOnFirstSelection={false}
         ranges={[selectionRange]}
         rangeColors={['#2b4c3f']}
-        months={2}
+        months={variant !== 'modal' && 2}
         direction={isDesktop ? 'horizontal' : 'vertical'}
         minDate={new Date()}
         maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
       />
       <S.ClearButton
         type='button'
+        variant='clear'
         $variant={variant === 'modal' && 'modal'}
         onClick={(e) => handleClear(e)}
       >
