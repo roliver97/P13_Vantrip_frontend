@@ -1,8 +1,8 @@
 import * as S from './BookingBox.styles'
-import { StepsNav } from './steps/nav/StepsNav'
-import { CalendarStep } from './steps/CalendarStep'
-import { DetailsStep } from './steps/DetailsStep'
-import { SummaryStep } from './steps/SummaryStep'
+import { StepsNav } from './steps/Nav/StepsNav'
+import { CalendarStep } from './steps/Calendar/CalendarStep'
+import { DetailsStep } from './steps/Details/DetailsStep'
+import { SummaryStep } from './steps/Summary/SummaryStep'
 import { useTranslation } from 'react-i18next'
 import { useCamperContext } from '../../../../hooks/useCamperContext'
 

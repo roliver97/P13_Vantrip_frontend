@@ -1,9 +1,9 @@
-import { BookingCalendar } from '../../../../../components/ui/BookingCalendar/BookingCalendar'
-import * as StyledSteps from './Steps.styles'
+import { BookingCalendar } from '../../../../../../components/ui/BookingCalendar/BookingCalendar'
+import * as StyledSteps from '../Steps.styles'
 import { useState } from 'react'
-import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
+import { DefaultButton } from '../../../../../../components/ui/DefaultButton/DefaultButton'
 import { useTranslation } from 'react-i18next'
-import { useCamperContext } from '../../../../../hooks/useCamperContext'
+import { useCamperContext } from '../../../../../../hooks/useCamperContext'
 
 export const CalendarStep = ({ onNext }) => {
   const { t } = useTranslation()

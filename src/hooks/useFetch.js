@@ -1,9 +1,19 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export const useFetch = (fetchFunction, minLoadingTime = 800) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  useEffect(() => {
+    if (fetchFunction) return
+
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, minLoadingTime)
+
+    return () => clearTimeout(timer)
+  }, [fetchFunction, minLoadingTime])
 
   const executeFetch = async (fetchFunction) => {
     if (!fetchFunction) return

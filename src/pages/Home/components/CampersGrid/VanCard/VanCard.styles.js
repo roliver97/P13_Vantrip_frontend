@@ -45,7 +45,7 @@ export const VanOwnerLink = styled(Link)`
   &:hover {
     opacity: 100%;
     transform: scale(105%);
-    border-radius: 100% 0 0 100%;
+    border-radius: 10px 0 0 0;
     border: none;
   }
 `

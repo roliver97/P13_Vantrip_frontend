@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import * as S from './DetailsStep.styles'
-import * as StyledSteps from './Steps.styles'
-import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
+import * as StyledSteps from '../Steps.styles'
+import { DefaultButton } from '../../../../../../components/ui/DefaultButton/DefaultButton'
 import { useTranslation } from 'react-i18next'
-import { useCamperContext } from '../../../../../hooks/useCamperContext'
+import { useCamperContext } from '../../../../../../hooks/useCamperContext'
 
 export const DetailsStep = ({ onNext }) => {
   const { t } = useTranslation()

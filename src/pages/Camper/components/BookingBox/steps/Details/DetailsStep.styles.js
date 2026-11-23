@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DefaultButton } from '../../../../../components/ui/DefaultButton/DefaultButton'
+import { DefaultButton } from '../../../../../../components/ui/DefaultButton/DefaultButton'
 
 export const TitlesWrapper = styled.div`
   font-size: 1.1rem;

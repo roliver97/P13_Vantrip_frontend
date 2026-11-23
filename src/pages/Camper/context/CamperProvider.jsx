@@ -8,7 +8,7 @@ export const CamperProvider = ({ camper, initialFilters, children }) => {
     startDate: initialFilters?.checkInFilter || null,
     endDate: initialFilters?.checkOutFilter || null,
     details: {
-      camper: camper._id,
+      camper: camper?._id,
       name: '',
       email: '',
       phone: ''

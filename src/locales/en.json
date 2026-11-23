@@ -80,6 +80,18 @@
       },
       "clearBtn": "Clear all fields",
       "submitBtn": "SUBMIT"
+    },
+    "summaryStep": {
+      "intro": "Your booking summary is ready:",
+      "success": "Thank you for your booking. You will receive an email with the confirmation details.",
+      "detailsPrefixes": {
+        "name": "Full name:",
+        "email": "Email:",
+        "phone": "Phone:"
+      },
+      "total": "Total:",
+      "confirmBtn": "Confirm reservation",
+      "spinnerMsg": "Loading your booking summary..."
     }
   }
 }

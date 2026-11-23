@@ -77,6 +77,18 @@
       },
       "clearBtn": "Limpiar todos los campos",
       "submitBtn": "ENVIAR"
+    },
+    "summaryStep": {
+      "intro": "El resumen de tu reserva está listo:",
+      "success": "Gracias por su reserva. Recibirá un correo electrónico con los detalles de la confirmación.",
+      "detailsPrefixes": {
+        "name": "Nombre completo:",
+        "email": "Email:",
+        "phone": "Teléfono:"
+      },
+      "total": "Total:",
+      "confirmBtn": "Confirmar reserva",
+      "spinnerMsg": "Cargando el resumen de tu reserva..."
     }
   }
 }
