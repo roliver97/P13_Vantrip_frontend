@@ -5,6 +5,12 @@ import { DefaultButton } from '../../../../../../components/ui/DefaultButton/Def
 import { useTranslation } from 'react-i18next'
 import { useCamperContext } from '../../../../../../hooks/useCamperContext'
 
+const EMPTY_DETAILS_FIELDS = {
+  name: '',
+  email: '',
+  phone: ''
+}
+
 export const DetailsStep = ({ onNext }) => {
   const { t } = useTranslation()
   const { bookingData, updateBookingData } = useCamperContext()
@@ -19,6 +25,10 @@ export const DetailsStep = ({ onNext }) => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setValues((prev) => ({ ...prev, [name]: value }))
+
+    updateBookingData({
+      details: EMPTY_DETAILS_FIELDS
+    })
   }
 
   const phoneDigitsCount = values.phone.replace(/\D/g, '').length
@@ -43,18 +53,13 @@ export const DetailsStep = ({ onNext }) => {
   }
 
   const handleClear = () => {
-    const emptyFields = {
-      name: '',
-      email: '',
-      phone: ''
-    }
     setValues((prev) => ({
       ...prev,
-      ...emptyFields
+      ...EMPTY_DETAILS_FIELDS
     }))
 
     updateBookingData({
-      details: emptyFields
+      details: EMPTY_DETAILS_FIELDS
     })
   }
 

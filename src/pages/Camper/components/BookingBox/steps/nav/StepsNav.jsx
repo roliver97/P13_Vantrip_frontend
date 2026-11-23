@@ -7,12 +7,21 @@ export const StepsNav = () => {
   const { currentStep, maxStepReached, goToStep, bookingData } =
     useCamperContext()
 
-  const hasValidDates = Boolean(bookingData.startDate && bookingData.endDate)
+  const startTimestamp = bookingData.startDate
+    ? new Date(bookingData.startDate).getTime()
+    : null
+  const endTimestamp = bookingData.endDate
+    ? new Date(bookingData.endDate).getTime()
+    : null
+  const hasValidDates =
+    Boolean(startTimestamp && endTimestamp) && startTimestamp < endTimestamp
 
   const hasValidDetails =
     Boolean(bookingData.details) &&
-    Object.values(bookingData.details).every(
-      (val) => typeof val === 'string' && val.trim() !== ''
+    ['camper', 'name', 'email', 'phone'].every(
+      (key) =>
+        typeof bookingData.details[key] === 'string' &&
+        bookingData.details[key].trim() !== ''
     )
 
   const isSummaryReady = hasValidDates && hasValidDetails

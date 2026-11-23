@@ -43,6 +43,7 @@ export const DetailsField = styled(FlexContainer)`
     span {
       flex: 1;
       text-align: start;
+      font-weight: 600;
     }
   }
 `

@@ -8,8 +8,11 @@ export const CamperDetails = () => {
   const { t } = useTranslation()
   const { camper, bookingData } = useCamperContext()
   const defaultImgErrorSrc = './src/assets/images/default_van_error_1.jpg'
+
+  if (!camper) return null
+
   const images =
-    camper.images && camper.images.length > 0
+    camper?.images && camper.images.length > 0
       ? camper.images
       : [defaultImgErrorSrc]
 

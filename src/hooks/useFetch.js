@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export const useFetch = (fetchFunction, minLoadingTime = 800) => {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    if (fetchFunction) return
-
+  const simulateFetch = (customTime = minLoadingTime) => {
+    setLoading(true)
+    setError(null)
     const timer = setTimeout(() => {
       setLoading(false)
-    }, minLoadingTime)
+    }, customTime)
 
     return () => clearTimeout(timer)
-  }, [fetchFunction, minLoadingTime])
+  }
 
   const executeFetch = async (fetchFunction) => {
     if (!fetchFunction) return
@@ -32,5 +32,5 @@ export const useFetch = (fetchFunction, minLoadingTime = 800) => {
     }
   }
 
-  return { data, loading, error, executeFetch }
+  return { data, loading, error, executeFetch, simulateFetch }
 }

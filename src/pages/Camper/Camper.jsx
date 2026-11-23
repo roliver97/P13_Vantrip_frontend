@@ -20,7 +20,7 @@ export const Camper = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
-  if (loading) return <Spinner />
+  if (loading || !data) return <Spinner />
   if (error) {
     return (
       <Error

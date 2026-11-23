@@ -9,18 +9,24 @@ import { Error } from '../../../../../../components/ui/Error/Error'
 import { Spinner } from '../../../../../../components/ui/Spinner/Spinner'
 import { DefaultButton } from '../../../../../../components/ui/DefaultButton/DefaultButton'
 import { formatDate } from '../../../../../../utils/dateFormat'
+import { useEffect } from 'react'
 
 export const SummaryStep = () => {
   const { t, i18n } = useTranslation()
   const { bookingData, camper } = useCamperContext()
 
-  const { data, loading, error, executeFetch } = useFetch(null, 800)
+  const { data, loading, error, executeFetch, simulateFetch } = useFetch(800)
 
   const { nights, totalPrice } = calculateVanPricing(
     camper,
     bookingData.startDate,
     bookingData.endDate
   )
+
+  useEffect(() => {
+    return simulateFetch(800)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const handleConfirmBooking = async () => {
     if (!camper || loading) return
