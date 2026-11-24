@@ -10,10 +10,12 @@ import {
   handleLogoClick,
   handleScrollToSection
 } from '../../../../utils/scrollTo'
+import { useAuthContext } from '../../../../hooks/useAuthContext'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLangModalOpen, setIsLangModalOpen] = useState(false)
+  const { isAuthenticated, isAuthLoading, openAuthModal } = useAuthContext()
 
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
@@ -26,6 +28,20 @@ export const Navbar = () => {
     localStorage.getItem('vantrip_lang')?.toUpperCase() || 'ES'
   const currentCurrency =
     localStorage.getItem('vantrip_currency')?.toUpperCase() || 'EUR'
+
+  const handleProfileClick = (e) => {
+    closeMenu()
+
+    if (isAuthLoading) {
+      e.preventDefault()
+      return
+    }
+
+    if (!isAuthenticated) {
+      e.preventDefault()
+      openAuthModal('login')
+    }
+  }
 
   return (
     <S.Nav>
@@ -72,7 +88,11 @@ export const Navbar = () => {
           </Link>
         </S.LinksWrapper>
         <S.ActionsWrapper>
-          <Link to='/profile' className='profile-link' onClick={closeMenu}>
+          <Link
+            to='/profile'
+            className='profile-link'
+            onClick={handleProfileClick}
+          >
             <img src={profileIcon} alt='' />
           </Link>
           <S.LanguageButton
