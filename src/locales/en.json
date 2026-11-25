@@ -19,6 +19,25 @@
     "currencyLabel": "Currency",
     "button": "Apply"
   },
+  "authModal": {
+    "register": "Register",
+    "login": "Login",
+    "form": {
+      "labels": {
+        "name": "Name",
+        "lastName": "Last name",
+        "username": "Username",
+        "avatar": "Avatar",
+        "email": "Email",
+        "password": "Password"
+      },
+      "submitBtn": {
+        "loading": "Loading",
+        "login": "Log in",
+        "register": "Create account"
+      }
+    }
+  },
   "hero": {
     "title1": "Find the",
     "title2": "that best suits your"

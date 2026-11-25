@@ -1,17 +1,30 @@
 import styled from 'styled-components'
+import { device } from '../../../styles/breakpoints'
 
 export const ModalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   color: var(--vantrip-dark);
   width: 90%;
   max-width: fit-content;
   border-radius: 16px;
-  padding: 24px;
+  padding: var(--space-xl);
   position: fixed;
   top: 50%;
   left: 50%;
   z-index: 1001;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  ${device.desktop} {
+    min-width: 500px;
+  }
+
+  ${({ $fullHeight }) =>
+    $fullHeight &&
+    `
+    height: calc(100% - 124px);
+    top: calc(50% + 31px);`}
 
   transform: translate(-50%, -50%)
     ${({ $isOpen }) => ($isOpen ? 'scale(1)' : 'scale(0.95)')};
@@ -53,4 +66,13 @@ export const ModalHeader = styled.div`
   }
 `
 
-export const ModalContent = styled.div``
+export const ModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${({ $fullHeight }) =>
+    $fullHeight &&
+    `
+    height: 100%;
+
+    `};
+`

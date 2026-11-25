@@ -5,7 +5,7 @@ import { useCamperContext } from '../../../../../../hooks/useCamperContext'
 import { calculateVanPricing } from '../../../../../../utils/priceCalculations'
 import { useFetch } from '../../../../../../hooks/useFetch'
 import { createBooking } from '../../../../../../services/bookings/bookingsService'
-import { Error } from '../../../../../../components/ui/Error/Error'
+import { ErrorModal } from '../../../../../../components/ui/ErrorModal/ErrorModal'
 import { Spinner } from '../../../../../../components/ui/Spinner/Spinner'
 import { DefaultButton } from '../../../../../../components/ui/DefaultButton/DefaultButton'
 import { formatDate } from '../../../../../../utils/dateFormat'
@@ -50,7 +50,7 @@ export const SummaryStep = () => {
   if (error)
     return (
       <StyledSteps.BaseStepContainer>
-        <Error
+        <ErrorModal
           message={`Error on fetch - ${error}`}
           onRetry={handleConfirmBooking}
         />

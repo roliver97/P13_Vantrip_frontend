@@ -139,23 +139,28 @@ export const ActionsWrapper = styled.div`
   left: 24px;
   top: 20px;
 
-  img {
-    display: flex;
-    height: 30px;
-    justify-content: center;
-  }
-
-  a {
-    &:hover {
-      transform: scale(1.05);
-      transition: transform 0.1s ease-in-out;
-    }
-  }
-
   ${device.tablet} {
     width: 200px;
     justify-content: end;
     position: static;
+  }
+`
+
+export const ProfileButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  overflow: hidden;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.1s ease-in-out;
+  }
+
+  img {
+    width: 100%;
   }
 `
 

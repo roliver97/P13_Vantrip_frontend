@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import * as S from './CampersGrid.styles'
 import { VanCardItem } from './VanCard/VanCard'
 import { Spinner } from '../../../../components/ui/Spinner/Spinner'
-import { Error } from '../../../../components/ui/Error/Error'
+import { ErrorModal } from '../../../../components/ui/ErrorModal/ErrorModal'
 
 export const CampersGrid = ({ fetchData, filters, onClear, onRetryFetch }) => {
   const { t } = useTranslation()
@@ -12,7 +12,10 @@ export const CampersGrid = ({ fetchData, filters, onClear, onRetryFetch }) => {
 
   if (error)
     return (
-      <Error message={`Error on fetch - ${error}`} onRetry={onRetryFetch} />
+      <ErrorModal
+        message={`Error on fetch - ${error}`}
+        onRetry={onRetryFetch}
+      />
     )
 
   return (
@@ -26,10 +29,13 @@ export const CampersGrid = ({ fetchData, filters, onClear, onRetryFetch }) => {
           ))}
         </S.Grid>
       ) : (
-        <Error onRetry={onClear} buttonCTA={t('campersGrid.errorButtonCTA')}>
+        <ErrorModal
+          onRetry={onClear}
+          buttonCTA={t('campersGrid.errorButtonCTA')}
+        >
           <p>🔍 {t('campersGrid.errorMsg')}</p>
           <S.GridErrorSpan>{t('campersGrid.errorCTA')}</S.GridErrorSpan>
-        </Error>
+        </ErrorModal>
       )}
     </S.GridSection>
   )

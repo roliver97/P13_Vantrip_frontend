@@ -6,7 +6,7 @@ import { CamperDetails } from './components/CamperDetails/CamperDetails'
 import { getCamper } from '../../services/campers/campersService'
 import { useLocation, useParams } from 'react-router-dom'
 import { Spinner } from '../../components/ui/Spinner/Spinner'
-import { Error } from '../../components/ui/Error/Error'
+import { ErrorModal } from '../../components/ui/ErrorModal/ErrorModal'
 import { useFetch } from '../../hooks/useFetch'
 import { CamperProvider } from './context/CamperProvider'
 
@@ -23,7 +23,7 @@ export const Camper = () => {
   if (loading || !data) return <Spinner />
   if (error) {
     return (
-      <Error
+      <ErrorModal
         message={error}
         onRetry={() => executeFetch(() => getCamper(id))}
       />

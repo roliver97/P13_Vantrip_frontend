@@ -11,11 +11,13 @@ import {
   handleScrollToSection
 } from '../../../../utils/scrollTo'
 import { useAuthContext } from '../../../../hooks/useAuthContext'
+import { useModalContext } from '../../../../hooks/useModalContext'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isLangModalOpen, setIsLangModalOpen] = useState(false)
-  const { isAuthenticated, isAuthLoading, openAuthModal } = useAuthContext()
+  const { user, isAuthenticated, isAuthLoading } = useAuthContext()
+  const { openAuthModal } = useModalContext()
 
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
@@ -29,9 +31,9 @@ export const Navbar = () => {
   const currentCurrency =
     localStorage.getItem('vantrip_currency')?.toUpperCase() || 'EUR'
 
-  const handleProfileClick = (e) => {
-    closeMenu()
+  const profileIconSrc = user?.avatar || profileIcon
 
+  const handleProfileClick = (e) => {
     if (isAuthLoading) {
       e.preventDefault()
       return
@@ -40,6 +42,7 @@ export const Navbar = () => {
     if (!isAuthenticated) {
       e.preventDefault()
       openAuthModal('login')
+      return
     }
   }
 
@@ -88,13 +91,9 @@ export const Navbar = () => {
           </Link>
         </S.LinksWrapper>
         <S.ActionsWrapper>
-          <Link
-            to='/profile'
-            className='profile-link'
-            onClick={handleProfileClick}
-          >
-            <img src={profileIcon} alt='' />
-          </Link>
+          <S.ProfileButton type='button' onClick={handleProfileClick}>
+            <img src={profileIconSrc} alt='' />
+          </S.ProfileButton>
           <S.LanguageButton
             onClick={() => {
               setIsLangModalOpen(true)

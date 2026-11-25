@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
+import { DefaultButton } from '../DefaultButton/DefaultButton'
 
 export const ErrorWrapper = styled.div`
   display: flex;
@@ -7,7 +7,6 @@ export const ErrorWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  min-height: 100%;
   flex: 1;
   gap: var(--space-m);
 `

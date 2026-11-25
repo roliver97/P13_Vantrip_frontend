@@ -14,17 +14,6 @@ export const AuthProvider = ({ children }) => {
   const [isAuthLoading, setIsAuthLoading] = useState(() =>
     Boolean(localStorage.getItem('vantrip_token'))
   )
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  const [authModalTab, setAuthModalTab] = useState('login')
-
-  const openAuthModal = (tab = 'login') => {
-    setAuthModalTab(tab)
-    setIsAuthModalOpen(true)
-  }
-
-  const closeAuthModal = () => {
-    setIsAuthModalOpen(false)
-  }
 
   const logout = () => {
     localStorage.removeItem('vantrip_token')
@@ -90,11 +79,7 @@ export const AuthProvider = ({ children }) => {
         isAuthLoading,
         login,
         register,
-        logout,
-        isAuthModalOpen,
-        authModalTab,
-        openAuthModal,
-        closeAuthModal
+        logout
       }}
     >
       {children}

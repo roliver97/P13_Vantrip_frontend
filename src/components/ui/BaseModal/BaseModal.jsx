@@ -6,13 +6,14 @@ export const BaseModal = ({
   onClose,
   title,
   zIndexOverlay,
+  fullHeight = false,
   children
 }) => {
   return (
     <>
       <Overlay isActive={isOpen} onClick={onClose} zIndex={zIndexOverlay} />
 
-      <S.ModalContainer $isOpen={isOpen}>
+      <S.ModalContainer $isOpen={isOpen} $fullHeight={fullHeight}>
         <S.CloseButton onClick={onClose}>X</S.CloseButton>
 
         {title && (
@@ -21,7 +22,7 @@ export const BaseModal = ({
           </S.ModalHeader>
         )}
 
-        <S.ModalContent>{children}</S.ModalContent>
+        <S.ModalContent $fullHeight={fullHeight}>{children}</S.ModalContent>
       </S.ModalContainer>
     </>
   )
