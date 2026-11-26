@@ -15,7 +15,8 @@ import { useOverlayContext } from '../../../../hooks/useOverlayContext'
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const { user, isAuthenticated, isAuthLoading } = useAuthContext()
-  const { openAuthModal, openLanguageModal } = useOverlayContext()
+  const { openAuthModal, openLanguageModal, openUserModal, activeOverlay } =
+    useOverlayContext()
 
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
@@ -41,6 +42,10 @@ export const Navbar = () => {
       e.preventDefault()
       openAuthModal('login')
       return
+    }
+
+    if (activeOverlay !== 'user') {
+      openUserModal()
     }
   }
 
@@ -92,6 +97,7 @@ export const Navbar = () => {
           <S.ProfileButton type='button' onClick={handleProfileClick}>
             <img src={profileIconSrc} alt='' />
           </S.ProfileButton>
+
           <S.LanguageButton
             onClick={() => {
               openLanguageModal()

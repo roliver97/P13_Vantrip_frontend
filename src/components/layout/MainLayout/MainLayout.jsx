@@ -2,6 +2,7 @@ import { useOverlayContext } from '../../../hooks/useOverlayContext'
 import { AuthModal } from '../../modals/AuthModal/AuthModal'
 import { CalendarModal } from '../../modals/CalendarModal/CalendarModal'
 import { LanguageModal } from '../../modals/LanguageModal/LanguageModal'
+import { UserModal } from '../../modals/UserModal/UserModal'
 import { Footer } from '../Footer/Footer'
 import { Header } from '../Header/Header'
 import * as S from './MainLayout.styles'
@@ -19,6 +20,7 @@ export const MainLayout = ({ children }) => {
       {activeOverlay === 'auth' && <AuthModal />}
       {activeOverlay === 'calendar' && <CalendarModal />}
       {activeOverlay === 'language' && <LanguageModal />}
+      {activeOverlay === 'user' && <UserModal />}
     </S.LayoutContainer>
   )
 }

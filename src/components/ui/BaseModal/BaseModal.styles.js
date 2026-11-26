@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { device } from '../../../styles/breakpoints'
 
 export const ModalContainer = styled.div`
   display: flex;
@@ -15,10 +14,6 @@ export const ModalContainer = styled.div`
   left: 50%;
   z-index: 1001;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-
-  ${device.desktop} {
-    min-width: 500px;
-  }
 
   ${({ $fullHeight }) =>
     $fullHeight &&

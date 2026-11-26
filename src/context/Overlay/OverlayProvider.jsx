@@ -20,6 +20,10 @@ export const OverlayProvider = ({ children }) => {
     setActiveOverlay('calendar')
   }
 
+  const openUserModal = () => {
+    setActiveOverlay('user')
+  }
+
   const closeOverlay = () => {
     setActiveOverlay(null)
     setOverlayProps({})
@@ -35,6 +39,7 @@ export const OverlayProvider = ({ children }) => {
         openAuthModal,
         openLanguageModal,
         openCalendarModal,
+        openUserModal,
         closeOverlay
       }}
     >

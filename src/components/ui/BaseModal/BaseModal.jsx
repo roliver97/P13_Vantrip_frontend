@@ -7,13 +7,18 @@ export const BaseModal = ({
   title,
   zIndexOverlay,
   fullHeight = false,
+  className,
   children
 }) => {
   return (
     <>
       <Overlay isActive={isOpen} onClick={onClose} zIndex={zIndexOverlay} />
 
-      <S.ModalContainer $isOpen={isOpen} $fullHeight={fullHeight}>
+      <S.ModalContainer
+        className={className}
+        $isOpen={isOpen}
+        $fullHeight={fullHeight}
+      >
         <S.CloseButton onClick={onClose}>X</S.CloseButton>
 
         {title && (

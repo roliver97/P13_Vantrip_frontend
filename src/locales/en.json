@@ -38,6 +38,7 @@
       }
     }
   },
+  "userDropdown": { "profile": "Profile" },
   "hero": {
     "title1": "Find the",
     "title2": "that best suits your"

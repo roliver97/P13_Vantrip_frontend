@@ -134,13 +134,15 @@ export const ActionsWrapper = styled.div`
   display: flex;
   align-items: start;
   gap: var(--space-m);
-
+  width: 100%;
+  justify-content: start;
+  padding: var(--space-s);
   position: fixed;
-  left: 24px;
-  top: 20px;
+  top: 0;
 
   ${device.tablet} {
-    width: 200px;
+    padding: 0;
+    width: auto;
     justify-content: end;
     position: static;
   }

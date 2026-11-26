@@ -35,6 +35,7 @@
       }
     }
   },
+  "userDropdown": { "profile": "Perfil" },
   "hero": {
     "title1": "Encuentra la",
     "title2": "que mejor se adapte a tu"
