@@ -3,7 +3,6 @@ import * as S from './Navbar.styles'
 import profileIcon from '../../../../assets/icons/profile_icon.svg'
 import { Overlay } from '../../../ui/Overlay/Overlay'
 import { useWindowResize } from '../../../../hooks/useWindowResize'
-import { LanguageModal } from '../../../modals/LanguageModal/LanguageModal'
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import {
@@ -11,13 +10,12 @@ import {
   handleScrollToSection
 } from '../../../../utils/scrollTo'
 import { useAuthContext } from '../../../../hooks/useAuthContext'
-import { useModalContext } from '../../../../hooks/useModalContext'
+import { useOverlayContext } from '../../../../hooks/useOverlayContext'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [isLangModalOpen, setIsLangModalOpen] = useState(false)
   const { user, isAuthenticated, isAuthLoading } = useAuthContext()
-  const { openAuthModal } = useModalContext()
+  const { openAuthModal, openLanguageModal } = useOverlayContext()
 
   const toggleMenu = () => setIsOpen(!isOpen)
   const closeMenu = () => setIsOpen(false)
@@ -96,7 +94,7 @@ export const Navbar = () => {
           </S.ProfileButton>
           <S.LanguageButton
             onClick={() => {
-              setIsLangModalOpen(true)
+              openLanguageModal()
               closeMenu()
             }}
           >
@@ -111,11 +109,6 @@ export const Navbar = () => {
       <S.HamburgerButton onClick={toggleMenu}>
         {isOpen ? 'X' : '☰'}
       </S.HamburgerButton>
-
-      <LanguageModal
-        isOpen={isLangModalOpen}
-        onClose={() => setIsLangModalOpen(false)}
-      />
     </S.Nav>
   )
 }

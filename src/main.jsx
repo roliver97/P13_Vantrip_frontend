@@ -4,16 +4,16 @@ import './styles/index.css'
 import App from './App.jsx'
 import './config/i18n.js'
 import { BrowserRouter } from 'react-router-dom'
-import { AuthProvider } from './context/AuthProvider.jsx'
-import { ModalProvider } from './context/Modal/ModalProvider.jsx'
+import { AuthProvider } from './context/Auth/AuthProvider.jsx'
+import { OverlayProvider } from './context/Overlay/OverlayProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>
-        <ModalProvider>
+        <OverlayProvider>
           <App />
-        </ModalProvider>
+        </OverlayProvider>
       </AuthProvider>
     </BrowserRouter>
   </StrictMode>

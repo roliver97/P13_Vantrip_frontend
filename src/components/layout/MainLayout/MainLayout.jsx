@@ -1,11 +1,13 @@
-import { useModalContext } from '../../../hooks/useModalContext'
+import { useOverlayContext } from '../../../hooks/useOverlayContext'
 import { AuthModal } from '../../modals/AuthModal/AuthModal'
+import { CalendarModal } from '../../modals/CalendarModal/CalendarModal'
+import { LanguageModal } from '../../modals/LanguageModal/LanguageModal'
 import { Footer } from '../Footer/Footer'
 import { Header } from '../Header/Header'
 import * as S from './MainLayout.styles'
 
 export const MainLayout = ({ children }) => {
-  const { activeModal } = useModalContext()
+  const { activeOverlay } = useOverlayContext()
   return (
     <S.LayoutContainer>
       <S.VisibleLayout>
@@ -14,7 +16,9 @@ export const MainLayout = ({ children }) => {
       </S.VisibleLayout>
       <Footer />
 
-      {activeModal === 'auth' && <AuthModal />}
+      {activeOverlay === 'auth' && <AuthModal />}
+      {activeOverlay === 'calendar' && <CalendarModal />}
+      {activeOverlay === 'language' && <LanguageModal />}
     </S.LayoutContainer>
   )
 }

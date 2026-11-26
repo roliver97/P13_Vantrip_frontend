@@ -2,19 +2,19 @@ import { BaseModal } from '../../ui/BaseModal/BaseModal'
 import { useTranslation } from 'react-i18next'
 import * as S from './AuthModal.styles'
 import { AuthForm } from './AuthForm/AuthForm'
-import { useModalContext } from '../../../hooks/useModalContext'
+import { useOverlayContext } from '../../../hooks/useOverlayContext'
 
 export const AuthModal = () => {
-  const { activeModal, authModalTab, setAuthModalTab, closeModal } =
-    useModalContext()
+  const { activeOverlay, authModalTab, setAuthModalTab, closeOverlay } =
+    useOverlayContext()
   const { t } = useTranslation()
 
-  if (activeModal !== 'auth') return null
+  if (activeOverlay !== 'auth') return null
 
   return (
     <BaseModal
-      isOpen={activeModal === 'auth'}
-      onClose={closeModal}
+      isOpen={activeOverlay === 'auth'}
+      onClose={closeOverlay}
       fullHeight={true}
     >
       <S.AuthTabs>

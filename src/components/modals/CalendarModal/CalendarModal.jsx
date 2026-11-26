@@ -1,18 +1,25 @@
 import { BaseModal } from '../../ui/BaseModal/BaseModal'
 import { BookingCalendar } from '../../ui/BookingCalendar/BookingCalendar'
+import { useOverlayContext } from '../../../hooks/useOverlayContext'
 
-export const CalendarModal = ({ isOpen, onClose, ...restProps }) => {
-  // ...restProps (Rest Operator): Groups the props that were not destructured, allowing them to be automatically passed down from parent to child
+export const CalendarModal = () => {
+  const { activeOverlay, overlayProps, closeOverlay } = useOverlayContext()
+
+  const isOpen = activeOverlay === 'calendar'
   if (!isOpen) return null
 
   return (
     <BaseModal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={closeOverlay}
       title='Select Dates'
       zIndexOverlay={1000}
     >
-      <BookingCalendar onClose={onClose} variant={'modal'} {...restProps} />
+      <BookingCalendar
+        onClose={closeOverlay}
+        variant={'modal'}
+        {...overlayProps}
+      />
     </BaseModal>
   )
 }

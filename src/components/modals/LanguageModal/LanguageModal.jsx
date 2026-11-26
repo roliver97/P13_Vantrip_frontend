@@ -5,8 +5,12 @@ import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
 import i18n from '../../../config/i18n'
 import { useTranslation } from 'react-i18next'
+import { useOverlayContext } from '../../../hooks/useOverlayContext'
 
-export const LanguageModal = ({ isOpen, onClose }) => {
+export const LanguageModal = () => {
+  const { activeOverlay, closeOverlay } = useOverlayContext()
+  const isOpen = activeOverlay === 'language'
+
   const [selectedLang, setSelectedLang] = useState(() => {
     return localStorage.getItem('vantrip_lang') || 'es'
   })
@@ -22,13 +26,13 @@ export const LanguageModal = ({ isOpen, onClose }) => {
 
     i18n.changeLanguage(selectedLang)
 
-    onClose()
+    closeOverlay()
   }
 
   return (
     <BaseModal
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={closeOverlay}
       title={t('langModal.title')}
       zIndexOverlay={1000}
     >

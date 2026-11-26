@@ -4,7 +4,7 @@ import {
   getCurrentUser,
   loginUser,
   registerUser
-} from '../services/auth/authService'
+} from '../../services/auth/authService'
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)

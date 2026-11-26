@@ -10,7 +10,6 @@ export const ErrorModal = ({
 }) => {
   const { t } = useTranslation()
   const defaultMessage = t('error.defaultMsg')
-  console.log(message)
 
   return (
     <S.ErrorWrapper className={className}>

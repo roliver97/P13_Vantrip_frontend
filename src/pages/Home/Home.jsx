@@ -3,11 +3,11 @@ import { SearchBox } from './components/Searchbox/Searchbox'
 import { CampersGrid } from './components/CampersGrid/CampersGrid'
 import { Hero } from './components/Hero/Hero'
 import { PageContainer } from '../../components/ui/PageContainer/PageContainer'
-import { CalendarModal } from '../../components/modals/CalendarModal/CalendarModal'
 import { getCampers } from '../../services/campers/campersService'
 import { useFetch } from '../../hooks/useFetch'
 import { handleScrollToSection } from '../../utils/scrollTo'
 import { useLocation } from 'react-router-dom'
+import { useOverlayContext } from '../../hooks/useOverlayContext'
 
 export const Home = () => {
   const [filters, setFilters] = useState({
@@ -21,7 +21,8 @@ export const Home = () => {
     checkOutFilter: null
   })
   const [isSearchBoxSticky, setIsSearchBoxSticky] = useState(false)
-  const [isCalendarModalOpen, setIsCalendarModalOpen] = useState(false)
+
+  const { openCalendarModal } = useOverlayContext()
 
   const { data, loading, error, executeFetch } = useFetch(800)
 
@@ -79,6 +80,22 @@ export const Home = () => {
     await executeFetch(() => getCampers(resetFilters))
   }
 
+  const handleOpenCalendar = () => {
+    openCalendarModal({
+      initialDates: {
+        startDate: filters.checkInFilter,
+        endDate: filters.checkOutFilter
+      },
+      onConfirm: (startDate, endDate) => {
+        setFilters((prev) => ({
+          ...prev,
+          checkInFilter: startDate,
+          checkOutFilter: endDate
+        }))
+      }
+    })
+  }
+
   return (
     <PageContainer>
       <div ref={heroRef} style={{ width: '100%' }}>
@@ -90,26 +107,8 @@ export const Home = () => {
         setFilters={setFilters}
         onSubmit={handleSubmit}
         isSticky={isSearchBoxSticky}
-        onOpenCalendarModal={() => setIsCalendarModalOpen(true)}
+        onOpenCalendarModal={handleOpenCalendar}
       />
-
-      {isCalendarModalOpen && (
-        <CalendarModal
-          isOpen={isCalendarModalOpen}
-          onClose={() => setIsCalendarModalOpen(false)}
-          initialDates={{
-            startDate: filters.checkInFilter,
-            endDate: filters.checkOutFilter
-          }}
-          onConfirm={(startDate, endDate) => {
-            setFilters((prev) => ({
-              ...prev,
-              checkInFilter: startDate,
-              checkOutFilter: endDate
-            }))
-          }}
-        />
-      )}
 
       <CampersGrid
         fetchData={{ data, loading, error }}

@@ -152,6 +152,8 @@ export const ProfileButton = styled.button`
   align-items: center;
   width: 30px;
   height: 30px;
+  background: transparent;
+  border: none;
   border-radius: 100%;
   overflow: hidden;
   &:hover {
