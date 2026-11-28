@@ -13,7 +13,6 @@ export const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 200px;
-  z-index: 1000;
 `
 
 export const LogoLink = styled(Link)`

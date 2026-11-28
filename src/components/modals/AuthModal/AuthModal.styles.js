@@ -1,5 +1,10 @@
 import styled, { css } from 'styled-components'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
+import { BaseModal } from '../../ui/BaseModal/BaseModal'
+
+export const AuthContainer = styled(BaseModal)`
+  justify-content: end;
+`
 
 export const AuthTabs = styled.div`
   display: flex;

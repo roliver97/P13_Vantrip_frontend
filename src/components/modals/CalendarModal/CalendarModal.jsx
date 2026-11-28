@@ -1,4 +1,4 @@
-import { BaseModal } from '../../ui/BaseModal/BaseModal'
+import { ModalLayout } from '../../ui/ModalLayout/ModalLayout'
 import { BookingCalendar } from '../../ui/BookingCalendar/BookingCalendar'
 import { useOverlayContext } from '../../../hooks/useOverlayContext'
 
@@ -9,7 +9,7 @@ export const CalendarModal = () => {
   if (!isOpen) return null
 
   return (
-    <BaseModal
+    <ModalLayout
       isOpen={isOpen}
       onClose={closeOverlay}
       title='Select Dates'
@@ -20,6 +20,6 @@ export const CalendarModal = () => {
         variant={'modal'}
         {...overlayProps}
       />
-    </BaseModal>
+    </ModalLayout>
   )
 }

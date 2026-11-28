@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BaseModal } from '../../ui/BaseModal/BaseModal'
+import { ModalLayout } from '../../ui/ModalLayout/ModalLayout'
 import * as S from './LanguageModal.styles'
 import { FlexContainer } from '../../ui/FlexContainer/FlexContainer'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
@@ -30,11 +30,10 @@ export const LanguageModal = () => {
   }
 
   return (
-    <BaseModal
+    <ModalLayout
       isOpen={isOpen}
       onClose={closeOverlay}
       title={t('langModal.title')}
-      zIndexOverlay={1000}
     >
       <FlexContainer>
         <p>{t('langModal.subtitle')}</p>
@@ -65,6 +64,6 @@ export const LanguageModal = () => {
           {t('langModal.button')}
         </DefaultButton>
       </FlexContainer>
-    </BaseModal>
+    </ModalLayout>
   )
 }

@@ -1,4 +1,4 @@
-import { BaseModal } from '../../ui/BaseModal/BaseModal'
+import { ModalLayout } from '../../ui/ModalLayout/ModalLayout'
 import { useTranslation } from 'react-i18next'
 import * as S from './AuthModal.styles'
 import { AuthForm } from './AuthForm/AuthForm'
@@ -12,10 +12,10 @@ export const AuthModal = () => {
   if (activeOverlay !== 'auth') return null
 
   return (
-    <BaseModal
+    <ModalLayout
+      placement='x-end y-top'
       isOpen={activeOverlay === 'auth'}
       onClose={closeOverlay}
-      fullHeight={true}
     >
       <S.AuthTabs>
         <S.TabButton
@@ -36,6 +36,6 @@ export const AuthModal = () => {
 
       <AuthForm key={authModalTab} />
       {/* key={authModalTab} will force the AuthForm component to re-render whenever the value of authModalTab changes. */}
-    </BaseModal>
+    </ModalLayout>
   )
 }

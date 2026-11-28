@@ -33,6 +33,8 @@ export const Navbar = () => {
   const profileIconSrc = user?.avatar || profileIcon
 
   const handleProfileClick = (e) => {
+    closeMenu()
+
     if (isAuthLoading) {
       e.preventDefault()
       return

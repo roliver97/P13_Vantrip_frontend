@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAuthContext } from '../../../../hooks/useAuthContext'
 import * as S from './AuthForm.styles'
-import { DefaultButton } from '../../../ui/DefaultButton/DefaultButton'
 import { useOverlayContext } from '../../../../hooks/useOverlayContext'
 
 export const AuthForm = () => {
@@ -143,13 +142,13 @@ export const AuthForm = () => {
         {error && <S.ErrorForm message={error} retry={false} />}
       </S.InputsWrapper>
 
-      <DefaultButton type='submit' disabled={isSubmitting}>
+      <S.SubmitBtn type='submit' disabled={isSubmitting}>
         {isSubmitting
           ? t('authModal.form.submitBtn.loading')
           : currentMode === 'login'
             ? t('authModal.form.submitBtn.login')
             : t('authModal.form.submitBtn.register')}
-      </DefaultButton>
+      </S.SubmitBtn>
     </S.AuthForm>
   )
 }

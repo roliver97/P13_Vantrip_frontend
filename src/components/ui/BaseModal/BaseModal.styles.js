@@ -7,22 +7,20 @@ export const ModalContainer = styled.div`
   color: var(--vantrip-dark);
   width: 90%;
   max-width: fit-content;
+  max-height: calc(100svh - 88px);
+
   border-radius: 16px;
   padding: var(--space-xl);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  z-index: 1001;
+  z-index: ${({ $zIndex }) => Number($zIndex) + 1};
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 
   ${({ $fullHeight }) =>
     $fullHeight &&
     `
     height: calc(100% - 124px);
-    top: calc(50% + 31px);`}
+`}
 
-  transform: translate(-50%, -50%)
-    ${({ $isOpen }) => ($isOpen ? 'scale(1)' : 'scale(0.95)')};
+  transform:  ${({ $isOpen }) => ($isOpen ? 'scale(1)' : 'scale(0.95)')};
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   visibility: ${({ $isOpen }) => ($isOpen ? 'visible' : 'hidden')};
   transition:
@@ -64,6 +62,7 @@ export const ModalHeader = styled.div`
 export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
   ${({ $fullHeight }) =>
     $fullHeight &&
     `

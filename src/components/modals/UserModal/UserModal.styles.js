@@ -1,28 +1,11 @@
 import styled from 'styled-components'
 import { DefaultButton } from '../../ui/DefaultButton/DefaultButton'
-import { BaseModal } from '../../ui/BaseModal/BaseModal'
-import { device } from '../../../styles/breakpoints'
-
-export const UserModal = styled(BaseModal)`
-  left: auto;
-  top: 67px;
-  right: 10%;
-  max-width: none;
-  min-width: none;
-  width: 50%;
-  transform: scale(1);
-
-  ${device.tablet} {
-    width: 200px;
-    right: 5px;
-    top: 67px;
-  }
-`
 
 export const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--vantrip-primary);
+  background-color: var(--vantrip-white);
+  gap: 20px;
 `
 
 export const UserHeader = styled.div`
@@ -35,6 +18,5 @@ export const UserHeader = styled.div`
 
 export const MenuButton = styled(DefaultButton)`
   width: 100%;
-  background: none;
   border: none;
 `
